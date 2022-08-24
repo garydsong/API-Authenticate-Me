@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-<img src=https://i.imgur.com/9TUAluR.png>
+<img src=https://i.imgur.com/lYhebwA.png>
 
 ## API Documentation
 
