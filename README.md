@@ -2,7 +2,9 @@
 
 ## Database Schema Design
 
-<img src=https://i.imgur.com/9TUAluR.png>
+
+<a href="https://drive.google.com/uc?export=view&id=<FILEID>"><img src="https://i.imgur.com/9TUAluR.png" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
+
 
 ## API Documentation
 
