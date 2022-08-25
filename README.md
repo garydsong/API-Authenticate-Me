@@ -1094,7 +1094,7 @@ Create and return a new booking from a spot specified by id.
 * Require Authentication: true
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
-  * Method: POST
+  * Method: PATCH
   * URL: '/api/spots/:spotId/booking/new'
   * Body:
 
