@@ -13,6 +13,14 @@ const router = express.Router();
 
 // ...
 const validateSignup = [
+    check('firstName')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 1 })
+        .withMessage('First name must be at least 1 character long.'),
+    check('lastName')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 1 })
+        .withMessage('Last name must be at least 1 character long.'),
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
@@ -39,7 +47,7 @@ router.post(
     validateSignup,
     async (req, res) => {
       const { email, password, username } = req.body;
-      const user = await User.signup({ email, username, password });
+      const user = await User.signup({ firstName, lastName, email, username, password });
 
       await setTokenCookie(res, user);
 
