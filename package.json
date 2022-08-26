@@ -1,0 +1,24 @@
+{
+  "name": "authenticate-me",
+  "version": "1.0.0",
+  "description": "## Database Schema Design",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm --prefix backend install backend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garydsong/API-Authenticate-Me.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garydsong/API-Authenticate-Me/issues"
+  },
+  "homepage": "https://github.com/garydsong/API-Authenticate-Me#readme"
+}
