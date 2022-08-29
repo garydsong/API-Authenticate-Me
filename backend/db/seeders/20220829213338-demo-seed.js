@@ -49,6 +49,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+     const Op = Sequelize.Op;
      return queryInterface.bulkDelete('Spots', {
       city: { [Op.in]: ['Los Angeles', 'San Francisco', 'Honolulu']}
      }, {});
