@@ -12,6 +12,8 @@ const { restoreUser } = require("../../utils/auth.js");
 
   router.use('/users', usersRouter);
 
+  router.use('/spots', spotRouter);
+
   router.post('/test', (req, res) => {
     res.json({ requestBody: req.body });
   });
