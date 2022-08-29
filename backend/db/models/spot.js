@@ -13,10 +13,31 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Spot.belongsTo(models.User, { foreignKey: 'ownerId'})
     }
+
+    static async createSpot ({ address, city, state, country, lat, lng, name, description, price }) {
+      const spot = await Spot.create({
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+      });
+      return await Spot.findByPk(spot.id)
+    }
   }
+  
   Spot.init({
     ownerId: DataTypes.INTEGER,
-    address: DataTypes.STRING,
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 255]
+      }},
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     country: DataTypes.STRING,
