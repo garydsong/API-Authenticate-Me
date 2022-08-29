@@ -7,7 +7,8 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    res.json('ay dis da spot')
+    const spots = await Spot.findAll()
+    res.json(spots)
 })
 
 module.exports = router;
