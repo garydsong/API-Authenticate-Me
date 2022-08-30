@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { Spot } = require('../../db/models');
+const { Spot, SpotImage } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth');
@@ -17,6 +17,10 @@ const router = express.Router();
 //         .isLength({ min:})
 // ]
 
+router.get('/current', async (req, res) => {
+    
+})
+
 router.get('/', async (req, res) => {
     const spots = await Spot.findAll()
     res.json(spots)
@@ -30,8 +34,27 @@ router.post('/', async (req, res) => {
 })
 
 router.post('/:spotId/images', requireAuth, async (req, res) => {
+    const { url } =  req.body;
     const spot = await Spot.findByPk(req.params.spotId);
-    // const { url } =
+
+    if (!spot) {
+        res
+            .status(404)
+            .json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    const spotImage = await SpotImage.create({
+        spotId: parseInt(req.params.spotId),
+        url: url,
+        preview: true
+    })
+
+    res.json(spotImage)
 })
+
+
 
 module.exports = router;
