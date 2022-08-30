@@ -58,6 +58,21 @@ router.get('/current', handleValidationErrors, async (req, res) => {
     })
 })
 
+router.get('/:spotId', async (req, res) => {
+    const { spotId } = req.params;
+    const spot = await Spot.findByPk(spotId);
+
+    if (!spot) {
+        res
+            .status(404)
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: 404
+              })
+    }
+
+    res.json(spot)
+})
 
 router.get('/', async (req, res) => {
     const spots = await Spot.findAll()
