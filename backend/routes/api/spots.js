@@ -7,19 +7,57 @@ const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
 
-// const validateNewSpot = [
-//     check('address')
-//         .exists({ checkFalsy: true })
-//         .isLength({ min: 1 })
-//         .withMessage('Address must be valid.'),
-//     check('city')
-//         .exists({ checkFalsy: true })
-//         .isLength({ min:})
-// ]
+router.put('/:spotId', async (req, res) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const { spotId } = req.params;
+    const spots = await Spot.findByPk(spotId)
 
-router.get('/current', async (req, res) => {
-    
+    if (!spots) {
+        res
+            .status(404)
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: 404
+              })
+    }
+
+    try {
+        spots.address = address;
+        spots.city = city;
+        spots.state = state;
+        spots.country = country;
+        spots.lat = lat;
+        spots.lng = lng;
+        spots.name = name;
+        spots.description = description;
+        spots.price = price;
+        spots.update()
+    } catch (error) {
+        res
+            .status(404)
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: 404
+              })
+    }
+
+    res.json(spots)
+
 })
+
+router.get('/current', handleValidationErrors, async (req, res) => {
+    const ownerId = req.user.id;
+    const spots = await Spot.findAll({
+        where: {
+            ownerId: ownerId
+        }
+    })
+
+    res.json({
+        Spot: spots
+    })
+})
+
 
 router.get('/', async (req, res) => {
     const spots = await Spot.findAll()
