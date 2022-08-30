@@ -81,9 +81,31 @@ router.get('/', async (req, res) => {
 
 router.post('/', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
-    const spot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price })
 
-    return res.json({spot});
+    try {
+        const spot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price })
+
+        return res.json({spot});
+    } catch (error) {
+        res
+            .status(400)
+            .json({
+                message: "Validation Error",
+                statusCode: 400,
+                errors: {
+                  address: "Street address is required",
+                  city: "City is required",
+                  state: "State is required",
+                  country: "Country is required",
+                  lat: "Latitude is not valid",
+                  lng: "Longitude is not valid",
+                  name: "Name must be less than 50 characters",
+                  description: "Description is required",
+                  price: "Price per day is required"
+                }
+              })
+    }
+
 })
 
 router.post('/:spotId/images', requireAuth, async (req, res) => {
