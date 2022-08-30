@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Review.belongsTo(models.Spot, {
+        foreignKey: 'spotId'
+      })
+
+      Review.belongsTo(models.User, {
+        foreignKey: 'userId'
+      })
     }
 
-    static async createReview ({ review, stars }) {
-      const reviewObj = await Review.create({
-        review,
-        stars
-      });
-      return await Review.findByPk(reviewObj.id)
-    }
   }
   Review.init({
     spotId: DataTypes.INTEGER,

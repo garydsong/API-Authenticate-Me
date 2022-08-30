@@ -81,7 +81,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
-    const spot = await Spot.createSpot({ address, city, state, country, lat, lng, name, description, price })
+    const spot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price })
 
     return res.json({spot});
 })
@@ -117,15 +117,6 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         }
     })
 
-    if (reviewExists) {
-        res
-            .status(403)
-            .json({
-                message: "User already has a review for this spot",
-                statusCode: 403
-              })
-    }
-
     if (!spot) {
         res
             .status(404)
@@ -135,8 +126,24 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
               })
     }
 
+    if (reviewExists) {
+        res
+            .status(403)
+            .json({
+                message: "User already has a review for this spot",
+                statusCode: 403
+              })
+    }
+
+
     try {
-        const newReview = await Review.createReview({ review, stars })
+        const newReview = await Review.create({
+            userId: req.user.id,
+            spotId: spot.id,
+            review,
+            stars
+        })
+
         res.json(newReview)
     } catch (error) {
         res
