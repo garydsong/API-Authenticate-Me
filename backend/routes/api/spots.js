@@ -18,7 +18,7 @@ router.put('/:spotId', requireAuth, async (req, res) => {
             .json({
                 message: "Spot couldn't be found",
                 statusCode: 404
-              })
+            })
     }
 
     try {
@@ -32,16 +32,17 @@ router.put('/:spotId', requireAuth, async (req, res) => {
         spots.description = description;
         spots.price = price;
         spots.update()
+        res.json(spots)
     } catch (error) {
         res
             .status(404)
             .json({
                 message: "Spot couldn't be found",
                 statusCode: 404
-              })
+            })
     }
 
-    res.json(spots)
+
 
 })
 
@@ -68,7 +69,7 @@ router.get('/:spotId', async (req, res) => {
             .json({
                 message: "Spot couldn't be found",
                 statusCode: 404
-              })
+            })
     }
 
     res.json(spot)
@@ -85,7 +86,7 @@ router.post('/', requireAuth, async (req, res) => {
     try {
         const spot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price })
 
-        return res.json({spot});
+        return res.json({ spot });
     } catch (error) {
         res
             .status(400)
@@ -93,32 +94,32 @@ router.post('/', requireAuth, async (req, res) => {
                 message: "Validation Error",
                 statusCode: 400,
                 errors: {
-                  address: "Street address is required",
-                  city: "City is required",
-                  state: "State is required",
-                  country: "Country is required",
-                  lat: "Latitude is not valid",
-                  lng: "Longitude is not valid",
-                  name: "Name must be less than 50 characters",
-                  description: "Description is required",
-                  price: "Price per day is required"
+                    address: "Street address is required",
+                    city: "City is required",
+                    state: "State is required",
+                    country: "Country is required",
+                    lat: "Latitude is not valid",
+                    lng: "Longitude is not valid",
+                    name: "Name must be less than 50 characters",
+                    description: "Description is required",
+                    price: "Price per day is required"
                 }
-              })
+            })
     }
 
 })
 
 router.post('/:spotId/images', requireAuth, async (req, res) => {
-    const { url } =  req.body;
+    const { url } = req.body;
     const spot = await Spot.findByPk(req.params.spotId);
 
     if (!spot) {
         res
             .status(404)
             .json({
-            message: "Spot couldn't be found",
-            statusCode: 404
-        })
+                message: "Spot couldn't be found",
+                statusCode: 404
+            })
     }
 
     const spotImage = await SpotImage.create({
@@ -145,7 +146,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
             .json({
                 message: "Spot couldn't be found",
                 statusCode: 404
-              })
+            })
     }
 
     if (reviewExists) {
@@ -154,7 +155,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
             .json({
                 message: "User already has a review for this spot",
                 statusCode: 403
-              })
+            })
     }
 
 
@@ -174,8 +175,8 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
                 message: "Validation error",
                 statusCode: 400,
                 errors: {
-                  review: "Review text is required",
-                  stars: "Stars must be an integer from 1 to 5",
+                    review: "Review text is required",
+                    stars: "Stars must be an integer from 1 to 5",
                 }
             })
     }
@@ -192,7 +193,7 @@ router.get('/:spotId/reviews', async (req, res) => {
             .json({
                 message: "Spot couldn't be found",
                 statusCode: 404
-              })
+            })
     }
 
     const reviews = await Review.findAll({

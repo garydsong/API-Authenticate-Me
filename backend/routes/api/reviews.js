@@ -80,8 +80,40 @@ router.get('/current', async (req, res) => {
     })
 })
 
-router.put('/:reviewId', async (req, res) => {
-    res.json('ye')
+router.put('/:reviewId', requireAuth, async (req, res) => {
+    const { review, stars } = req.body;
+    const { reviewId } = req.params;
+    const reviews = await Review.findByPk(reviewId)
+
+    if (!reviews) {
+        res
+            .status(404)
+            .json({
+                message: "Review couldn't be found",
+                statusCode: 404
+              })
+    }
+
+    try {
+        reviews.review = review;
+        reviews.stars = stars;
+        reviews.update()
+        res.json(reviews)
+        
+    } catch (error) {
+        res
+            .status(400)
+            .json({
+                message: "Validation error",
+                statusCode: 400,
+                errors: {
+                  review: "Review text is required",
+                  stars: "Stars must be an integer from 1 to 5",
+                }
+              })
+    }
+
+
 })
 
 module.exports = router;
