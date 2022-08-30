@@ -80,4 +80,8 @@ router.get('/current', async (req, res) => {
     })
 })
 
+router.put('/:reviewId', async (req, res) => {
+    res.json('ye')
+})
+
 module.exports = router;
