@@ -99,7 +99,7 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
         reviews.stars = stars;
         reviews.update()
         res.json(reviews)
-        
+
     } catch (error) {
         res
             .status(400)
@@ -112,7 +112,6 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
                 }
               })
     }
-
 
 })
 
