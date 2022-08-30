@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       return await Spot.findByPk(spot.id)
     }
   }
-  
+
   Spot.init({
     ownerId: DataTypes.INTEGER,
     address: {
@@ -37,14 +37,45 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         len: [1, 255]
-      }},
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    country: DataTypes.STRING,
+      }
+    },
+    city: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      len: [1, 30]
+    }
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 30]
+      }
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 30]
+      }
+    },
     lat: DataTypes.DECIMAL,
     lng: DataTypes.DECIMAL,
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 30]
+      }
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 255]
+      }
+    },
     price: DataTypes.DECIMAL
   }, {
     sequelize,
