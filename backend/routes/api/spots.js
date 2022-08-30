@@ -309,6 +309,4 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     }
 })
 
-// Get All Current User's Bookings
-
 module.exports = router;
