@@ -1,13 +1,13 @@
 const express = require('express');
 
-const { Spot, SpotImage } = require('../../db/models');
+const { Spot, SpotImage, Review } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
 
-router.put('/:spotId', async (req, res) => {
+router.put('/:spotId', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const { spotId } = req.params;
     const spots = await Spot.findByPk(spotId)
@@ -79,7 +79,7 @@ router.get('/', async (req, res) => {
     res.json(spots)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const spot = await Spot.createSpot({ address, city, state, country, lat, lng, name, description, price })
 
@@ -108,6 +108,49 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     res.json(spotImage)
 })
 
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+    const { review, stars } = req.body;
+    const spot = await Spot.findByPk(req.params.spotId);
+    const reviewExists = await Review.findOne({
+        where: {
+            userId: req.user.id
+        }
+    })
 
+    if (reviewExists) {
+        res
+            .status(403)
+            .json({
+                message: "User already has a review for this spot",
+                statusCode: 403
+              })
+    }
+
+    if (!spot) {
+        res
+            .status(404)
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: 404
+              })
+    }
+
+    try {
+        const newReview = await Review.createReview({ review, stars })
+        res.json(newReview)
+    } catch (error) {
+        res
+            .status(400)
+            .json({
+                message: "Validation error",
+                statusCode: 400,
+                errors: {
+                  review: "Review text is required",
+                  stars: "Stars must be an integer from 1 to 5",
+                }
+            })
+    }
+
+})
 
 module.exports = router;
