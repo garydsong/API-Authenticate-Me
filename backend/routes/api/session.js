@@ -79,11 +79,12 @@ router.post(
             return next(err);
         }
 
-        await setTokenCookie(res, user);
+        const token = await setTokenCookie(res, user);
 
-        return res.json({
-            user
-        });
+        const userObj = user.toJSON();
+        userObj.token = token;
+
+        return res.json(userObj);
     }
 );
 
