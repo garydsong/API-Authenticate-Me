@@ -97,11 +97,10 @@ router.get('/:spotId', async (req, res) => {
         ]
     });
 
-    const reviews = await Review.findAll({
-        raw: true,
-        where: {spotId: spotId},
-        attributes: [[sequelize.fn('count', sequelize.col('review')), 'count']],
-        group: ['Review.id']
+    const reviews = await Review.count({where: {spotId: spotId}})
+
+    const sumOfStars = await Review.sum('stars', {
+        where: {spotId: spotId}
     })
 
     const spotImage = await SpotImage.findAll({
@@ -114,9 +113,11 @@ router.get('/:spotId', async (req, res) => {
 
 
     const returnSpot = spot.toJSON();
+
+    returnSpot.numReviews = reviews
     returnSpot.Owner = owner;
     returnSpot.SpotImages = spotImage;
-    returnSpot.numReviews = reviews[0].count;
+    returnSpot.avgRating = Math.floor(parseInt(sumOfStars) / parseInt(reviews));
 
 
     if (!spot) {
