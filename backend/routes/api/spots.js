@@ -100,7 +100,8 @@ router.get('/:spotId', async (req, res) => {
     const reviews = await Review.findAll({
         raw: true,
         where: {spotId: spotId},
-        attributes: ['spotId', [sequelize.fn('count', sequelize.col('review')), 'count']]
+        attributes: ['spotId', [sequelize.fn('count', sequelize.col('review')), 'count']],
+        group: ['Review.id']
     })
 
     const spotImage = await SpotImage.findAll({
