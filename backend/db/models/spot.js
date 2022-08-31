@@ -80,9 +80,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     price: DataTypes.DECIMAL
-  }, {
+  },{
     sequelize,
     modelName: 'Spot',
+    defaultScope: {
+      attributes: {
+        exclude: ["createdAt", "updatedAt"]
+      }
+    }
   });
   return Spot;
 };

@@ -76,8 +76,9 @@ router.get('/:spotId', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
+    const { page, size } = req.query;
     const spots = await Spot.findAll()
-    res.json(spots)
+    res.json({Spots: spots})
 })
 
 router.post('/', requireAuth, async (req, res) => {
@@ -86,7 +87,7 @@ router.post('/', requireAuth, async (req, res) => {
     try {
         const spot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price })
 
-        return res.json({ spot });
+        return res.json(spot);
     } catch (error) {
         res
             .status(400)
