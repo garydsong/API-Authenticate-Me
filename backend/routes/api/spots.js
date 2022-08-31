@@ -100,7 +100,7 @@ router.get('/:spotId', async (req, res) => {
     const reviews = await Review.findAll({
         raw: true,
         where: {spotId: spotId},
-        attributes: ['spotId', [sequelize.fn('count', sequelize.col('review')), 'count']],
+        attributes: [[sequelize.fn('count', sequelize.col('review')), 'count']],
         group: ['Review.id']
     })
 
@@ -108,6 +108,7 @@ router.get('/:spotId', async (req, res) => {
         where: {spotId: spotId},
         attributes: ['id', 'url', 'preview']
     })
+
     const owner = await User.findByPk(spot.ownerId,
         {attributes: ['id', 'firstName', 'lastName']})
 
