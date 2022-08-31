@@ -5,6 +5,8 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth');
 
+const { sequelize } = require('sequelize')
+
 const router = express.Router();
 
 router.put('/:spotId', requireAuth, async (req, res) => {
@@ -75,9 +77,25 @@ router.get('/:spotId', async (req, res) => {
     res.json(spot)
 })
 
+// Get all Spots
 router.get('/', async (req, res) => {
     const { page, size } = req.query;
-    const spots = await Spot.findAll()
+    const spots = await Spot.findAll({
+        attributes: [
+            'id',
+            'ownerId',
+            'address',
+            'city',
+            'state',
+            'country',
+            'lat',
+            'lng',
+            'name',
+            'description',
+            'price',
+            'createdAt',
+            'updatedAt',
+        ]})
     res.json({Spots: spots})
 })
 
