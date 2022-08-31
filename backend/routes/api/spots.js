@@ -97,6 +97,15 @@ router.get('/:spotId', async (req, res) => {
         ]
     });
 
+    if (!spot) {
+        res
+            .status(404)
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: 404
+            })
+    }
+
     const reviews = await Review.count({ where: { spotId: spotId } })
 
     const sumOfStars = await Review.sum('stars', {
@@ -109,27 +118,25 @@ router.get('/:spotId', async (req, res) => {
     })
 
     const owner = await User.findByPk(spot.ownerId,
-        { attributes: ['id', 'firstName', 'lastName'] })
-
+        { attributes: ['id', 'firstName', 'lastName']
+    })
 
     const returnSpot = spot.toJSON();
 
-    returnSpot.numReviews = reviews
-    returnSpot.Owner = owner;
-    returnSpot.SpotImages = spotImage;
-    returnSpot.avgRating = Math.floor(parseInt(sumOfStars) / parseInt(reviews));
-
-
-    if (!spot) {
-        res
-            .status(404)
-            .json({
-                message: "Spot couldn't be found",
-                statusCode: 404
-            })
+    let averageRating;
+    if (sumOfStars === null) {
+        averageRating = 0
+    } else {
+        averageRating = Math.floor(parseInt(sumOfStars) / parseInt(reviews))
     }
 
+    returnSpot.numReviews = reviews;
+    returnSpot.Owner = owner;
+    returnSpot.SpotImages = spotImage;
+    returnSpot.avgRating = averageRating;
+
     res.json(returnSpot)
+
 })
 
 // Get all Spots
