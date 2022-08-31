@@ -31,7 +31,7 @@ router.put('/:spotId', requireAuth, async (req, res) => {
         spots.name = name;
         spots.description = description;
         spots.price = price;
-        await spots.update()
+        await spots.save()
         res.json(spots)
     } catch (error) {
         res
@@ -97,19 +97,19 @@ router.get('/:spotId', async (req, res) => {
         ]
     });
 
-    const reviews = await Review.count({where: {spotId: spotId}})
+    const reviews = await Review.count({ where: { spotId: spotId } })
 
     const sumOfStars = await Review.sum('stars', {
-        where: {spotId: spotId}
+        where: { spotId: spotId }
     })
 
     const spotImage = await SpotImage.findAll({
-        where: {spotId: spotId},
+        where: { spotId: spotId },
         attributes: ['id', 'url', 'preview']
     })
 
     const owner = await User.findByPk(spot.ownerId,
-        {attributes: ['id', 'firstName', 'lastName']})
+        { attributes: ['id', 'firstName', 'lastName'] })
 
 
     const returnSpot = spot.toJSON();
@@ -150,8 +150,9 @@ router.get('/', async (req, res) => {
             'price',
             'createdAt',
             'updatedAt',
-        ]})
-    res.json({Spots: spots})
+        ]
+    })
+    res.json({ Spots: spots })
 })
 
 router.post('/', requireAuth, async (req, res) => {
@@ -307,7 +308,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
             .json({
                 message: "Spot couldn't be found",
                 statusCode: 404
-              })
+            })
     }
 
     console.log('start', startDate)
@@ -331,10 +332,10 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
                 message: "Sorry, this spot is already booked for the specified dates",
                 statusCode: 403,
                 errors: {
-                  startDate: "Start date conflicts with an existing booking",
-                  endDate: "End date conflicts with an existing booking"
+                    startDate: "Start date conflicts with an existing booking",
+                    endDate: "End date conflicts with an existing booking"
                 }
-              })
+            })
     }
 })
 
@@ -349,7 +350,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
             .json({
                 message: "Spot couldn't be found",
                 statusCode: 404
-              })
+            })
     }
 
     if (req.user.id !== spot.ownerId) {
@@ -394,7 +395,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
             .json({
                 message: "Spot couldn't be found",
                 statusCode: 404
-              })
+            })
     }
 
     spot.destroy()
@@ -402,7 +403,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     res.json({
         message: "Successfully deleted",
         statusCode: 200
-      })
+    })
 })
 
 module.exports = router;
