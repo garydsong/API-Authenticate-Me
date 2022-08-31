@@ -33,18 +33,14 @@ router.delete(
 );
 
 // Restore session user
-router.get(
-    '/',
-    restoreUser,
-    (req, res) => {
-        const { user } = req;
-        if (user) {
-            return res.json({
-                user: user.toSafeObject()
-            });
-        } else return res.json({});
-    }
-);
+router.get('/', restoreUser, async (req, res) => {
+    const { user } = req;
+    const currentUser = await User.findByPk(user.id)
+
+    if (user) {
+        return res.json(currentUser);
+    } else return res.json({});
+});
 
 // backend/routes/api/session.js
 // ...
