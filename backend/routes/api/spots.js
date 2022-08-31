@@ -1,11 +1,9 @@
 const express = require('express');
 
-const { Spot, SpotImage, User, ReviewImage, Review, Booking } = require('../../db/models');
+const { Spot, SpotImage, User, ReviewImage, Review, Booking, sequelize } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth');
-
-const { sequelize } = require('sequelize')
 
 const router = express.Router();
 
@@ -48,12 +46,28 @@ router.put('/:spotId', requireAuth, async (req, res) => {
 
 })
 
+// Get all Spots owned by the Current User
 router.get('/current', handleValidationErrors, async (req, res) => {
     const ownerId = req.user.id;
     const spots = await Spot.findAll({
         where: {
             ownerId: ownerId
-        }
+        },
+        attributes: [
+            'id',
+            'ownerId',
+            'address',
+            'city',
+            'state',
+            'country',
+            'lat',
+            'lng',
+            'name',
+            'description',
+            'price',
+            'createdAt',
+            'updatedAt',
+        ]
     })
 
     res.json({
@@ -61,9 +75,47 @@ router.get('/current', handleValidationErrors, async (req, res) => {
     })
 })
 
+// Get details of a Spot from an id
 router.get('/:spotId', async (req, res) => {
     const { spotId } = req.params;
-    const spot = await Spot.findByPk(spotId);
+
+    const spot = await Spot.findByPk(spotId, {
+        attributes: [
+            'id',
+            'ownerId',
+            'address',
+            'city',
+            'state',
+            'country',
+            'lat',
+            'lng',
+            'name',
+            'description',
+            'price',
+            'createdAt',
+            'updatedAt',
+        ]
+    });
+
+    const reviews = await Review.findAll({
+        raw: true,
+        where: {spotId: spotId},
+        attributes: ['spotId', [sequelize.fn('count', sequelize.col('review')), 'count']]
+    })
+
+    const spotImage = await SpotImage.findAll({
+        where: {spotId: spotId},
+        attributes: ['id', 'url', 'preview']
+    })
+    const owner = await User.findByPk(spot.ownerId,
+        {attributes: ['id', 'firstName', 'lastName']})
+
+
+    const returnSpot = spot.toJSON();
+    returnSpot.Owner = owner;
+    returnSpot.SpotImages = spotImage;
+    returnSpot.numReviews = reviews[0].count;
+
 
     if (!spot) {
         res
@@ -74,7 +126,7 @@ router.get('/:spotId', async (req, res) => {
             })
     }
 
-    res.json(spot)
+    res.json(returnSpot)
 })
 
 // Get all Spots
