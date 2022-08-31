@@ -91,13 +91,13 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
             .json({
                 message: "Review couldn't be found",
                 statusCode: 404
-              })
+            })
     }
 
     try {
         reviews.review = review;
         reviews.stars = stars;
-        reviews.update()
+        await reviews.update()
         res.json(reviews)
 
     } catch (error) {
@@ -107,10 +107,10 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
                 message: "Validation error",
                 statusCode: 400,
                 errors: {
-                  review: "Review text is required",
-                  stars: "Stars must be an integer from 1 to 5",
+                    review: "Review text is required",
+                    stars: "Stars must be an integer from 1 to 5",
                 }
-              })
+            })
     }
 
 })
@@ -127,7 +127,7 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
             .json({
                 message: "Review couldn't be found",
                 statusCode: 404
-              })
+            })
     }
 
     review.destroy()
@@ -135,7 +135,7 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
     res.json({
         message: "Successfully deleted",
         statusCode: 200
-      })
+    })
 })
 
 module.exports = router;
