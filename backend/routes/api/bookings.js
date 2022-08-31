@@ -7,6 +7,8 @@ const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
 
+
+// Get all Current Users
 router.get('/current', async (req, res) => {
     const bookings = await Booking.findAll({
         where: {
@@ -24,6 +26,40 @@ router.get('/current', async (req, res) => {
     })
 
     res.json(bookings)
+})
+
+// Edit Booking
+router.put('/:bookingId', requireAuth, async (req, res) => {
+    const { startDate, endDate } = req.body;
+    const { bookingId } = req.params;
+    const booking = await Booking.findByPk(bookingId)
+
+    if (!booking) {
+        res
+            .status(404)
+            .json({
+                message: "Booking couldn't be found",
+                statusCode: 404
+            })
+    }
+
+    try {
+        booking.startDate = startDate;
+        booking.endDate = endDate;
+        await booking.update()
+        res.json(booking)
+    } catch (error) {
+        res
+            .status(403)
+            .json({
+                message: "Sorry, this spot is already booked for the specified dates",
+                statusCode: 403,
+                errors: {
+                    startDate: "Start date conflicts with an existing booking",
+                    endDate: "End date conflicts with an existing booking"
+                }
+            })
+    }
 })
 
 
