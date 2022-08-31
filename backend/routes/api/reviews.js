@@ -97,7 +97,8 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
     try {
         reviews.review = review;
         reviews.stars = stars;
-        await reviews.update()
+        await reviews.save()
+
         res.json(reviews)
 
     } catch (error) {
