@@ -41,7 +41,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         url
     })
 
-    res.json({
+    return res.json({
         id: newReviewImage.id,
         url: url
     })
@@ -81,8 +81,9 @@ router.get('/current', async (req, res) => {
 
     for (let i = 0; i < reviews.length; i++) {
         let resReviews = reviews[i].toJSON()
+        console.log(resReviews)
         let urlObj = resReviews.Spot.SpotImages[0]
-        console.log(urlObj)
+        // console.log(urlObj)
 
         if (urlObj) {
             resReviews.Spot.previewImage = urlObj.url
@@ -120,7 +121,7 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
         reviews.stars = stars;
         await reviews.save()
 
-        res.json(reviews)
+        return res.json(reviews)
 
     } catch (error) {
         res
