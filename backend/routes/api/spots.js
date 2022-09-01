@@ -127,7 +127,7 @@ router.get('/:spotId', async (req, res) => {
     if (sumOfStars === null) {
         averageRating = 0
     } else {
-        averageRating = Math.floor(parseInt(sumOfStars) / parseInt(reviews))
+        averageRating = (sumOfStars / reviews).toFixed(1)
     }
 
     returnSpot.numReviews = reviews;
