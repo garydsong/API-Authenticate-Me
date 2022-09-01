@@ -397,11 +397,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const { startDate, endDate } = req.body;
     const { spotId } = req.params;
     const spot = await Spot.findByPk(spotId)
-    const allBookings = await Booking.findAll({
-        where: {
-            spotId: spot.id
-        }
-    })
 
     if (!spot) {
         res
@@ -411,6 +406,12 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
                 statusCode: 404
             })
     }
+
+    const allBookings = await Booking.findAll({
+        where: {
+            spotId: spot.id
+        }
+    })
 
 
     const newBooking = await Booking.create({
@@ -455,6 +456,9 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
                     })
             }
     }
+
+
+
 
     res.json(newBooking)
 })
