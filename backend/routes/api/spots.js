@@ -58,6 +58,7 @@ router.put('/:spotId', requireAuth, async (req, res) => {
 router.get('/current', handleValidationErrors, async (req, res) => {
     const ownerId = req.user.id;
     const spots = await Spot.findAll({
+        raw: true,
         where: {
             ownerId: ownerId
         },
@@ -77,6 +78,39 @@ router.get('/current', handleValidationErrors, async (req, res) => {
             'updatedAt',
         ]
     })
+
+    let averageRating;
+
+    for (let i = 0; i < spots.length; i++) {
+        const reviews = await Review.count({ where: { spotId: spots[i].id } })
+        const sumOfStars = await Review.sum('stars', {
+            where: { spotId: spots[i].id }
+        })
+
+        if (sumOfStars === null) {
+            averageRating = 0
+        } else {
+            averageRating = (sumOfStars / reviews).toFixed(1)
+        }
+
+        spots[i].avgRating = averageRating
+
+        const image = await SpotImage.findOne({
+            raw: true,
+            where: {
+                [Op.and]: [
+                    { spotId: spots[i].id },
+                    { preview: true }
+                ]
+            }
+        })
+
+        if (!image) {
+            spots[i].previewImage = null
+        } else {
+            spots[i].previewImage = image.url
+        }
+    }
 
     res.json({
         Spots: spots
@@ -105,6 +139,7 @@ router.get('/:spotId', async (req, res) => {
         ]
     });
 
+
     if (!spot) {
         res
             .status(404)
@@ -126,8 +161,9 @@ router.get('/:spotId', async (req, res) => {
     })
 
     const owner = await User.findByPk(spot.ownerId,
-        { attributes: ['id', 'firstName', 'lastName']
-    })
+        {
+            attributes: ['id', 'firstName', 'lastName']
+        })
 
     const returnSpot = spot.toJSON();
 
@@ -193,7 +229,6 @@ router.get('/', async (req, res) => {
         offset + pagination.limit + 1
     )
 
-    console.log(allSpots)
     for (let i = 0; i < allSpots.length; i++) {
         const image = await SpotImage.findOne({
             raw: true,
@@ -205,7 +240,7 @@ router.get('/', async (req, res) => {
             }
         })
 
-        if (!image){
+        if (!image) {
             allSpots[i].previewImage = null
         } else {
             allSpots[i].previewImage = image.url
