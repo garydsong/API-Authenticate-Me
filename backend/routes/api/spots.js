@@ -190,8 +190,6 @@ router.get('/', async (req, res) => {
     page = parseInt(page)
     size = parseInt(size)
 
-    console.log(page)
-
     if (!page) page = 1;
     if (page > 10) page = 10;
     if (!size) size = 20;
@@ -241,7 +239,7 @@ router.get('/', async (req, res) => {
         })
 
         if (!image) {
-            allSpots[i].previewImage = null
+            allSpots[i].previewImage = 'No image'
         } else {
             allSpots[i].previewImage = image.url
         }
@@ -460,7 +458,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
                 include: ['spotId', 'startDate', 'endDate']
             }
         })
-        return res.json(bookings)
+        return res.json({ Bookings: bookings})
     }
 
     if (req.user.id === spot.ownerId) {
@@ -488,7 +486,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(spotId)
 
     if (!spot) {
-        res
+        return res
             .status(404)
             .json({
                 message: "Spot couldn't be found",
@@ -498,7 +496,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
     spot.destroy()
 
-    res.json({
+    return res.json({
         message: "Successfully deleted",
         statusCode: 200
     })
