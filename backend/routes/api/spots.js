@@ -169,6 +169,7 @@ router.get('/', async (req, res) => {
     }
 
     const spots = await Spot.findAll({
+        raw: true,
         attributes: [
             'id',
             'ownerId',
@@ -186,32 +187,30 @@ router.get('/', async (req, res) => {
         ]
     })
 
-
-    for (i = 0; i < spots.length; i++) {
-        const image = await SpotImage.findOne({
-            raw: true,
-            where: {
-                [Op.and]: [
-                    { spotId: spots[i].id },
-                    { preview: true }
-                ]
-            }
-        })
-        if (image) {
-            spots[i].previewImage = image.url
-        } else {
-            spots[i].previewImage = null
-        }
-    }
-
-
     const offset = pagination.offset || -1
     const allSpots = spots.slice(
         offset + 1,
         offset + pagination.limit + 1
     )
 
+    console.log(allSpots)
+    for (let i = 0; i < allSpots.length; i++) {
+        const image = await SpotImage.findOne({
+            raw: true,
+            where: {
+                [Op.and]: [
+                    { spotId: allSpots[i].id },
+                    { preview: true }
+                ]
+            }
+        })
 
+        if (!image){
+            allSpots[i].previewImage = null
+        } else {
+            allSpots[i].previewImage = image.url
+        }
+    }
     res.json({ Spots: allSpots, page, size })
 })
 
@@ -263,7 +262,11 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
         preview: true
     })
 
-    res.json(spotImage)
+    res.json({
+        id: spotImage.spotId,
+        url: spotImage.url,
+        preview: spotImage.preview
+    })
 })
 
 router.post('/:spotId/reviews', requireAuth, async (req, res) => {

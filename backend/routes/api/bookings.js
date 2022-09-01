@@ -25,7 +25,7 @@ router.get('/current', async (req, res) => {
         ]
     })
 
-    res.json(bookings)
+    res.json({Bookings: bookings})
 })
 
 // Edit Booking
