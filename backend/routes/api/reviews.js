@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { Spot, SpotImage, Review, User, ReviewImage } = require('../../db/models');
+const { Spot, SpotImage, Review, User, ReviewImage, sequelize } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth');
@@ -63,7 +63,11 @@ router.get('/current', async (req, res) => {
             {
                 model: Spot,
                 attributes: {
-                    exclude: ['createdAt', 'updatedAt']
+                    exclude: ['createdAt', 'updatedAt'],
+                },
+                include: { model: SpotImage,
+                    where: { preview: true },
+                    attributes: ['url']
                 }
             },
             {
@@ -74,6 +78,23 @@ router.get('/current', async (req, res) => {
             }
         ]
     })
+
+    for (let i = 0; i < reviews.length; i++) {
+        let resReviews = reviews[i].toJSON()
+        let urlObj = resReviews.Spot.SpotImages[0]
+        console.log(urlObj)
+
+        if (urlObj) {
+            resReviews.Spot.previewImage = urlObj.url
+        } else {
+            resReviews.Spot.previewImage = 'No Image'
+        }
+
+        delete resReviews.Spot.SpotImages
+        reviews[i] = resReviews
+    }
+    // const newReviews = reviews.toJSON()
+
 
     res.json({
         Reviews: reviews
