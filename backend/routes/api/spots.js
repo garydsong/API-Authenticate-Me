@@ -4,6 +4,7 @@ const { Spot, SpotImage, User, ReviewImage, Review, Booking, sequelize } = requi
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth');
+const { Op } = require('sequelize');
 
 const router = express.Router();
 
@@ -32,6 +33,13 @@ router.put('/:spotId', requireAuth, async (req, res) => {
         spots.description = description;
         spots.price = price;
         await spots.save()
+
+        // const resSpot = spots.toJSON()
+
+        // console.log(spots)
+
+        // resSpot.createdAt = "sup";
+        // resSpot.updatedAt = "ya";
         res.json(spots)
     } catch (error) {
         res
@@ -71,7 +79,7 @@ router.get('/current', handleValidationErrors, async (req, res) => {
     })
 
     res.json({
-        Spot: spots
+        Spots: spots
     })
 })
 
@@ -133,7 +141,7 @@ router.get('/:spotId', async (req, res) => {
     returnSpot.numReviews = reviews;
     returnSpot.Owner = owner;
     returnSpot.SpotImages = spotImage;
-    returnSpot.avgRating = averageRating;
+    returnSpot.avgRating = Number(averageRating);
 
     res.json(returnSpot)
 
@@ -141,7 +149,25 @@ router.get('/:spotId', async (req, res) => {
 
 // Get all Spots
 router.get('/', async (req, res) => {
-    const { page, size } = req.query;
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+
+    page = parseInt(page)
+    size = parseInt(size)
+
+    console.log(page)
+
+    if (!page) page = 1;
+    if (page > 10) page = 10;
+    if (!size) size = 20;
+    if (size > 20) size = 20;
+
+    let pagination = {};
+
+    if (page >= 1 && size >= 1) {
+        pagination.limit = size;
+        pagination.offset = size * (page - 1)
+    }
+
     const spots = await Spot.findAll({
         attributes: [
             'id',
@@ -159,7 +185,34 @@ router.get('/', async (req, res) => {
             'updatedAt',
         ]
     })
-    res.json({ Spots: spots })
+
+
+    for (i = 0; i < spots.length; i++) {
+        const image = await SpotImage.findOne({
+            raw: true,
+            where: {
+                [Op.and]: [
+                    { spotId: spots[i].id },
+                    { preview: true }
+                ]
+            }
+        })
+        if (image) {
+            spots[i].previewImage = image.url
+        } else {
+            spots[i].previewImage = null
+        }
+    }
+
+
+    const offset = pagination.offset || -1
+    const allSpots = spots.slice(
+        offset + 1,
+        offset + pagination.limit + 1
+    )
+
+
+    res.json({ Spots: allSpots, page, size })
 })
 
 router.post('/', requireAuth, async (req, res) => {
