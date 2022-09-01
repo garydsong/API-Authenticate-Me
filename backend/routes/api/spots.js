@@ -397,6 +397,11 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const { startDate, endDate } = req.body;
     const { spotId } = req.params;
     const spot = await Spot.findByPk(spotId)
+    const allBookings = await Booking.findAll({
+        where: {
+            spotId: spot.id
+        }
+    })
 
     if (!spot) {
         res
@@ -407,21 +412,16 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
             })
     }
 
-    console.log('start', startDate)
-    console.log('end', endDate)
-    console.log('user', req.user.id)
-    console.log('spot', spot.id)
 
-    try {
-        const newBooking = await Booking.create({
-            startDate: startDate,
-            endDate: endDate,
-            userId: req.user.id,
-            spotId: spot.id
-        })
+    const newBooking = await Booking.create({
+        startDate: startDate,
+        endDate: endDate,
+        userId: req.user.id,
+        spotId: spot.id
+    })
 
-        res.json(newBooking)
-    } catch (error) {
+
+    if (!startDate || !endDate || endDate <= startDate) {
         res
             .status(403)
             .json({
@@ -433,6 +433,30 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
                 }
             })
     }
+
+    for (let currentBooking of allBookings) {
+        if (currentBooking.startDate >= startDate
+            && currentBooking.endDate <= endDate
+            || currentBooking.startDate <= startDate
+            && currentBooking.endDate >= endDate
+            || currentBooking.startDate >= startDate
+            && currentBooking.endDate >= endDate
+            || currentBooking.startDate <= startDate
+            && currentBooking.endDate <= endDate) {
+                return res
+                    .status(403)
+                    .json({
+                        message: "Sorry, this spot is already booked for the specified dates",
+                        statusCode: 403,
+                        errors: {
+                            startDate: "Start date conflicts with an existing booking",
+                            endDate: "End date conflicts with an existing booking"
+                          }
+                    })
+            }
+    }
+
+    res.json(newBooking)
 })
 
 // Get Bookings for Spot by spotId
@@ -458,7 +482,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
                 include: ['spotId', 'startDate', 'endDate']
             }
         })
-        return res.json({ Bookings: bookings})
+        return res.json({ Bookings: bookings })
     }
 
     if (req.user.id === spot.ownerId) {
