@@ -97,7 +97,7 @@ router.get('/current', async (req, res) => {
     // const newReviews = reviews.toJSON()
 
 
-    res.json({
+    return res.json({
         Reviews: reviews
     })
 })
