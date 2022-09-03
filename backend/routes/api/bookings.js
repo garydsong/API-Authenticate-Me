@@ -22,6 +22,25 @@ router.get('/current', async (req, res) => {
         ]
     })
 
+    for (let i = 0; i < bookings.length; i++) {
+        let previewImg = bookings[i].toJSON();
+
+        let preview = previewImg.Spot.id;
+        const bookingSpotImg = await SpotImage.findOne({
+            where: {
+                spotId: preview,
+                preview: true
+            }
+        })
+
+        if (bookingSpotImg) {
+            previewImg.Spot.previewImage = bookingSpotImg.url
+        } else {
+            previewImg.Spot.previewImage = 'No image'
+        }
+        bookings[i] = previewImg
+    }
+
     res.json({Bookings: bookings})
 })
 
