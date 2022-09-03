@@ -73,9 +73,11 @@ app.use((err, _req, _res, next) => {
     // err.errors = err.errors.map((e) => e.message);
     // err.title = 'Validation error';
     let eObj = {}
-    if (err.errors.length){
+
+    if (err.errors){
       err.errors.forEach(e => {
         switch (e.message) {
+
           case 'usernameVal':
             err.message = "User already exists",
             eObj[e.path] = "User with that username already exists",
@@ -89,7 +91,6 @@ app.use((err, _req, _res, next) => {
             break;
         }
       });
-
       err.errors = eObj;
     }
   }
