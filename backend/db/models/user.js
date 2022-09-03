@@ -85,7 +85,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: {
           msg: "usernameVal"
-        }
+        },
         validate: {
           len: [4, 30],
           isNotEmail(value) {
