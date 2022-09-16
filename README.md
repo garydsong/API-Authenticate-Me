@@ -28,3 +28,16 @@ GareBnB is a website clone, inspired by [AirBnB](https://airbnb.com). There are 
 
 # ✈️ Landing Page
 Demo user avaiable on top right nav-bar.
+
+# Roadmap
+<img src=https://i.imgur.com/KtvkLu2.png>
+
+# Get Started
+1. clone repo
+2. npm install
+3. ???
+4. PROFIT!
+
+# Contact
+[LinkedIn](https://www.linkedin.com/in/gary-song-96b071246/)
+[GitHub](https://github.com/garydsong)
