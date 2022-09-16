@@ -30,7 +30,7 @@ GareBnB is a website clone, inspired by [AirBnB](https://airbnb.com). There are 
 Demo user available on top right nav-bar.
 
 # 🛣️ Roadmap
-<img src=https://i.imgur.com/KtvkLu2.png>
+<img src=https://i.imgur.com/IDLLzKa.png>
 
 # ▶️ Get Started
 1. clone repo
