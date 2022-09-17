@@ -18,7 +18,55 @@
     background-color: rgba(0, 0, 0, 0.7);
   }
 
+
   #modal-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
     position: absolute;
     background-color:white;
+    height: 300px;
+    width: 460px;
+    border-radius: 15px;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  }
+
+  #top-of-modal {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: lightgray 1px solid;
+    height: 60px;
+    width: 100%;
+  }
+
+  #modal-welcome {
+    font-weight: bold;
+    display: flex;
+    justify-content: f;
+    align-items: flex-start;
+    margin-left: 60px;
+    width: 100%;
+  }
+
+  #modal-log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+  }
+
+  #modal-continue {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 400px;
+    background-color: rgb(215, 4, 102);
+    color: white;
+    border-radius: 7px;
+    margin-bottom: 10px;
   }

@@ -30,7 +30,12 @@ export function Modal({ onClose, children }) {
     <div id="modal">
       <div id="modal-background" onClick={onClose} />
       <div id="modal-content">
+        <div id="top-of-modal">Log in</div>
+        <div id="modal-welcome">Welcome to GareBnB</div>
+        <div id="modal-log">
         {children}
+        </div>
+        <div id="modal-continue">Continue</div>
       </div>
     </div>,
     modalNode
