@@ -26,6 +26,7 @@
 
 #continue {
     font-weight: bold;
+    font-size: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,8 +37,11 @@
     border-radius: 7px;
     margin-bottom: 20px;
     border: none;
+    transition: 1s;
   }
 
   #continue:hover {
     cursor: pointer;
+    background-color: rgb(255, 47, 144);
+    transition: 1s;
   }
