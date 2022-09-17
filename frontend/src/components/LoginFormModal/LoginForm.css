@@ -1,0 +1,43 @@
+#username {
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border: none;
+    border-bottom: lightgray 1px solid;
+}
+
+#password {
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border: none;
+}
+
+#log-pass-together {
+    border: lightgray 1px solid;
+    border-radius: 5px;
+}
+
+#modal-inner {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#continue {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 410px;
+    background-color: rgb(215, 4, 102);
+    color: white;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    border: none;
+  }
+
+  #continue:hover {
+    cursor: pointer;
+  }

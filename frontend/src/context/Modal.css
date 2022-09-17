@@ -29,7 +29,7 @@
     height: 300px;
     width: 460px;
     border-radius: 15px;
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.5);
   }
 
   #top-of-modal {
@@ -56,17 +56,4 @@
     justify-content: center;
     align-items: center;
     width: 200px;
-  }
-
-  #modal-continue {
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    width: 400px;
-    background-color: rgb(215, 4, 102);
-    color: white;
-    border-radius: 7px;
-    margin-bottom: 10px;
   }

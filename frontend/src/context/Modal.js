@@ -35,7 +35,6 @@ export function Modal({ onClose, children }) {
         <div id="modal-log">
         {children}
         </div>
-        <div id="modal-continue">Continue</div>
       </div>
     </div>,
     modalNode
