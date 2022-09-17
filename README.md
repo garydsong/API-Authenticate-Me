@@ -8,8 +8,10 @@ GareBnB is a website clone, inspired by [AirBnB](https://airbnb.com). There are 
 
 
 # 🔗 Wiki Links
+- [API Documentation](https://github.com/garydsong/API-Authenticate-Me/tree/main/backend#api-documentation)
 - [Database Schema](https://github.com/garydsong/API-Authenticate-Me/wiki/GareBnB-Wiki#database-schema-design)
 - [Feature List](https://github.com/garydsong/API-Authenticate-Me/wiki/GareBnB-Wiki#feature)
+- [Redux Store Shape](https://github.com/garydsong/API-Authenticate-Me/wiki/Redux-Store-Shape)
 - [Party Time](https://www.youtube.com/watch?v=iWa-6g-TbgI)
 
 # 🖥️ Technologies
