@@ -1,4 +1,8 @@
 /* TODO Add site wide styles */
-html {
+html,
+body {
     font-family: sans-serif;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
 }

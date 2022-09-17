@@ -23,12 +23,17 @@ function Navigation({ isLoaded }){
   }
 
   return (
+    <div id="nav-wrap">
+    <div className="nav-bar">
+      <img className="logo" src="https://i.imgur.com/TAA9t04.png"></img>
     <ul>
       <li>
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>
+    </div>
+    </div>
   );
 }
 
