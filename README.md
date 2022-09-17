@@ -29,7 +29,8 @@ GareBnB is a website clone, inspired by [AirBnB](https://airbnb.com). There are 
 ![illustrator](https://img.shields.io/badge/Adobe%20Illustrator-FFA900?style=for-the-badge&logo=AdobeIllustrator&logoColor=white)![photoshop](https://img.shields.io/badge/Adobe%20Photoshop-31A8FF?style=for-the-badge&logo=AdobePhotoshop&logoColor=white)
 
 # ✈️ Landing Page
-Demo user available on top right nav-bar.
+Current WIP:
+<img src=https://i.imgur.com/xXd08lu.gif>
 
 # 🛣️ Roadmap
 <img src=https://i.imgur.com/IDLLzKa.png>
