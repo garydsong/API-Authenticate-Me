@@ -19,7 +19,7 @@ body {
     padding-top: 100px;
     padding-left: 150px;
     padding-right: 130px;
-    grid-row-gap: 20px;
+    grid-row-gap: 40px;
 }
 
 .spots-card-container {

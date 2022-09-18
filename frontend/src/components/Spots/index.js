@@ -21,7 +21,7 @@ const Spots = ({ spots }) => {
                     <img id="spot-img" src={`${e.previewImage}`} />
                     <div className="name-review">
                         <div className="name"><b>{e.name}</b></div>
-                        <div className="review">{'⭐ 0'}</div>
+                        <div className="review">{'★ 0'}</div>
                     </div>
                     <div className="city">{e.state}, {e.city}</div>
                     <div className="country">{e.country}</div>
