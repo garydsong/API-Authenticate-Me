@@ -25,10 +25,11 @@ function Navigation({ isLoaded }){
   return (
     <div id="nav-wrap">
     <div className="nav-bar">
+    <NavLink exact to="/">
       <img className="logo" src="https://i.imgur.com/TAA9t04.png"></img>
+      </NavLink>
     <ul>
       <li>
-        <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>
