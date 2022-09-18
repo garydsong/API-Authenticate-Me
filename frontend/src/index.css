@@ -16,7 +16,6 @@ body {
 .spots-main {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    border: red 1px solid;
     padding-top: 100px;
     padding-left: 150px;
     padding-right: 130px;
@@ -31,7 +30,25 @@ body {
 
 
 .new-spot {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    align-items: end;
     height: 400px;
     width: 300px;
-    border: blue dotted 2px;
+}
+
+
+.name-review {
+    display: flex;
+    justify-content: space-between;
+}
+
+.city {
+    color: gray;
+    font-size: 15px;
+}
+
+.country {
+    color: gray;
+    font-size: 15px;
 }
