@@ -7,6 +7,7 @@ body {
     margin-top: 0px;
 }
 
+
 #spot-img {
     width: 300px;
     height: 300px;
@@ -37,6 +38,10 @@ body {
     width: 300px;
 }
 
+a:link, a:visited {
+    color: black;
+    text-decoration: none;
+}
 
 .name-review {
     display: flex;
@@ -51,4 +56,24 @@ body {
 .country {
     color: gray;
     font-size: 15px;
+}
+
+#rightarrow {
+    display: none;
+    transition: 1s;
+
+}
+
+.new-spot:hover #rightarrow {
+    top: 240px;
+    left: 410px;
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: 3;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 5px transparent solid;
+    border-radius: 999px;
+
 }
