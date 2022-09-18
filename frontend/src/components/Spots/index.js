@@ -3,16 +3,25 @@ import { useEffect } from "react";
 import { getSpots } from "../../store/spots";
 
 
-const Spots = () => {
+const Spots = ({spots}) => {
     const dispatch = useDispatch();
-
+    const allSpots = Object.values(spots)
+    console.log('component', spots)
 
     useEffect(() => {
         dispatch(getSpots())
     }, [dispatch])
 
     return (
-        <div>spots page</div>
+
+        <div className="spots-main">
+
+                    {allSpots.map(e => (
+                        <div className="new-spot">
+                            <img id="spot-img" src={`${e.previewImage}`} />
+                        </div>
+                    ))}
+        </div>
     )
 }
 

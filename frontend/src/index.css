@@ -7,3 +7,31 @@ body {
     margin-top: 0px;
 }
 
+#spot-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+}
+
+.spots-main {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border: red 1px solid;
+    padding-top: 100px;
+    padding-left: 150px;
+    padding-right: 130px;
+    grid-row-gap: 20px;
+}
+
+.spots-card-container {
+    border: black 1px solid;
+    width: 1600px;
+    height: 2000px;
+}
+
+
+.new-spot {
+    height: 400px;
+    width: 300px;
+    border: blue dotted 2px;
+}
