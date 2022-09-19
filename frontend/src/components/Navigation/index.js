@@ -18,9 +18,18 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        
+        <div class="dropdown">
+            <button class="dropbtn">
+              <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
+              <img id="avi" src="https://i.imgur.com/JELU5u0.jpg" />
+            </button>
+            <div class="dropdown-content">
+              <NavLink to="/signup">Sign Up</NavLink>
+              <a href="#"><LoginFormModal /></a>
+            </div>
+          </div>
+        {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
     );
   }
@@ -35,24 +44,13 @@ function Navigation({ isLoaded }) {
 
 
         <div>
-          {/* <ul>
-            <li>
-              {isLoaded && sessionLinks}
-            </li>
 
+          {/* <ul>
+            <li> */}
+              {isLoaded && sessionLinks}
+            {/* </li>
           </ul> */}
 
-
-          <div class="dropdown">
-            <button class="dropbtn">
-              <img id="burger" src="https://i.imgur.com/H2F6PAe.png"/>
-              <img id="avi" src="https://i.imgur.com/JELU5u0.jpg"/>
-            </button>
-            <div class="dropdown-content">
-            <NavLink to="/signup">Sign Up</NavLink>
-              <a href="#"><LoginFormModal /></a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
