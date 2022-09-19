@@ -18,10 +18,10 @@ const loadSingleSpot = (spot) => {
     }
 }
 
-const createASpot = (playload) => {
+const createASpot = (payload) => {
     return {
         type: CREATE_SPOT,
-        playload
+        payload
     }
 }
 
@@ -43,7 +43,7 @@ export const getSingleSpot = (id) => async (dispatch) => {
 };
 
 export const createSpot = (payload) => async (dispatch) => {
-    const response = await csrfFetch('api/spots', {
+    const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(payload)
@@ -73,7 +73,9 @@ const spotReducer = (state = initialState, action) => {
         case CREATE_SPOT: {
             let singleSpot = {}
             singleSpot = { ...action.payload }
-            return singleSpot
+            const newState = { ...state, singleSpot }
+            newState.allSpots[action.payload.id] = {...action.payload}
+            return newState;
         };
 
     default:
