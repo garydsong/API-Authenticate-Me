@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { createSpot } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import './SpotForm.css'
+import { useHistory } from "react-router-dom";
 
 const SpotForm = ({spot}) => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
@@ -41,7 +43,6 @@ const SpotForm = ({spot}) => {
         setSubmitted(true)
 
         spot = {
-            ...spot,
             name,
             address,
             city,
@@ -53,7 +54,11 @@ const SpotForm = ({spot}) => {
             lng
         }
 
-        dispatch(createSpot(spot));
+        const newSpot = dispatch(createSpot(spot));
+
+        if (createSpot) {
+            history.push(`/spots/${newSpot.id}`)
+        }
     }
 
     return (
