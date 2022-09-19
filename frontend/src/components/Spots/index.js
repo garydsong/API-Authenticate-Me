@@ -25,7 +25,7 @@ const Spots = ({ spots }) => {
                         <div className="name"><b>{e.name}</b></div>
                         <div className="review">{'★ 0'}</div>
                     </div>
-                    <div className="city">{e.state}, {e.city}</div>
+                    <div className="city">{e.city}, {e.state}</div>
                     <div className="country">{e.country}</div>
                     <div classNmae="price"><b>${e.price}</b> night</div>
                     <img id="rightarrow" src="https://i.imgur.com/cJuz6hz.png"/>

@@ -9,7 +9,7 @@ const SingleSpot = ({spots}) => {
 
     return (
         <div className="single-spot-main">
-            <div className="single-spot-top">
+            <div className="single-spot-top ">
                 <h1>{spot.name}</h1>
                 <h2>{spot.address}</h2>
                 <h3>{spot.description}</h3>
