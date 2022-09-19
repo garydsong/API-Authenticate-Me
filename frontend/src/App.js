@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Spots from "./components/Spots";
 import { getSpots } from "./store/spots";
 import SingleSpot from "./components/SingleSpot";
+import SpotForm from "./components/SpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getSpots())
   }, [dispatch])
 
@@ -40,9 +41,14 @@ function App() {
             <SignupFormPage />
           </Route>
 
-          <Route path="/spots/:spotId">
+          <Route exact path="/spots/new">
+            <SpotForm />
+          </Route>
+
+          <Route exact path="/spots/:spotId">
             <SingleSpot spots={spots} />
           </Route>
+
 
         </Switch>
       )}

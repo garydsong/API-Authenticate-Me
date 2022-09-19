@@ -1,0 +1,12 @@
+.main-create-spot {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.create-spot-form {
+    padding-top: 100px;
+    width: 200px;
+    height: 700px;
+}

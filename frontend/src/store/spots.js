@@ -1,5 +1,8 @@
+import { csrfFetch } from "./csrf";
+
 const GET_SPOTS = 'spots/getSpots';
 const GET_SINGLE_SPOT = 'spots/getSingleSpot'
+const CREATE_SPOT = 'spots/createSpot'
 
 const loadSpots = (payload) => {
     return {
@@ -15,6 +18,13 @@ const loadSingleSpot = (spot) => {
     }
 }
 
+const createASpot = (playload) => {
+    return {
+        type: CREATE_SPOT,
+        playload
+    }
+}
+
 export const getSpots = () => async (dispatch) => {
     const response = await fetch('/api/spots');
     if (response.ok) {
@@ -24,13 +34,26 @@ export const getSpots = () => async (dispatch) => {
 };
 
 export const getSingleSpot = (id) => async (dispatch) => {
-    const response = await fetch(`/api/spots/${id}`)
+    const response = await fetch(`/api/spots/${id}`);
     if (response.ok) {
-        let spot = await response.json()
-        console.log('single spot', spot)
-        dispatch(loadSingleSpot(spot))
-    }
-}
+        let spot = await response.json();
+        console.log('single spot', spot);
+        dispatch(loadSingleSpot(spot));
+    };
+};
+
+export const createSpot = (payload) => async (dispatch) => {
+    const response = await csrfFetch('api/spots', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const spot = await response.json();
+        dispatch(createASpot(spot));
+    };
+};
 
 const initialState = { allSpots: {}, singleSpot: {SpotImages: []} };
 const spotReducer = (state = initialState, action) => {
@@ -40,11 +63,19 @@ const spotReducer = (state = initialState, action) => {
             action.payload.Spots.forEach(spot => allSpots[spot.id] = spot);
             return {...state, allSpots};
         };
+
         case GET_SINGLE_SPOT: {
             let singleSpot = {}
             singleSpot = { ...action.spot }
             return {...state, singleSpot}
         };
+
+        case CREATE_SPOT: {
+            let singleSpot = {}
+            singleSpot = { ...action.payload }
+            return singleSpot
+        };
+
     default:
         return state;
     };
