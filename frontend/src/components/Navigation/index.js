@@ -18,14 +18,14 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        
+
         <div class="dropdown">
             <button class="dropbtn">
               <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
               <img id="avi" src="https://i.imgur.com/JELU5u0.jpg" />
             </button>
             <div class="dropdown-content">
-              <NavLink to="/signup">Sign Up</NavLink>
+              <NavLink to="/signup"><b>Sign Up</b></NavLink>
               <a href="#"><LoginFormModal /></a>
             </div>
           </div>
