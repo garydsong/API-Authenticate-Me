@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const Spots = ({ spots }) => {
     const dispatch = useDispatch();
-    const allSpots = Object.values(spots)
+    const allSpots = Object.values(spots.allSpots)
     console.log('component', spots)
 
     useEffect(() => {
@@ -28,7 +28,6 @@ const Spots = ({ spots }) => {
                     <div className="city">{e.city}, {e.state}</div>
                     <div className="country">{e.country}</div>
                     <div classNmae="price"><b>${e.price}</b> night</div>
-                    <img id="rightarrow" src="https://i.imgur.com/cJuz6hz.png"/>
                 </div>
                 </NavLink>
             ))}

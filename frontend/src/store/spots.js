@@ -1,4 +1,5 @@
 const GET_SPOTS = 'spots/getSpots';
+const GET_SINGLE_SPOT = 'spots/getSingleSpot'
 
 const loadSpots = (payload) => {
     return {
@@ -6,6 +7,13 @@ const loadSpots = (payload) => {
         payload
     };
 };
+
+const loadSingleSpot = (spot) => {
+    return {
+        type: GET_SINGLE_SPOT,
+        spot
+    }
+}
 
 export const getSpots = () => async (dispatch) => {
     const response = await fetch('/api/spots');
@@ -15,14 +23,28 @@ export const getSpots = () => async (dispatch) => {
     };
 };
 
-const initialState = {};
+export const getSingleSpot = (id) => async (dispatch) => {
+    const response = await fetch(`/api/spots/${id}`)
+    if (response.ok) {
+        let spot = await response.json()
+        console.log('single spot', spot)
+        dispatch(loadSingleSpot(spot))
+    }
+}
+
+const initialState = { allSpots: {}, singleSpot: {SpotImages: []} };
 const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SPOTS: {
-        const allSpots = {};
-        action.payload.Spots.forEach(spot => allSpots[spot.id] = spot);
-        return {...state, ...allSpots};
-        }
+            const allSpots = {};
+            action.payload.Spots.forEach(spot => allSpots[spot.id] = spot);
+            return {...state, allSpots};
+        };
+        case GET_SINGLE_SPOT: {
+            let singleSpot = {}
+            singleSpot = { ...action.spot }
+            return {...state, singleSpot}
+        };
     default:
         return state;
     };

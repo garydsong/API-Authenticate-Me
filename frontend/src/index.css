@@ -57,23 +57,3 @@ a:link, a:visited {
     color: gray;
     font-size: 15px;
 }
-
-#rightarrow {
-    display: none;
-    transition: 1s;
-
-}
-
-.new-spot:hover #rightarrow {
-    top: 240px;
-    left: 410px;
-    display: block;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    z-index: 3;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 5px transparent solid;
-    border-radius: 999px;
-
-}

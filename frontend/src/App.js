@@ -12,7 +12,7 @@ import SingleSpot from "./components/SingleSpot";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const spots = useSelector((state) => state.allSpots)
+  const spots = useSelector((state) => state.spots)
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
