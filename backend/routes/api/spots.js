@@ -239,7 +239,7 @@ router.get('/', async (req, res) => {
         })
 
         if (!image) {
-            allSpots[i].previewImage = 'No image'
+            allSpots[i].previewImage = 'https://i.imgur.com/8DQUBo8.png'
         } else {
             allSpots[i].previewImage = image.url
         }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -8,6 +8,25 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
+
+  const [showMenu, setShowMenu] = useState(false);
+
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
 
   let sessionLinks;
@@ -20,15 +39,17 @@ function Navigation({ isLoaded }) {
       <>
 
         <div class="dropdown">
-            <button class="dropbtn">
-              <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
-              <img id="avi" src="https://i.imgur.com/llz1HeB.png" />
-            </button>
+          <button class="dropbtn" onClick={openMenu}>
+            <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
+            <img id="avi" src="https://i.imgur.com/llz1HeB.png" />
+          </button>
+          {showMenu && (
             <div class="dropdown-content">
               <NavLink to="/signup"><b>Sign Up</b></NavLink>
               <a href="#"><LoginFormModal /></a>
             </div>
-          </div>
+          )}
+        </div>
         {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
     );
@@ -47,8 +68,8 @@ function Navigation({ isLoaded }) {
 
           {/* <ul>
             <li> */}
-              {isLoaded && sessionLinks}
-            {/* </li>
+          {isLoaded && sessionLinks}
+          {/* </li>
           </ul> */}
 
         </div>
