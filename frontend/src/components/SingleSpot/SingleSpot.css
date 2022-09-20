@@ -15,3 +15,23 @@
     height: 400px;
     border-radius: 20px;
 }
+
+.delete-spot-button {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 40px;
+    background-color: rgb(215, 4, 102);;
+    color: white;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.delete-spot-button:hover {
+    cursor: pointer;
+    background-color: rgb(255, 47, 144);
+    transition: 1s;
+}

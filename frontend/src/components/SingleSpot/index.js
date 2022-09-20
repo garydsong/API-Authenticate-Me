@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom"
-import { getSingleSpot, deleteSpot } from "../../store/spots";
+import { getSingleSpot, deleteSpot, } from "../../store/spots";
 import './SingleSpot.css'
 
 const SingleSpot = () => {
@@ -24,7 +24,6 @@ const SingleSpot = () => {
             dispatch(deleteSpot(spotId))
             alert('Spot deleted.')
             history.push('/')
-
     }
 
     return (
@@ -42,7 +41,10 @@ const SingleSpot = () => {
                 <h3>${spot.price}</h3>
 
                 { sessionUser.id === spot.ownerId && (
-                <button onClick={deleteHandler} className="delete-spot-button">Delete</button>
+                <div>
+                <div onClick={deleteHandler} className="delete-spot-button">Delete</div>
+                {/* <button onClick='#' className="edit-spot-button">Edit</button> */}
+                </div>
                 )}
                 </>
             </div>
