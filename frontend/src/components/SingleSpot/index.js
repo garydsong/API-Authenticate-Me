@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom"
 import { getSingleSpot, deleteSpot, } from "../../store/spots";
+import EditSpot from "../EditSpotForm";
 import './SingleSpot.css'
 
 const SingleSpot = () => {
@@ -10,6 +11,8 @@ const SingleSpot = () => {
     const history = useHistory();
     const spot = useSelector(state => state.spots.singleSpot)
     const sessionUser = useSelector(state => state.session.user)
+
+    const [ showForm, setShowForm ] = useState(false);
     // const imageUrl = useSelector(state => state.spots.singleSpot.SpotImages[0])
 
     console.log('cl ss', spot)
@@ -26,6 +29,9 @@ const SingleSpot = () => {
             history.push('/')
     }
 
+    const editHandler = async () => {
+            return setShowForm(true)
+    }
 
     return (
 
@@ -42,10 +48,16 @@ const SingleSpot = () => {
                 <h3>${spot.price}</h3>
 
                 { sessionUser && sessionUser.id === spot.ownerId && (
-                <div>
+                <div id="del-edit-container">
                 <div onClick={deleteHandler} className="delete-spot-button">Delete</div>
-                {/* <button onClick='#' className="edit-spot-button">Edit</button> */}
+                <div onClick={editHandler} className="edit-spot-button">Edit</div>
                 </div>
+                )}
+
+                { showForm && (
+                    <div id="left-side">
+                    <EditSpot />
+                    </div>
                 )}
                 </>
             </div>

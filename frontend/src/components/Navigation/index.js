@@ -53,12 +53,14 @@ function Navigation({ isLoaded }) {
           {/* )} */}
         </div>
         {/* <NavLink to="/signup">Sign Up</NavLink> */}
+
       </>
     );
   }
 
 
   return (
+    <>
     <div id="nav-wrap">
       <div className="nav-bar">
         <NavLink exact to="/">
@@ -77,6 +79,10 @@ function Navigation({ isLoaded }) {
         </div>
       </div>
     </div>
+      <div id="footer-bar">
+        <div id="name">Gary Song</div>
+      </div>
+      </>
 
   );
 }

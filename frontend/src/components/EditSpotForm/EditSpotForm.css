@@ -1,15 +1,14 @@
 .main-create-spot {
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    justify-content: none;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     height: 100%;
-
 }
 
 .vert-space {
-    height: 100px;
+    height: 30px;
     width: 100%;
 }
 
@@ -57,6 +56,7 @@
     width: 400px;
     height: 80px;
     border: lightgray 1px solid;
+    resize: none;
 }
 #spot-price {
     padding-left: 10px;
@@ -81,8 +81,8 @@
     font-weight: bold;
     font-size: 12px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     height: 40px;
     width: 410px;
     background-color: rgb(215, 4, 102);
@@ -98,8 +98,16 @@
     background-color: rgb(255, 47, 144);
     transition: 1s;
   }
-  
+
   #submit:active {
     background-color: rgb(255, 133, 190);
     transform: scale(.96);
 }
+
+    #errors {
+        color: red;
+        height: 100px;
+        width: 400px;
+        position:relative;
+        z-index: 4;
+    }

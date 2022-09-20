@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import './EditSpotForm.css'
 import { useHistory } from "react-router-dom";
 
-const EditSpot = ({ spot }) => {
+const EditSpot = () => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
+    const spot = useSelector(state => state.spots.singleSpot)
 
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
@@ -41,8 +42,9 @@ const EditSpot = ({ spot }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
+        console.log('e', spot)
 
-        spot = {
+        const editSpot = {
             name,
             address,
             city,
@@ -54,8 +56,9 @@ const EditSpot = ({ spot }) => {
             lng
         }
 
-        const updatedSpot = await dispatch(updateSpot(spot));
+        const updatedSpot = await dispatch(updateSpot(editSpot, spot.id));
         console.log('UPDATESPOT', updatedSpot)
+
         if (updatedSpot) {
             history.push(`/spots/${updatedSpot.id}`)
         }
@@ -174,7 +177,7 @@ const EditSpot = ({ spot }) => {
                         />
                     </label>
 
-                    <button id="submit" type="submit">Create Spot</button>
+                    <button id="submit" type="submit">Edit Spot</button>
                 </form>
             </div>
         </div>

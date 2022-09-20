@@ -108,3 +108,23 @@
     border-radius: 999px;
     margin-left: 10px;
 }
+
+#footer-bar {
+    position: fixed;
+    padding-left: 150px;
+    padding-right: 150px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: white;
+    height: 30px;
+    bottom: 0%;
+    border-top: rgb(228, 228, 228) 1px solid;
+    z-index: 9;
+}
+
+#name {
+    font-size: 12px;
+    color: gray;
+}

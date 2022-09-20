@@ -86,7 +86,7 @@ export const deleteSpot = (id) => async (dispatch) => {
     };
 };
 
-export const updateSpot = (id, payload) => async (dispatch) => {
+export const updateSpot = (payload, id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}`,{
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -135,11 +135,9 @@ const spotReducer = (state = initialState, action) => {
         };
 
         case UPDATE_SPOT: {
-            let newState = {
-                allSpots: { ...state.allSpots },
-                singleSpot: { ...state.singleSpot }
-            }
-            newState.singleSpot = action.spot
+            let newState = { ...state };
+            newState.singleSpot = action.spot;
+
             return newState;
         }
 
