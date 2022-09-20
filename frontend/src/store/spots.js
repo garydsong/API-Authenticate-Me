@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const GET_SPOTS = 'spots/getSpots';
 const GET_SINGLE_SPOT = 'spots/getSingleSpot'
 const CREATE_SPOT = 'spots/createSpot'
+const DELETE_SPOT = 'spots/deleteSpot'
 
 const loadSpots = (payload) => {
     return {
@@ -22,6 +23,13 @@ const createASpot = (payload) => {
     return {
         type: CREATE_SPOT,
         payload
+    }
+}
+
+const removeSpot = (id) => {
+    return {
+        type: DELETE_SPOT,
+        id
     }
 }
 
@@ -55,30 +63,52 @@ export const createSpot = (payload) => async (dispatch) => {
     };
 };
 
+export const deleteSpot = (id) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (response.ok) {
+        dispatch(removeSpot(id))
+    }
+}
+
 const initialState = { allSpots: {}, singleSpot: {SpotImages: []} };
 const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SPOTS: {
-            const allSpots = {};
+            let allSpots = {};
             action.payload.Spots.forEach(spot => allSpots[spot.id] = spot);
+
             return {...state, allSpots};
         };
 
         case GET_SINGLE_SPOT: {
-            let singleSpot = {}
-            singleSpot = { ...action.spot }
-            return {...state, singleSpot}
+            let singleSpot = {};
+            singleSpot = { ...action.spot };
+
+            return {...state, singleSpot};
         };
 
         case CREATE_SPOT: {
-            let singleSpot = {}
-            singleSpot = { ...action.payload }
-            const newState = { ...state, singleSpot }
-            newState.allSpots[action.payload.id] = {...action.payload}
+            let singleSpot = {};
+            singleSpot = { ...action.payload };
+            let newState = { ...state, singleSpot };
+            newState.allSpots[action.payload.id] = {...action.payload};
+
             return newState;
         };
 
+        case DELETE_SPOT: {
+            let newState = { ...state };
+            delete newState[action.id];
+
+            return newState;
+        }
+
     default:
+
         return state;
     };
 };

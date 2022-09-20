@@ -43,6 +43,8 @@ function Navigation({ isLoaded }) {
             <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
             <img id="avi" src="https://i.imgur.com/llz1HeB.png" />
           </button>
+
+          {/* showMenu breaking modal */}
           {showMenu && (
             <div class="dropdown-content">
               <NavLink to="/signup"><b>Sign Up</b></NavLink>
