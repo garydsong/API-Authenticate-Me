@@ -22,7 +22,7 @@ function Navigation({ isLoaded }) {
         <div class="dropdown">
             <button class="dropbtn">
               <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
-              <img id="avi" src="https://i.imgur.com/JELU5u0.jpg" />
+              <img id="avi" src="https://i.imgur.com/llz1HeB.png" />
             </button>
             <div class="dropdown-content">
               <NavLink to="/signup"><b>Sign Up</b></NavLink>

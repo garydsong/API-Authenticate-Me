@@ -1,0 +1,84 @@
+#create-spot-button {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 40px;
+    background-color: rgb(215, 4, 102);;
+    color: white;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+#right-side-login-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    width: 400px;
+    height: 60px;
+}
+
+#create-spot-button:hover {
+    cursor: pointer;
+    background-color: rgb(255, 47, 144);
+    transition: 1s;
+  }
+
+.profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    height: 150px;
+    width: 180px;
+    border: rgb(228, 228, 228) 1px solid;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 670px;
+    border-radius: 15px;
+}
+
+ .dropbtn:hover  {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+    transition: .5s;
+}
+
+#prodrop-one {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    height: 50px;
+}
+
+#prodrop-two {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    height: 50px;
+}
+#prodrop-three {
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    padding-left: 10px;
+    height: 50px;
+}
+
+#prodrop-one:hover {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    cursor:default;
+}
+
+#prodrop-two:hover {
+    cursor:default;
+}
+#prodrop-three:hover {
+    cursor: pointer;
+    font-weight: bold;
+    background-color: lightgray;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session';
+import './ProfileButton.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -30,18 +32,27 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+    <div id="right-side-login-container">
+    <NavLink to='/spots/new'>
+      <div id="create-spot-button">Create a Spot</div>
+    </NavLink>
+      {/* <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
+
+      </button> */}
+      <button class="dropbtn" onClick={openMenu}>
+              <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
+              <img id="avi" src="https://i.imgur.com/JELU5u0.jpg" />
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div className="profile-dropdown">
+          <div id="prodrop-one">{user.username}</div>
+          <div id="prodrop-two">{user.email}</div>
+          <div id="prodrop-three"onClick={logout}>Log Out
+          </div>
+        </div>
       )}
+      </div>
     </>
   );
 }
