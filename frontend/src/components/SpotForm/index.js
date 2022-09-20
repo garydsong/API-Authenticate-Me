@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './SpotForm.css'
 import { useHistory } from "react-router-dom";
 
-const SpotForm = ({spot}) => {
+const SpotForm = ({ spot }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -64,119 +64,120 @@ const SpotForm = ({spot}) => {
     return (
 
         <div className="main-create-spot">
+            <div className="vert-space"></div>
             <div className="create-spot-form">
 
-        {!validationErrors.length && submitted && (
-            <div>
-                <ul> errors:
-                    {validationErrors.map((e) => (
-                        <li key={e}>{e}</li>
-                    ))}
-                </ul>
+                {!validationErrors.length && submitted && (
+                    <div>
+                        <ul> errors:
+                            {validationErrors.map((e) => (
+                                <li key={e}>{e}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+                <form className="create-spot-form" onSubmit={onSubmit}>
+                    <label>
+                        Name
+                        <input
+                            id="spot-name"
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Address
+                        <input
+                            id="spot-address"
+                            type="text"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        City
+                        <input
+                            id="spot-city"
+                            type="text"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        State
+                        <input
+                            id="spot-state"
+                            type="text"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Country
+                        <input
+                            id="spot-country"
+                            type="text"
+                            value={country}
+                            onChange={(e) => setCountry(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Description
+                        <textarea
+                            id="spot-description"
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Price
+                        <input
+                            id="spot-price"
+                            type="text"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Latitude
+                        <input
+                            id="spot-lat"
+                            type="text"
+                            value={lat}
+                            onChange={(e) => setLat(e.target.value)}
+                        />
+                    </label>
+
+                    <label>
+                        Longitude
+                        <input
+                            id="spot-lng"
+                            type="text"
+                            value={lng}
+                            onChange={(e) => setLng(e.target.value)}
+                        />
+                    </label>
+
+                    <button id="submit" type="submit">Create Spot</button>
+                </form>
             </div>
-        )}
-        <form onSubmit={onSubmit}>
-            <label>
-                Name
-            <input
-                id="spot-name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                />
-            </label>
-
-            <label>
-                Address
-            <input
-                id="spot-address"
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                required
-                />
-            </label>
-
-            <label>
-                City
-            <input
-                id="spot-city"
-                type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                required
-                />
-            </label>
-
-            <label>
-                State
-            <input
-                id="spot-state"
-                type="text"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                required
-                />
-            </label>
-
-            <label>
-                Country
-            <input
-                id="spot-country"
-                type="text"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                required
-                />
-            </label>
-
-            <label>
-                Description
-            <textarea
-                id="spot-description"
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-                />
-            </label>
-
-            <label>
-                Price
-            <input
-                id="spot-price"
-                type="text"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                required
-                />
-            </label>
-
-            <label>
-                Latitude
-            <input
-                id="spot-lat"
-                type="text"
-                value={lat}
-                onChange={(e) => setLat(e.target.value)}
-                />
-            </label>
-
-            <label>
-                Longitude
-            <input
-                id="spot-lng"
-                type="text"
-                value={lng}
-                onChange={(e) => setLng(e.target.value)}
-                />
-            </label>
-
-            <button type="submit">Create Spot</button>
-        </form>
-    </div>
-    </div>
+        </div>
     )
 }
 
