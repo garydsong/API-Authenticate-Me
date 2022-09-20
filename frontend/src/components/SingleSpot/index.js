@@ -61,6 +61,7 @@ const SingleSpot = () => {
                 )}
                 </>
             </div>
+            
         </div>
     )
 }

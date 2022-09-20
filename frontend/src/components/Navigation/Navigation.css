@@ -124,7 +124,37 @@
     z-index: 9;
 }
 
+#footer-left {
+    display: flex;
+    height: 20px;
+    width: 160px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#footer-right {
+    height: 20px;
+    width: 160px;
+    padding-right: 290px;
+}
+
 #name {
     font-size: 12px;
     color: gray;
+}
+
+#name:hover {
+    cursor: default;
+}
+
+#github {
+    padding-top: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+#linkedin {
+    padding-top: 5px;
+    height: 20px;
+    width: 20px;
 }

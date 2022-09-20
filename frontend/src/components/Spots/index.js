@@ -14,7 +14,7 @@ const Spots = ({ spots }) => {
     }, [dispatch])
 
     return (
-
+    <>
         <div className="spots-main">
 
             {allSpots.map(e => (
@@ -31,7 +31,10 @@ const Spots = ({ spots }) => {
                 </div>
                 </NavLink>
             ))}
+
         </div>
+        <div id="space-for-footer"></div>
+        </>
     )
 }
 

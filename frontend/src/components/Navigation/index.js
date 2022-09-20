@@ -46,10 +46,10 @@ function Navigation({ isLoaded }) {
 
           {/* showMenu breaking modal */}
           {/* {showMenu && ( */}
-            <div class="dropdown-content">
-              <NavLink to="/signup"><b>Sign Up</b></NavLink>
-              <a href="#"><LoginFormModal /></a>
-            </div>
+          <div class="dropdown-content">
+            <NavLink to="/signup"><b>Sign Up</b></NavLink>
+            <a href="#"><LoginFormModal /></a>
+          </div>
           {/* )} */}
         </div>
         {/* <NavLink to="/signup">Sign Up</NavLink> */}
@@ -61,28 +61,40 @@ function Navigation({ isLoaded }) {
 
   return (
     <>
-    <div id="nav-wrap">
-      <div className="nav-bar">
-        <NavLink exact to="/">
-          <img className="logo" src="https://i.imgur.com/TAA9t04.png"></img>
-        </NavLink>
+      <div id="nav-wrap">
+        <div className="nav-bar">
+          <NavLink exact to="/">
+            <img className="logo" src="https://i.imgur.com/TAA9t04.png"></img>
+          </NavLink>
 
 
-        <div>
+          <div>
 
-          {/* <ul>
+            {/* <ul>
             <li> */}
-          {isLoaded && sessionLinks}
-          {/* </li>
+            {isLoaded && sessionLinks}
+            {/* </li>
           </ul> */}
 
+          </div>
         </div>
       </div>
-    </div>
       <div id="footer-bar">
-        <div id="name">Gary Song</div>
+
+        <div id="footer-left">
+          <div id="name">A Gary Song Joint</div>
+          <a href="https://github.com/garydsong">
+          <img id="github" src="https://i.imgur.com/Y8NIiEq.png"/>
+          </a>
+          <a href="https://www.linkedin.com/in/gary-song-96b071246/">
+          <img id="linkedin" src="https://i.imgur.com/6xIfUke.png"/>
+          </a>
+        </div>
+        <div id="footer-right">
+          <div id="name">Website inspired by Airbnb</div>
+        </div>
       </div>
-      </>
+    </>
 
   );
 }

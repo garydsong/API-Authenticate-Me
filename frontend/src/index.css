@@ -57,3 +57,8 @@ a:link, a:visited {
     color: gray;
     font-size: 15px;
 }
+
+#space-for-footer {
+    height: 60px;
+    width: 100%;
+}
