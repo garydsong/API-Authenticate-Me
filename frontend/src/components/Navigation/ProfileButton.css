@@ -23,7 +23,12 @@
 #create-spot-button:hover {
     cursor: pointer;
     background-color: rgb(255, 47, 144);
-    transition: 1s;
+    transition: .1s;
+  }
+
+  #create-spot-button:active {
+    transform: scale(.96);
+    background-color: rgb(255, 143, 195);
   }
 
 .profile-dropdown {

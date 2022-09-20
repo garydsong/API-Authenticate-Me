@@ -26,6 +26,7 @@ const SingleSpot = () => {
             history.push('/')
     }
 
+
     return (
 
         <div className="single-spot-main">
@@ -40,7 +41,7 @@ const SingleSpot = () => {
 
                 <h3>${spot.price}</h3>
 
-                { sessionUser.id === spot.ownerId && (
+                { sessionUser && sessionUser.id === spot.ownerId && (
                 <div>
                 <div onClick={deleteHandler} className="delete-spot-button">Delete</div>
                 {/* <button onClick='#' className="edit-spot-button">Edit</button> */}
