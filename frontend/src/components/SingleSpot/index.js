@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom"
 import { getSingleSpot, deleteSpot, } from "../../store/spots";
 import EditSpot from "../EditSpotForm";
+import SpotReviews from "./SpotReviews";
 import './SingleSpot.css'
 
 const SingleSpot = () => {
@@ -61,7 +62,9 @@ const SingleSpot = () => {
                 )}
                 </>
             </div>
-            
+                    <div id="reviews-go-here">
+                        <SpotReviews />
+                    </div>
         </div>
     )
 }
