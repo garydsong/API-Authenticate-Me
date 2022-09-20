@@ -43,12 +43,12 @@ function Navigation({ isLoaded }) {
             <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
             <img id="avi" src="https://i.imgur.com/llz1HeB.png" />
           </button>
-          {showMenu && (
+      
             <div class="dropdown-content">
               <NavLink to="/signup"><b>Sign Up</b></NavLink>
               <a href="#"><LoginFormModal /></a>
             </div>
-          )}
+         
         </div>
         {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>

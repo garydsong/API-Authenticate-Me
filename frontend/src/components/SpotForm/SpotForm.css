@@ -10,3 +10,59 @@
     width: 200px;
     height: 700px;
 }
+
+#spot-name {
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border: lightgray 1px solid;
+}
+
+#spot-address {
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border: lightgray 1px solid;
+}
+#spot-city {
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border: lightgray 1px solid;
+}
+#spot-state {
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border: lightgray 1px solid;
+}
+#spot-country {
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border: lightgray 1px solid;
+}
+#spot-description {
+    padding-left: 10px;
+    width: 400px;
+    height: 80px;
+    border: lightgray 1px solid;
+}
+#spot-price {
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border: lightgray 1px solid;
+}
+#spot-lat {
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border: lightgray 1px solid;
+}
+#spot-lng {
+    padding-left: 10px;
+    width: 400px;
+    height: 40px;
+    border: lightgray 1px solid;
+}

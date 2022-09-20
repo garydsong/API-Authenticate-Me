@@ -79,6 +79,7 @@ const SpotForm = ({spot}) => {
             <label>
                 Name
             <input
+                id="spot-name"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -89,6 +90,7 @@ const SpotForm = ({spot}) => {
             <label>
                 Address
             <input
+                id="spot-address"
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -99,6 +101,7 @@ const SpotForm = ({spot}) => {
             <label>
                 City
             <input
+                id="spot-city"
                 type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
@@ -109,6 +112,7 @@ const SpotForm = ({spot}) => {
             <label>
                 State
             <input
+                id="spot-state"
                 type="text"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
@@ -119,6 +123,7 @@ const SpotForm = ({spot}) => {
             <label>
                 Country
             <input
+                id="spot-country"
                 type="text"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
@@ -128,7 +133,8 @@ const SpotForm = ({spot}) => {
 
             <label>
                 Description
-            <input
+            <textarea
+                id="spot-description"
                 type="text"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -139,6 +145,7 @@ const SpotForm = ({spot}) => {
             <label>
                 Price
             <input
+                id="spot-price"
                 type="text"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
@@ -149,6 +156,7 @@ const SpotForm = ({spot}) => {
             <label>
                 Latitude
             <input
+                id="spot-lat"
                 type="text"
                 value={lat}
                 onChange={(e) => setLat(e.target.value)}
@@ -158,6 +166,7 @@ const SpotForm = ({spot}) => {
             <label>
                 Longitude
             <input
+                id="spot-lng"
                 type="text"
                 value={lng}
                 onChange={(e) => setLng(e.target.value)}
