@@ -94,7 +94,7 @@
 
 .dropdown:hover .dropbtn {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
-    transition: .5s;
+    transition: .1s;
 }
 
 #burger {

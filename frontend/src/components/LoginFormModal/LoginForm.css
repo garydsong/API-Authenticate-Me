@@ -37,11 +37,16 @@
     border-radius: 7px;
     margin-bottom: 20px;
     border: none;
-    transition: 1s;
+    transition: .1s;
   }
 
   #continue:hover {
     cursor: pointer;
     background-color: rgb(255, 47, 144);
-    transition: 1s;
+    transition: .1s;
   }
+
+  #continue:active {
+    background-color: rgb(255, 133, 190);
+    transform: scale(.96);
+}

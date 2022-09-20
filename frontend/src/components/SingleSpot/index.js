@@ -43,7 +43,7 @@ const SingleSpot = () => {
                 { sessionUser.id === spot.ownerId && (
                 <div>
                 <div onClick={deleteHandler} className="delete-spot-button">Delete</div>
-                {/* <button onClick='#' className="edit-spot-button">Edit</button> */}
+                <div className="edit-spot-button">Edit</div>
                 </div>
                 )}
                 </>

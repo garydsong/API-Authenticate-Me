@@ -33,5 +33,35 @@
 .delete-spot-button:hover {
     cursor: pointer;
     background-color: rgb(255, 47, 144);
-    transition: 1s;
+    transition: .1s;
+}
+
+.delete-spot-button:active {
+    background-color: rgb(255, 133, 190);
+    transform: scale(.96);
+}
+
+.edit-spot-button {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 40px;
+    background-color: rgb(215, 4, 102);;
+    color: white;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.edit-spot-button:hover {
+    cursor: pointer;
+    background-color: rgb(255, 47, 144);
+    transition: .1s;
+}
+
+.edit-spot-button:active {
+    background-color: rgb(255, 133, 190);
+    transform: scale(.96);
 }
