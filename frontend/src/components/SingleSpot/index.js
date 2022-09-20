@@ -21,16 +21,10 @@ const SingleSpot = () => {
     // if (!imageUrl.url) return null;
     // console.log('url value', spot.SpotImages[0])
     const deleteHandler = async () => {
-        if (!sessionUser) {
-            alert('You must be logged in to delete a spot.')
-        }
-        else if (sessionUser.id !== spot.ownerId) {
-            alert('You must be the owner of this spot to delete it.')
-        } else {
             dispatch(deleteSpot(spotId))
             alert('Spot deleted.')
             history.push('/')
-        }
+
     }
 
     return (
@@ -46,7 +40,10 @@ const SingleSpot = () => {
                 <img id="main-img" src={spot.SpotImages ? spot.SpotImages[0]?.url : 'https://i.imgur.com/8DQUBo8.png'}/>
 
                 <h3>${spot.price}</h3>
+
+                { sessionUser.id === spot.ownerId && (
                 <button onClick={deleteHandler} className="delete-spot-button">Delete</button>
+                )}
                 </>
             </div>
         </div>

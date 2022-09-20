@@ -38,6 +38,7 @@ export const getSpots = () => async (dispatch) => {
     if (response.ok) {
         let spots = await response.json();
         dispatch(loadSpots(spots));
+        return spots;
     };
 };
 
@@ -47,6 +48,7 @@ export const getSingleSpot = (id) => async (dispatch) => {
         let spot = await response.json();
         console.log('single spot', spot);
         dispatch(loadSingleSpot(spot));
+        return spot;
     };
 };
 
@@ -60,6 +62,7 @@ export const createSpot = (payload) => async (dispatch) => {
     if (response.ok) {
         const spot = await response.json();
         dispatch(createASpot(spot));
+        return spot;
     };
 };
 
@@ -71,6 +74,7 @@ export const deleteSpot = (id) => async (dispatch) => {
 
     if (response.ok) {
         dispatch(removeSpot(id))
+        return true;
     }
 }
 

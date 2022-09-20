@@ -54,9 +54,9 @@ const SpotForm = ({ spot }) => {
             lng
         }
 
-        const newSpot = dispatch(createSpot(spot));
-
-        if (createSpot) {
+        const newSpot = await dispatch(createSpot(spot));
+        console.log('NEWSPOT', newSpot)
+        if (newSpot) {
             history.push(`/spots/${newSpot.id}`)
         }
     }
