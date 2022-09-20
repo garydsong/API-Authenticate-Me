@@ -45,12 +45,12 @@ function Navigation({ isLoaded }) {
           </button>
 
           {/* showMenu breaking modal */}
-          {showMenu && (
+          {/* {showMenu && ( */}
             <div class="dropdown-content">
               <NavLink to="/signup"><b>Sign Up</b></NavLink>
               <a href="#"><LoginFormModal /></a>
             </div>
-          )}
+          {/* )} */}
         </div>
         {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
