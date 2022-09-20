@@ -98,8 +98,3 @@
     background-color: rgb(255, 47, 144);
     transition: 1s;
   }
-
-  #submit:active {
-    background-color: rgb(255, 133, 190);
-    transform: scale(.96);
-}

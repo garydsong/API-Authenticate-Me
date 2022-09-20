@@ -20,17 +20,11 @@
     height: 60px;
 }
 
-
 #create-spot-button:hover {
     cursor: pointer;
     background-color: rgb(255, 47, 144);
-    transition: .1s;
+    transition: 1s;
   }
-
-#create-spot-button:active {
-    background-color: rgb(255, 133, 190);
-    transform: scale(.96);
-}
 
 .profile-dropdown {
     display: flex;
