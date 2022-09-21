@@ -74,13 +74,16 @@ const reviewReducer = (state = initialState, action) => {
         };
 
         case GET_REVIEWS: {
-            let allReviews = {};
-            action.reviews.Reviews.forEach(review => {
+            let allReviews = [];
+            console.log('action reviews', action.reviews.Reviews)
+            allReviews = action.reviews.Reviews.reduce((acc, review) => {
                 console.log('reviews reducer', review)
-                allReviews[review.id] = review
-            });
 
-            return {...state, spot: {...allReviews}};
+                // allReviews[review.id] = review
+                return [ ...acc, review ]
+            }, []);
+
+            return {...state, spot: [...allReviews] };
         };
 
         case DELETE_REVIEW: {

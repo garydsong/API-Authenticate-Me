@@ -368,17 +368,18 @@ router.get('/:spotId/reviews', async (req, res) => {
     }
 
     const reviews = await Review.findAll({
+        raw: true,
         where: {
             spotId: spotId
         },
         include: [
-            {
-                model: User,
-                attributes: ['id', 'firstName', 'lastName'],
-                where: {
-                    id: req.user.id
-                }
-            },
+            // {
+            //     model: User,
+            //     attributes: ['id', 'firstName', 'lastName'],
+            //     where: {
+            //         id: req.user.id
+            //     }
+            // },
 
             {
                 model: ReviewImage,
@@ -388,6 +389,17 @@ router.get('/:spotId/reviews', async (req, res) => {
             }
         ]
     })
+
+    for (let i = 0; i < reviews.length; i++) {
+        const user = await User.findByPk(reviews[i].userId, {
+            raw: true
+        })
+        reviews[i].user = {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName
+        }
+    }
 
     res.json({Reviews: reviews})
 })
