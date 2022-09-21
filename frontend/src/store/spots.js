@@ -6,6 +6,8 @@ const CREATE_SPOT = 'spots/createSpot'
 const DELETE_SPOT = 'spots/deleteSpot'
 const UPDATE_SPOT = 'spots/updateSpot'
 
+
+// ACTIONS
 const loadSpots = (payload) => {
     return {
         type: GET_SPOTS,
@@ -41,6 +43,7 @@ const editSpot = (spot) => {
     }
 }
 
+// THUNKS
 export const getSpots = () => async (dispatch) => {
     const response = await fetch('/api/spots');
     if (response.ok) {
@@ -101,6 +104,7 @@ export const updateSpot = (payload, id) => async (dispatch) => {
 
 }
 
+// REDUCERS
 const initialState = { allSpots: {}, singleSpot: {SpotImages: []} };
 const spotReducer = (state = initialState, action) => {
     switch (action.type) {

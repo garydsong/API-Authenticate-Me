@@ -23,7 +23,7 @@ const SpotReviews = ({spotId}) => {
                 { reviews.map((review, i) => (
                     <div key={i} id="review-card">
                         <h3 id="user-real-name">{review[spotId]?.User?.firstName} {review[spotId]?.User?.lastName}</h3>
-                        <span id="time-posted">{review[spotId]?.updatedAt}</span>
+                        <span id="time-posted">{review[spotId]?.updatedAt.slice(0, 10)}</span>
                         <h3>★ {review[spotId]?.stars}</h3>
                         <span>{review[spotId]?.review}</span>
                     </div>
