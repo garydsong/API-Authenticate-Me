@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import { getReviews } from '../../store/reviews';
-import { useParams } from 'react-router-dom';
+import { deleteReview, getReviews } from '../../store/reviews';
+import { useHistory, useParams } from 'react-router-dom';
 
 const SpotReviews = ({spotId}) => {
-
+    const history = useHistory();
     const reviews = useSelector((state) => state.reviews.spot);
     const sessionUser = useSelector((state) => state.session.user);
     const spot = useSelector((state) => state.spots[spotId])
@@ -16,6 +16,14 @@ const SpotReviews = ({spotId}) => {
 
     console.log('reviews hit', reviews)
 
+    const deleteReviewHandler = (review) => async (e) => {
+        e.preventDefault();
+        await dispatch(deleteReview(review));
+        alert('Review deleted.')
+        history.push(`/`)
+
+    }
+
     if (!reviews[0]) return console.log('waiting on reviews');
 
     return (
@@ -24,10 +32,11 @@ const SpotReviews = ({spotId}) => {
             <div id="reviews-grid">
                 { Object.values(reviews).map((review, i) => (
                     <div key={i} id="review-card">
+                        {console.log('r', review)}
                         <div id="user-real-name">{review?.user?.firstName} {review?.user?.lastName}
                         {sessionUser && sessionUser.id === review.userId && (
                         <div id="del-edit-review-container">
-                            <div className="delete-review-button">Delete</div>
+                            <div onClick={deleteReviewHandler(review?.id)} className="delete-review-button">Delete</div>
                             <div id="space" />
                             <div className="edit-review-button">Edit</div>
                             <div id="space" />
