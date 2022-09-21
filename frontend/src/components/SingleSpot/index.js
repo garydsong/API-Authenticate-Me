@@ -61,8 +61,11 @@ const SingleSpot = () => {
                     )}
 
                     {showForm && (
+                        <div>
                         <div id="left-side">
                             <EditSpot />
+                        </div>
+                        <div id="footer-space"></div>
                         </div>
                     )}
                 </>

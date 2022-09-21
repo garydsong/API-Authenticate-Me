@@ -180,6 +180,7 @@ const EditSpot = () => {
                     <button id="submit" type="submit">Edit Spot</button>
                 </form>
             </div>
+
         </div>
     );
 };
