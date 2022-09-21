@@ -31,7 +31,7 @@ export const createReview = (spotId, review) => async (dispatch) => {
 };
 
 export const getReviews = (spotId) => async (dispatch) => {
-    const response = await fetch(`/api/reviews/${spotId}/reviews`)
+    const response = await fetch(`/api/spots/${spotId}/reviews`)
 
     if (response.ok) {
         const reviews = await response.json();
@@ -40,7 +40,7 @@ export const getReviews = (spotId) => async (dispatch) => {
     };
 };
 
-const initialState = {};
+const initialState = { spot: {}, user: {} };
 const reviewReducer = (state = initialState, action) => {
     switch (action.type) {
         case POST_REVIEW: {
@@ -50,8 +50,13 @@ const reviewReducer = (state = initialState, action) => {
         };
 
         case GET_REVIEWS: {
-            const allReviews = action.reviews;
-            return { ...allReviews };
+            let allReviews = {};
+            action.reviews.Reviews.forEach(review => {
+                console.log('reviews reducer', review)
+                allReviews[review.id] = review
+            });
+
+            return {...state, spot: {...allReviews}};
         };
 
         default:
