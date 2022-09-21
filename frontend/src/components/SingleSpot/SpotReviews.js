@@ -37,8 +37,6 @@ const SpotReviews = ({spotId}) => {
                         <div id="del-edit-review-container">
                             <div onClick={deleteReviewHandler(review?.id)} className="delete-review-button">Delete</div>
                             <div id="space" />
-                            <div className="edit-review-button">Edit</div>
-                            <div id="space" />
                         </div>
                         )}
                         </div>

@@ -10,6 +10,29 @@
     margin-left: 150px;
 }
 
+#single-spot-reviews-container {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+
+#leave-a-review {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    color: white;
+    background-color: rgb(215, 4, 102);
+    border-radius: 20px;
+}
+
+#leave-a-review:hover {
+    cursor: pointer;
+    background-color: rgb(255, 47, 144);
+    transition: .1s;
+}
+
 #main-img {
     width: 400px;
     height: 400px;
@@ -180,13 +203,14 @@
 
 .delete-review-button:hover {
     cursor: pointer;
-    background-color: lightgray;
+    background-color: rgb(215, 4, 102);
+    color: white;
     border: 4px;
     border-radius: 10px;
 }
 
 #space {
-    width: 10px;
+    width: 290px;
 }
 
 .edit-review-button {

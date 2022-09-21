@@ -42,7 +42,10 @@ const SingleSpot = () => {
                     <h1>{spot.name}</h1>
                     <h2>{spot.address}</h2>
                     <h3>{spot.description}</h3>
-                    <h3>★{spot.avgRating}</h3>
+                    <h3 id="single-spot-reviews-container">
+                        <div id="avg-rating">★{spot.avgRating}</div>
+                        <div id="leave-a-review">Leave a Review</div>
+                    </h3>
                     {/* breaks on refresh without optional chaining will add isLoaded later */}
                     <div className="spot-details-mid">
                         <img id="main-img" src={spot.SpotImages ? spot.SpotImages[0]?.url : 'https://i.imgur.com/8DQUBo8.png'} />

@@ -19,7 +19,6 @@ const EditSpot = () => {
     const [price, setPrice] = useState(0);
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
-    const [previewImage, setPreviewImage] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
@@ -43,7 +42,6 @@ const EditSpot = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
-        console.log('e', spot)
 
         const editSpot = {
             name,
@@ -53,7 +51,6 @@ const EditSpot = () => {
             country,
             description,
             price,
-            previewImage
         }
 
         const updatedSpot = await dispatch(updateSpot(editSpot, spot.id));
@@ -154,16 +151,6 @@ const EditSpot = () => {
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             required
-                        />
-                    </label>
-
-                    <label>
-                        Image URL
-                        <input
-                            id="spot-lat"
-                            type="text"
-                            value={previewImage}
-                            onChange={(e) => setPreviewImage(e.target.value)}
                         />
                     </label>
 

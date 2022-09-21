@@ -125,8 +125,8 @@ export const createImage = (spotId, img) => async (dispatch) => {
         const image = await response.json()
         dispatch(createSpotImage(image))
         return image;
-    }
-}
+    };
+};
 
 // REDUCERS
 const initialState = { allSpots: {}, singleSpot: {SpotImages: []} };

@@ -9,6 +9,7 @@ import Spots from "./components/Spots";
 import { getSpots } from "./store/spots";
 import SingleSpot from "./components/SingleSpot";
 import SpotForm from "./components/SpotForm";
+import CreateReview from "./components/ReviewForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,9 @@ function App() {
             <SingleSpot spots={spots} />
           </Route>
 
+          <Route exact path="/test">
+            <CreateReview />
+          </Route>
 
         </Switch>
       )}

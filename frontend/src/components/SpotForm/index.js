@@ -56,7 +56,6 @@ const SpotForm = ({ spot }) => {
         console.log('NEWSPOT', newSpot)
 
         if (newSpot) {
-            console.log('lets find out')
             const SpotImages = ({
                   url: image,
                   preview: true})
