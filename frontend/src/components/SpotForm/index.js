@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createSpot } from "../../store/spots";
+import { createSpot, createImage } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import './SpotForm.css'
 import { useHistory } from "react-router-dom";
@@ -18,10 +18,10 @@ const SpotForm = ({ spot }) => {
     const [price, setPrice] = useState(0);
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
+    const [image, setImage] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
-    console.log('spot form hitting')
 
     useEffect(() => {
         const errors = [];
@@ -32,11 +32,11 @@ const SpotForm = ({ spot }) => {
         if (!country || country.length > 20) errors.push('Please enter a valid country.');
         if (!description) errors.push('Please enter a description.');
         if (!price || typeof +price !== 'Number') errors.push('Please enter a valid price');
-        if (!lat || typeof +lat !== 'Number') errors.push('Please enter a valid latitude');
-        if (!lng || typeof +lng !== 'Number') errors.push('Please enter a valid longitude');
+        // if (!lat || typeof +lat !== 'Number') errors.push('Please enter a valid latitude');
+        // if (!lng || typeof +lng !== 'Number') errors.push('Please enter a valid longitude');
 
         setValidationErrors(errors)
-    }, [name, address, city, state, country, description, price, lat, lng]);
+    }, [name, address, city, state, country, description, price, image]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -50,15 +50,21 @@ const SpotForm = ({ spot }) => {
             country,
             description,
             price,
-            lat,
-            lng
         }
 
         const newSpot = await dispatch(createSpot(spot));
         console.log('NEWSPOT', newSpot)
+
         if (newSpot) {
+            console.log('lets find out')
+            const SpotImages = ({
+                  url: image,
+                  preview: true})
+
+            await dispatch(createImage(newSpot.id, SpotImages))
             history.push(`/spots/${newSpot.id}`)
         }
+
     }
 
     return (
@@ -155,22 +161,12 @@ const SpotForm = ({ spot }) => {
                     </label>
 
                     <label>
-                        Latitude
+                        Image URL
                         <input
                             id="spot-lat"
                             type="text"
-                            value={lat}
-                            onChange={(e) => setLat(e.target.value)}
-                        />
-                    </label>
-
-                    <label>
-                        Longitude
-                        <input
-                            id="spot-lng"
-                            type="text"
-                            value={lng}
-                            onChange={(e) => setLng(e.target.value)}
+                            value={image}
+                            onChange={(e) => setImage(e.target.value)}
                         />
                     </label>
 

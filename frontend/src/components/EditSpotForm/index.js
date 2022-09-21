@@ -19,6 +19,7 @@ const EditSpot = () => {
     const [price, setPrice] = useState(0);
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
+    const [previewImage, setPreviewImage] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
@@ -52,8 +53,7 @@ const EditSpot = () => {
             country,
             description,
             price,
-            lat,
-            lng
+            previewImage
         }
 
         const updatedSpot = await dispatch(updateSpot(editSpot, spot.id));
@@ -158,24 +158,15 @@ const EditSpot = () => {
                     </label>
 
                     <label>
-                        Latitude
+                        Image URL
                         <input
                             id="spot-lat"
                             type="text"
-                            value={lat}
-                            onChange={(e) => setLat(e.target.value)}
+                            value={previewImage}
+                            onChange={(e) => setPreviewImage(e.target.value)}
                         />
                     </label>
 
-                    <label>
-                        Longitude
-                        <input
-                            id="spot-lng"
-                            type="text"
-                            value={lng}
-                            onChange={(e) => setLng(e.target.value)}
-                        />
-                    </label>
 
                     <button id="submit" type="submit">Edit Spot</button>
                 </form>

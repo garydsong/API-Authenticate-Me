@@ -5,6 +5,7 @@ const GET_SINGLE_SPOT = 'spots/getSingleSpot'
 const CREATE_SPOT = 'spots/createSpot'
 const DELETE_SPOT = 'spots/deleteSpot'
 const UPDATE_SPOT = 'spots/updateSpot'
+const CREATE_SPOT_IMAGE = 'spots/createSpotImage'
 
 
 // ACTIONS
@@ -43,6 +44,13 @@ const editSpot = (spot) => {
     }
 }
 
+const createSpotImage = (img) => {
+    return {
+        type: CREATE_SPOT_IMAGE,
+        img
+    }
+}
+
 // THUNKS
 export const getSpots = () => async (dispatch) => {
     const response = await fetch('/api/spots');
@@ -64,6 +72,7 @@ export const getSingleSpot = (id) => async (dispatch) => {
 };
 
 export const createSpot = (payload) => async (dispatch) => {
+    console.log(payload)
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
@@ -75,6 +84,7 @@ export const createSpot = (payload) => async (dispatch) => {
         dispatch(createASpot(spot));
         return spot;
     };
+
 };
 
 export const deleteSpot = (id) => async (dispatch) => {
@@ -102,6 +112,20 @@ export const updateSpot = (payload, id) => async (dispatch) => {
         return spot;
     }
 
+}
+
+export const createImage = (spotId, img) => async (dispatch) => {
+    console.log(img)
+    const response = await csrfFetch(`/api/spots/${spotId}/images`, {
+        method: 'POST',
+        body: JSON.stringify(img)
+    });
+
+    if (response.ok) {
+        const image = await response.json()
+        dispatch(createSpotImage(image))
+        return image;
+    }
 }
 
 // REDUCERS
@@ -143,7 +167,14 @@ const spotReducer = (state = initialState, action) => {
             newState.singleSpot = action.spot;
 
             return newState;
-        }
+        };
+
+        case CREATE_SPOT_IMAGE: {
+            let SpotImages = [ action.img ];
+            let newState = { ...state, singleSpot: SpotImages };
+
+            return newState;
+        };
 
     default:
 

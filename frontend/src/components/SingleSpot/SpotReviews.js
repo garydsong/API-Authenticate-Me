@@ -32,7 +32,6 @@ const SpotReviews = ({spotId}) => {
             <div id="reviews-grid">
                 { Object.values(reviews).map((review, i) => (
                     <div key={i} id="review-card">
-                        {console.log('r', review)}
                         <div id="user-real-name">{review?.user?.firstName} {review?.user?.lastName}
                         {sessionUser && sessionUser.id === review.userId && (
                         <div id="del-edit-review-container">
