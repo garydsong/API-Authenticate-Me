@@ -21,13 +21,22 @@ const SpotReviews = ({spotId}) => {
     return (
         <div id="inside-spot-reviews">
             <h1 id="reviews-header">Reviews</h1>
-            <div>
+            <div id="reviews-grid">
                 { Object.values(reviews).map((review, i) => (
                     <div key={i} id="review-card">
-                        <h3 id="user-real-name">{review?.user?.firstName} {review?.user?.lastName}</h3>
-                        <span id="time-posted">{review?.updatedAt.slice(0, 10)}</span>
-                        <h3>★ {review?.stars}</h3>
-                        <span>{review?.review}</span>
+                        <div id="user-real-name">{review?.user?.firstName} {review?.user?.lastName}
+                        {sessionUser && sessionUser.id === review.userId && (
+                        <div id="del-edit-review-container">
+                            <div className="delete-review-button">Delete</div>
+                            <div id="space" />
+                            <div className="edit-review-button">Edit</div>
+                            <div id="space" />
+                        </div>
+                        )}
+                        </div>
+                        <div id="time-posted">{review?.updatedAt.slice(0, 10)}</div>
+                        <div className="stars-reviews">★ {review?.stars}</div>
+                        <div>{review?.review}</div>
                     </div>
                 ))}
             </div>

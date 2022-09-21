@@ -23,7 +23,8 @@
     align-items: center;
     width: 120px;
     height: 40px;
-    background-color: rgb(215, 4, 102);;
+    background-color: rgb(215, 4, 102);
+    ;
     color: white;
     margin-right: 10px;
     border-radius: 10px;
@@ -39,17 +40,18 @@
 .delete-spot-button:active {
     transform: scale(.96);
     background-color: rgb(255, 143, 195);
-  }
+}
 
 
-  .edit-spot-button {
+.edit-spot-button {
     display: flex;
     font-weight: bold;
     justify-content: center;
     align-items: center;
     width: 120px;
     height: 40px;
-    background-color: rgb(215, 4, 102);;
+    background-color: rgb(215, 4, 102);
+    ;
     color: white;
     margin-right: 10px;
     border-radius: 10px;
@@ -65,16 +67,16 @@
 .edit-spot-button:active {
     transform: scale(.96);
     background-color: rgb(255, 143, 195);
-  }
+}
 
-  #del-edit-container {
+#del-edit-container {
     display: flex;
     justify-content: space-between;
     width: 280px;
     height: 40px;
-  }
+}
 
-  #left-side {
+#left-side {
     margin-top: 10px;
     background-color: #f9f9f9;
     border-radius: 30px;
@@ -84,7 +86,7 @@
     height: 800px;
     width: 460px;
     border: lightgray 1px solid;
-  }
+}
 
 
 .spot-details-mid {
@@ -103,8 +105,15 @@
 
 #inside-spot-reviews {
     display: flex;
-    justify-content: space-between;
+
     flex-direction: column;
+}
+
+#reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 6fr);
+    width: 700px;
+    height: 500px;
 }
 
 #reviews-container {
@@ -117,17 +126,23 @@
 
 #reviews-header {
     border-bottom: 1px solid lightgray;
+    width: 900px;
     margin-top: 0px;
 }
 
 #user-real-name {
-    padding-bottom: -10px;
+    display: flex;
+    font-weight: bold;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 50px;
 }
 
 #time-posted {
     font-size: 12px;
     color: gray;
-    padding-bottom: -10px;
+    margin-top: -15px;
 }
 
 #review-card {
@@ -135,6 +150,57 @@
     justify-content: flex-start;
     flex-direction: column;
     border-bottom: lightgray 1px solid;
+    border-left: lightgray 1px solid;
+    padding-left: 10px;
     width: 300px;
     height: 200px;
+}
+
+#del-edit-review-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 200px;
+    height: 20px;
+}
+
+.stars-reviews {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.delete-review-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.delete-review-button:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    border: 4px;
+    border-radius: 10px;
+}
+
+#space {
+    width: 10px;
+}
+
+.edit-review-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.edit-review-button:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    border-radius: 10px;
 }
