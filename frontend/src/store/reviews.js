@@ -30,7 +30,7 @@ const removeReview = (id) => {
 
 // THUNKS
 export const createReview = (spotId, review) => async (dispatch) => {
-    const response = await csrfFetch(`/api/reviews/${spotId}/create`, {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         body: JSON.stringify(review)
     });
@@ -83,7 +83,7 @@ const reviewReducer = (state = initialState, action) => {
                 return [ ...acc, review ]
             }, []);
 
-            return {...state, spot: [...allReviews] };
+            return { spot: [ ...allReviews ], user: {} };
         };
 
         case DELETE_REVIEW: {

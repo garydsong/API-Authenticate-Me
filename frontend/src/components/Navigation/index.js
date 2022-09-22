@@ -38,15 +38,15 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
 
-        <div class="dropdown">
-          <button class="dropbtn" onClick={openMenu}>
+        <div className="dropdown">
+          <button className="dropbtn" onClick={openMenu}>
             <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
             <img id="avi" src="https://i.imgur.com/llz1HeB.png" />
           </button>
 
           {/* showMenu breaking modal */}
           {/* {showMenu && ( */}
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <NavLink to="/signup"><b>Sign Up</b></NavLink>
             <a href="#"><LoginFormModal /></a>
           </div>

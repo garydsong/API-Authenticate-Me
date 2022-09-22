@@ -20,7 +20,19 @@ function LoginForm() {
         );
     };
 
+    const handleDemo = (e) => {
+        e.preventDefault();
+        setErrors([]);
+        return dispatch(sessionActions.login({ credential: 'hellokitty', password: 'password' })).catch(
+            async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            }
+        );
+    };
+
     return (
+        <>
         <form onSubmit={handleSubmit}>
             <ul>
                 {errors.map((error, idx) => (
@@ -51,7 +63,9 @@ function LoginForm() {
             </div>
 
             <button id="continue" type="submit">Continue</button>
+            <button id="continue" onClick={handleDemo}>Demo User</button>
         </form>
+        </>
     );
 }
 

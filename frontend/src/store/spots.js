@@ -1,11 +1,12 @@
 import { csrfFetch } from "./csrf";
 
 const GET_SPOTS = 'spots/getSpots';
-const GET_SINGLE_SPOT = 'spots/getSingleSpot'
-const CREATE_SPOT = 'spots/createSpot'
-const DELETE_SPOT = 'spots/deleteSpot'
-const UPDATE_SPOT = 'spots/updateSpot'
-const CREATE_SPOT_IMAGE = 'spots/createSpotImage'
+const GET_SINGLE_SPOT = 'spots/getSingleSpot';
+const CREATE_SPOT = 'spots/createSpot';
+const DELETE_SPOT = 'spots/deleteSpot';
+const UPDATE_SPOT = 'spots/updateSpot';
+const CREATE_SPOT_IMAGE = 'spots/createSpotImage';
+const RESET_SPOTS = 'spots/resetSpots';
 
 
 // ACTIONS
@@ -20,36 +21,42 @@ const loadSingleSpot = (spot) => {
     return {
         type: GET_SINGLE_SPOT,
         spot
-    }
-}
+    };
+};
 
 const createASpot = (payload) => {
     return {
         type: CREATE_SPOT,
         payload
-    }
-}
+    };
+};
 
 const removeSpot = (id) => {
     return {
         type: DELETE_SPOT,
         id
-    }
-}
+    };
+};
 
 const editSpot = (spot) => {
     return {
         type: UPDATE_SPOT,
         spot
-    }
-}
+    };
+};
 
 const createSpotImage = (img) => {
     return {
         type: CREATE_SPOT_IMAGE,
         img
-    }
-}
+    };
+};
+
+export const resetSpots = () => {
+    return {
+        type: RESET_SPOTS
+    };
+};
 
 // THUNKS
 export const getSpots = () => async (dispatch) => {
@@ -136,7 +143,7 @@ const spotReducer = (state = initialState, action) => {
             let allSpots = {};
             action.payload.Spots.forEach(spot => allSpots[spot.id] = spot);
 
-            return {...state, allSpots};
+            return { allSpots, singleSpot: { SpotImages: [] } };
         };
 
         case GET_SINGLE_SPOT: {
@@ -174,6 +181,10 @@ const spotReducer = (state = initialState, action) => {
             let newState = { ...state, singleSpot: SpotImages };
 
             return newState;
+        };
+
+        case RESET_SPOTS: {
+            return initialState;
         };
 
     default:

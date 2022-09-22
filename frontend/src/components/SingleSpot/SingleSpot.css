@@ -244,8 +244,11 @@
 }
 
 #closeMenu {
+    display: flex;
+    justify-content: flex-end;
     font-weight: bold;
-    padding-left: 10px;
+    padding-right: 15px;
+    padding-top: 5px;
 }
 
 #closeMenu:hover {

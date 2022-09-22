@@ -40,7 +40,7 @@ function ProfileButton({ user }) {
         <i className="fas fa-user-circle" />
 
       </button> */}
-      <button class="dropbtn" onClick={openMenu}>
+      <button className="dropbtn" onClick={openMenu}>
               <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
               <img id="avi" src="https://i.imgur.com/JELU5u0.jpg" />
             </button>

@@ -18,7 +18,6 @@ const CreateReview = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        setSubmitted(true)
 
         const starNum = +stars
         const newReview = {
