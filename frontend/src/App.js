@@ -14,15 +14,15 @@ import CreateReview from "./components/ReviewForm";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const spots = useSelector((state) => state.spots)
+  // const spots = useSelector((state) => state.spots)
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getSpots())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getSpots())
+  // }, [dispatch])
 
   return (
     <>
@@ -31,7 +31,7 @@ function App() {
         <Switch>
 
           <Route exact path="/">
-            <Spots spots={spots} />
+            <Spots />
           </Route>
 
           <Route path="/login">
@@ -47,7 +47,7 @@ function App() {
           </Route>
 
           <Route exact path="/spots/:spotId">
-            <SingleSpot spots={spots} />
+            <SingleSpot />
           </Route>
 
           <Route exact path="/test">

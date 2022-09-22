@@ -10,6 +10,7 @@ const SpotReviews = ({ spotId }) => {
     const spot = useSelector((state) => state.spots[spotId])
     const dispatch = useDispatch();
 
+
     useEffect(() => {
         dispatch(getReviews(spotId))
     }, [dispatch, spotId]);
@@ -19,7 +20,7 @@ const SpotReviews = ({ spotId }) => {
         e.preventDefault();
         await dispatch(deleteReview(review));
         alert('Review deleted.')
-        history.push(`/`)
+        history.push(`/spots/${spotId}`)
 
     }
 

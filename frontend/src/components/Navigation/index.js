@@ -16,6 +16,14 @@ function Navigation({ isLoaded }) {
     setShowMenu(true);
   };
 
+  const dropDownClassChanger = () => {
+    if(showMenu) {
+      return 'dropdown-content-visible'
+     } else {
+      return 'dropdown-content-hidden'
+     };
+  };
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -39,16 +47,16 @@ function Navigation({ isLoaded }) {
       <>
 
         <div className="dropdown">
-          <button className="dropbtn" onClick={openMenu}>
+          <button className="dropbtn" onClick={(() => showMenu ? setShowMenu(false) : setShowMenu(true))}>
             <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
             <img id="avi" src="https://i.imgur.com/llz1HeB.png" />
           </button>
 
           {/* showMenu breaking modal */}
           {/* {showMenu && ( */}
-          <div className="dropdown-content">
+          <div className={dropDownClassChanger()}>
             <NavLink to="/signup"><b>Sign Up</b></NavLink>
-            <a href="#"><LoginFormModal /></a>
+            <a href='#'><LoginFormModal /></a>
           </div>
           {/* )} */}
         </div>

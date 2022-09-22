@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom"
-import { getSingleSpot, deleteSpot, resetSpots } from "../../store/spots";
+import { getSingleSpot, deleteSpot } from "../../store/spots";
+import { resetReviews } from "../../store/reviews";
 import EditSpot from "../EditSpotForm";
 import SpotReviews from "./SpotReviews";
 import CreateReview from "../ReviewForm";
@@ -17,11 +18,10 @@ const SingleSpot = () => {
     const [showForm, setShowForm] = useState(false);
     // const imageUrl = useSelector(state => state.spots.singleSpot.SpotImages[0])
 
-    console.log('cl ss', spot)
-
     useEffect(() => {
         dispatch(getSingleSpot(spotId))
     }, [dispatch])
+    
 
     // if (!imageUrl.url) return null;
     // console.log('url value', spot.SpotImages[0])
@@ -42,25 +42,25 @@ const SingleSpot = () => {
         setShowMenu(true);
     };
 
-    useEffect(() => {
-        if (!showMenu) return;
-
-        const closeMenu = () => {
-            setShowMenu(false);
-        };
-
-        document.querySelector('#review-dropdown').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                closeMenu()
-            }
-        });
-
-        return () => document.removeEventListener("keypress", closeMenu);
-    }, [showMenu]);
-
     // useEffect(() => {
-    //     return () => dispatch(resetSpots());
-    // });
+    //     if (!showMenu) return;
+
+    //     const closeMenu = () => {
+    //         setShowMenu(false);
+    //     };
+
+    //     document.querySelector('#review-dropdown').addEventListener('keypress', function (e) {
+    //         if (e.key === 'Enter') {
+    //             closeMenu()
+
+    //         }
+    //     });
+
+    //     return () => document.removeEventListener("keypress", closeMenu);
+    // }, [showMenu]);
+
+
+
 
 
     return (

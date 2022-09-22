@@ -47,6 +47,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: white;
+    position: absolute;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -55,15 +56,21 @@
     border-radius: 999px;
     width: 80px;
     height: 40px;
+
 }
 
 .dropdown {
-    position: relative;
+    position: absolute;
     display: inline-block;
+    width: 80px;
+    height: 40px;
+    right: 8%;
+    top: 20%;
 }
 
-.dropdown-content {
+.dropdown-content-visible {
     /* display: none; */
+    visibility: visible;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
@@ -73,17 +80,22 @@
     border-radius: 10px;
     border: rgb(228, 228, 228) 1px solid;
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
-    bottom: -100px;
+    top: 120%;
+    height: 100px;
 }
 
-.dropdown-content a {
+.dropdown-content-hidden {
+    visibility: hidden;
+}
+
+.dropdown-content-visible a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
 
-.dropdown-content a:hover {
+.dropdown-content-visible a:hover {
     background-color: #f1f1f1;
     border-radius: 10px;
 }

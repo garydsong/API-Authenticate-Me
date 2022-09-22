@@ -26,8 +26,11 @@ const CreateReview = () => {
         };
         console.log('nr', newReview)
 
+
+
         await dispatch(createReview(spotId, newReview))
         history.push(`/spots/${spotId}`)
+
     }
 
 
@@ -36,14 +39,14 @@ const CreateReview = () => {
             <form id="create-review-form" onSubmit={onSubmit}>
                 <label>
                     Review
-                    </label>
-                    <textarea
-                        id="review"
-                        type="text"
-                        value={review}
-                        onChange={(e) => setReview(e.target.value)}
-                        required
-                    />
+                </label>
+                <textarea
+                    id="review"
+                    type="text"
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    required
+                />
 
 
                 <label id="stars-selector">
@@ -75,7 +78,7 @@ const CreateReview = () => {
                             onClick={(e) => setStars(e.target.value)}
                             required>★</option>
                     </select>
-                    </label>
+                </label>
                 <button id="submit-review" type="submit">Submit</button>
                 <div></div>
             </form>

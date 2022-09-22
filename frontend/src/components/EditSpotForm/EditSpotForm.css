@@ -81,8 +81,8 @@
     font-weight: bold;
     font-size: 12px;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     height: 40px;
     width: 410px;
     background-color: rgb(215, 4, 102);

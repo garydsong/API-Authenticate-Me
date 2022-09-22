@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const POST_REVIEW = '/reviews/postReview';
 const GET_REVIEWS = '/reviews/getReviews';
 const DELETE_REVIEW = '/reviews/deleteReview';
+const RESET_REVIEWS = '/reviews/resetReviews';
 
 
 // ACTIONS
@@ -27,6 +28,12 @@ const removeReview = (id) => {
     };
 };
 
+export const resetReviews = () => {
+    return {
+        type: RESET_REVIEWS
+    }
+}
+
 
 // THUNKS
 export const createReview = (spotId, review) => async (dispatch) => {
@@ -49,6 +56,29 @@ export const getReviews = (spotId) => async (dispatch) => {
         const reviews = await response.json();
         dispatch(getAllReviews(reviews));
         return reviews;
+    };
+};
+
+export const getReviewsAvg = (spotId) => async (dispatch) => {
+    const response = await fetch(`/api/spots/${spotId}/reviews`)
+
+    if (response.ok) {
+        // const reviews = await response.json();
+        // const reviewsArr = reviews.Reviews
+        // const sum = reviewsArr.reduce((acc, review) => {
+        //     acc += +review.stars
+        //     return acc
+        // }, 0)
+
+        // let avg;
+
+        // if (sum) {
+        //     avg = (sum/reviewsArr.length).toFixed(2)
+        //  } else {
+        //     avg = 0
+        //  }
+
+        // return avg;
     };
 };
 
@@ -90,6 +120,10 @@ const reviewReducer = (state = initialState, action) => {
             const newState = { ...state };
             delete newState[action.id];
             return newState;
+        };
+
+        case RESET_REVIEWS: {
+            return initialState;
         };
 
         default:

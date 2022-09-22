@@ -63,6 +63,27 @@ export const getSpots = () => async (dispatch) => {
     const response = await fetch('/api/spots');
     if (response.ok) {
         let spots = await response.json();
+
+        spots = spots.Spots
+        for (let i = 0; i < spots.length; i++) {
+            let res = await fetch(`/api/spots/${spots[i].id}/reviews`)
+            const reviews = await res.json();
+            const reviewsArr = reviews.Reviews
+            const sum = reviewsArr.reduce((acc, review) => {
+                acc += +review.stars
+                return acc
+            }, 0)
+
+            let avg;
+            if (sum) {
+                avg = (sum/reviewsArr.length).toFixed(2)
+            } else {
+                avg = 0
+            }
+
+            spots[i].avgRating = avg
+        }
+        console.log('new', spots)
         dispatch(loadSpots(spots));
         return spots;
     };
@@ -136,21 +157,21 @@ export const createImage = (spotId, img) => async (dispatch) => {
 };
 
 // REDUCERS
-const initialState = { allSpots: {}, singleSpot: {SpotImages: []} };
+const initialState = { allSpots: {}, singleSpot: { SpotImages: [] } };
 const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SPOTS: {
             let allSpots = {};
-            action.payload.Spots.forEach(spot => allSpots[spot.id] = spot);
+            action.payload.forEach(spot => allSpots[spot.id] = spot);
 
-            return { allSpots, singleSpot: { SpotImages: [] } };
+            return { allSpots: { ...allSpots }, singleSpot: { SpotImages: [] } };
         };
 
         case GET_SINGLE_SPOT: {
             let singleSpot = {};
             singleSpot = { ...action.spot };
-
-            return {...state, singleSpot};
+            console.log('single spot222', singleSpot)
+            return { ...state, singleSpot };
         };
 
         case CREATE_SPOT: {
