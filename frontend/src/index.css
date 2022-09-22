@@ -18,8 +18,8 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     padding-top: 100px;
-    padding-left: 150px;
-    padding-right: 130px;
+    padding-left: 120px;
+    padding-right: 120px;
     grid-row-gap: 40px;
 }
 
@@ -61,4 +61,29 @@ a:link, a:visited {
 #space-for-footer {
     height: 60px;
     width: 100%;
+}
+
+@media screen and (max-width: 1024px){
+    .spots-main {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding-top: 100px;
+        margin-left: -40px;
+        grid-row-gap: 20px;
+        grid-column-gap: 20px;
+    }
+
+    #spot-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 15px;
+    }
+
+    .new-spot {
+        display: grid;
+        grid-template-rows: repeat(5, 1fr);
+        align-items: end;
+        height: 300px;
+        width: 200px;
+    }
 }

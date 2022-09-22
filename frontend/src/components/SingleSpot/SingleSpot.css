@@ -187,7 +187,7 @@
 }
 
 .stars-reviews {
-    font-size: 20px;
+    font-size: 1px;
     font-weight: bold;
 }
 
@@ -227,4 +227,18 @@
     cursor: pointer;
     background-color: lightgray;
     border-radius: 10px;
+}
+
+#review-dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    height: 300px;
+    width: 400px;
+    border: rgb(228, 228, 228) 1px solid;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    left: 33%;
+    border-radius: 15px;
 }

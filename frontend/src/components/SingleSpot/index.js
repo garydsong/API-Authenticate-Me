@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom"
 import { getSingleSpot, deleteSpot, } from "../../store/spots";
 import EditSpot from "../EditSpotForm";
 import SpotReviews from "./SpotReviews";
+import CreateReview from "../ReviewForm";
 import './SingleSpot.css'
 
 const SingleSpot = () => {
@@ -34,6 +35,29 @@ const SingleSpot = () => {
         return setShowForm(true)
     }
 
+    const [showMenu, setShowMenu] = useState(false);
+
+    const openMenu = () => {
+        if (showMenu) return;
+        setShowMenu(true);
+    };
+
+    useEffect(() => {
+        if (!showMenu) return;
+
+        const closeMenu = () => {
+            setShowMenu(false);
+        };
+
+        document.querySelector('#review-dropdown').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+              closeMenu()
+            }
+        });
+
+          return () => document.removeEventListener("keypress", closeMenu);
+        }, [showMenu]);
+
     return (
 
         <div className="single-spot-main">
@@ -44,8 +68,13 @@ const SingleSpot = () => {
                     <h3>{spot.description}</h3>
                     <h3 id="single-spot-reviews-container">
                         <div id="avg-rating">★{spot.avgRating}</div>
-                        <div id="leave-a-review">Leave a Review</div>
+                        <div id="leave-a-review" onClick={openMenu}>Leave a Review</div>
                     </h3>
+                    {showMenu && (
+                        <div id="review-dropdown">
+                            <CreateReview />
+                        </div>
+                    )}
                     {/* breaks on refresh without optional chaining will add isLoaded later */}
                     <div className="spot-details-mid">
                         <img id="main-img" src={spot.SpotImages ? spot.SpotImages[0]?.url : 'https://i.imgur.com/8DQUBo8.png'} />
@@ -65,10 +94,10 @@ const SingleSpot = () => {
 
                     {showForm && (
                         <div>
-                        <div id="left-side">
-                            <EditSpot />
-                        </div>
-                        <div id="footer-space"></div>
+                            <div id="left-side">
+                                <EditSpot />
+                            </div>
+                            <div id="footer-space"></div>
                         </div>
                     )}
                 </>

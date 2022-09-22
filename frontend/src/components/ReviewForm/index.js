@@ -1,75 +1,83 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { createReview } from "../../store/reviews";
+import { useHistory } from "react-router-dom";
 import './ReviewForm.css'
 
 const CreateReview = () => {
     const { spotId } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [review, setReview] = useState('');
     const [stars, setStars] = useState(0);
     const [validationErrors, setValidationErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
-    const onSubmit = (e) => {
+
+    const onSubmit = async (e) => {
         e.preventDefault();
+        setSubmitted(true)
 
-        const review = {
-            review: review,
-            stars: stars
+        const starNum = +stars
+        const newReview = {
+            review,
+            stars: starNum
         };
+        console.log('nr', newReview)
 
-        dispatch(createReview(spotId, review))
+        await dispatch(createReview(spotId, newReview))
+        history.push(`/spots/${spotId}`)
     }
 
 
     return (
         <div>
-            <div id='space-up-top'/>
-            <form className="create-review-form" onSubmit={onSubmit}>
+            <form id="create-review-form" onSubmit={onSubmit}>
                 <label>
                     Review
-                    <input
+                    </label>
+                    <textarea
                         id="review"
                         type="text"
                         value={review}
                         onChange={(e) => setReview(e.target.value)}
                         required
                     />
-                </label>
 
-                <label>
+
+                <label id="stars-selector">
                     Stars
-                    <select id="stars">
-                            <option
-                            value={+5}
-                            onChange={(e) => setStars(e.target.value)}
-                            required>5</option>
 
-                            <option
+                    <select id="stars" onChange={(e) => setStars(e.target.value)}>
+                        <option
+                            value={5}
+                            onChange={(e) => setStars(e.target.value)}
+                            required>★★★★★</option>
+
+                        <option
                             value={+4}
                             onChange={(e) => setStars(e.target.value)}
-                            required>4</option>
+                            required>★★★★</option>
 
-                            <option
+                        <option
                             value={+3}
                             onChange={(e) => setStars(e.target.value)}
-                            required>3</option>
+                            required>★★★</option>
 
-                            <option
+                        <option
                             value={+2}
                             onChange={(e) => setStars(e.target.value)}
-                            required>2</option>
+                            required>★★</option>
 
-                            <option
+                        <option
                             value={+1}
-                            onChange={(e) => setStars(e.target.value)}
-                            required>1</option>
+                            onClick={(e) => setStars(e.target.value)}
+                            required>★</option>
                     </select>
-
-                </label>
+                    </label>
+                <button id="submit-review" type="submit">Submit</button>
             </form>
         </div>
     )

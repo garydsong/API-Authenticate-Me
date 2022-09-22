@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
       <button class="dropbtn" onClick={openMenu}>
               <img id="burger" src="https://i.imgur.com/H2F6PAe.png" />
               <img id="avi" src="https://i.imgur.com/JELU5u0.jpg" />
-      </button>
+            </button>
       {showMenu && (
         <div className="profile-dropdown">
           <div id="prodrop-one">{user.username}</div>

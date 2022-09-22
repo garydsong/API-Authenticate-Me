@@ -2,3 +2,45 @@
     height: 200px;
     width: 100%;
 }
+
+#create-review-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-top: 20px;
+    height: 100%;
+}
+
+#review {
+    height: 150px;
+    width: 350px;
+    resize: none;
+}
+
+#stars {
+    width: 100px;
+}
+
+#submit-review {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(215, 4, 102);
+    width: 75px;
+    border-radius: 20px;
+}
+
+#submit-review:hover {
+    cursor: pointer;
+    background-color: rgb(255, 47, 144);
+    transition: .1s;
+}
+
+#stars-selector {
+    display: flex;
+    justify-content: space-between;
+    width: 75px;
+
+}
