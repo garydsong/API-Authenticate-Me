@@ -14,7 +14,6 @@ const SpotReviews = ({spotId}) => {
         dispatch(getReviews(spotId))
     }, [dispatch, spotId]);
 
-    console.log('reviews hit', reviews)
 
     const deleteReviewHandler = (review) => async (e) => {
         e.preventDefault();
@@ -31,6 +30,7 @@ const SpotReviews = ({spotId}) => {
             <h1 id="reviews-header">Reviews</h1>
             <div id="reviews-grid">
                 { Object.values(reviews).map((review, i) => (
+
                     <div key={i} id="review-card">
                         <div id="user-real-name">{review?.user?.firstName} {review?.user?.lastName}
                         {sessionUser && sessionUser.id === review.userId && (
@@ -41,7 +41,7 @@ const SpotReviews = ({spotId}) => {
                         )}
                         </div>
                         <div id="time-posted">{review?.updatedAt.slice(0, 10)}</div>
-                        <div className="stars-reviews">★ {review?.stars}</div>
+                        <div className="stars-card-reviews">★ {review.stars}</div>
                         <div>{review?.review}</div>
                     </div>
                 ))}

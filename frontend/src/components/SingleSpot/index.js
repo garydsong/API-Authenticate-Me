@@ -72,6 +72,7 @@ const SingleSpot = () => {
                     </h3>
                     {showMenu && (
                         <div id="review-dropdown">
+                            <div id="closeMenu" onClick={(() => setShowMenu(false))}>x</div>
                             <CreateReview />
                         </div>
                     )}

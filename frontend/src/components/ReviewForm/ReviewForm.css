@@ -8,11 +8,12 @@
     flex-direction: column;
     justify-content: space-between;
     padding-left: 20px;
-    padding-top: 20px;
+    padding-top: 0px;
     height: 100%;
 }
 
 #review {
+    margin-top: 0px;
     height: 150px;
     width: 350px;
     resize: none;
@@ -20,6 +21,7 @@
 
 #stars {
     width: 100px;
+    margin-left: 10px;
 }
 
 #submit-review {

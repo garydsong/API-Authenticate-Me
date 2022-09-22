@@ -11,7 +11,7 @@ const CreateReview = () => {
     const history = useHistory();
 
     const [review, setReview] = useState('');
-    const [stars, setStars] = useState(0);
+    const [stars, setStars] = useState(5);
     const [validationErrors, setValidationErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
@@ -33,7 +33,7 @@ const CreateReview = () => {
 
 
     return (
-        <div>
+        <>
             <form id="create-review-form" onSubmit={onSubmit}>
                 <label>
                     Review
@@ -57,29 +57,30 @@ const CreateReview = () => {
                             required>★★★★★</option>
 
                         <option
-                            value={+4}
+                            value={4}
                             onChange={(e) => setStars(e.target.value)}
                             required>★★★★</option>
 
                         <option
-                            value={+3}
+                            value={3}
                             onChange={(e) => setStars(e.target.value)}
                             required>★★★</option>
 
                         <option
-                            value={+2}
+                            value={2}
                             onChange={(e) => setStars(e.target.value)}
                             required>★★</option>
 
                         <option
-                            value={+1}
+                            value={1}
                             onClick={(e) => setStars(e.target.value)}
                             required>★</option>
                     </select>
                     </label>
                 <button id="submit-review" type="submit">Submit</button>
+                <div></div>
             </form>
-        </div>
+        </>
     )
 }
 
