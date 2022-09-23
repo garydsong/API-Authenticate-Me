@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Spots',[
+    return queryInterface.bulkInsert('Spots', [
       {
         ownerId: 2,
         address: "Outside Chef Gusteau's",
@@ -13,7 +13,7 @@ module.exports = {
         lng: 2.3522,
         name: "Linguine's Flat",
         description: "Ratatoille with a view of the Eiffle Tower.",
-        price: 1000
+        price: 1000,
       },
       {
         ownerId: 2,
@@ -186,16 +186,16 @@ module.exports = {
     ])
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     const Op = Sequelize.Op;
-     return queryInterface.bulkDelete('Spots', {
-      city: { [Op.in]: ['Los Angeles', 'San Francisco', 'Honolulu']}
-     }, {});
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete('Spots', {
+      city: { [Op.in]: ['Los Angeles', 'San Francisco', 'Honolulu'] }
+    }, {});
   }
 };
