@@ -40,6 +40,8 @@ const CreateReview = () => {
 
     return (
         <>
+        <div id="review-card-page-container">
+        <div id="review-card-page">
             <form id="create-review-form" onSubmit={onSubmit}>
                 <label id="title-on-review-form">
                     Review
@@ -93,6 +95,8 @@ const CreateReview = () => {
                 <button id="submit-review" type="submit">Submit</button>
                 <div></div>
             </form>
+        </div>
+        </div>
         </>
     )
 }

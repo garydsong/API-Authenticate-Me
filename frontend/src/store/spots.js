@@ -169,7 +169,7 @@ const spotReducer = (state = initialState, action) => {
             console.log('get all spots reducer', allSpots)
             console.log('get all spots action', action)
 
-            return { allSpots: { ...allSpots }, singleSpot: { SpotImages: [] } };
+            return { allSpots: { ...allSpots }, singleSpot: { ...state.singleSpot } };
         };
 
         case GET_SINGLE_SPOT: {

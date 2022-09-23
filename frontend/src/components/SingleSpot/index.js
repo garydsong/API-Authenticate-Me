@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom"
+import { useParams, useHistory, NavLink } from "react-router-dom"
 import { getSingleSpot, deleteSpot, getSpots } from "../../store/spots";
 import { resetReviews } from "../../store/reviews";
 import EditSpot from "../EditSpotForm";
@@ -86,7 +86,10 @@ const SingleSpot = () => {
                         <h3>{spot.description}</h3>
                         <h3 id="single-spot-reviews-container">
                             <div id="avg-rating">★{spot.avgRating}</div>
-                            <div id="leave-a-review" onClick={openMenu}>Leave a Review</div>
+                            {/* <div id="leave-a-review" onClick={openMenu}>Leave a Review</div> */}
+                            <NavLink to={`/spots/${spot.id}/reviews`}>
+                            <div id="leave-a-review">Leave a Review</div>
+                            </NavLink>
                         </h3>
                         {showMenu && (
                             <div id="review-dropdown">
@@ -107,14 +110,15 @@ const SingleSpot = () => {
                         {sessionUser && sessionUser.id === spot.ownerId && (
                             <div id="del-edit-container">
                                 <div onClick={deleteHandler} className="delete-spot-button">Delete</div>
-                                <div onClick={editHandler} className="edit-spot-button">Edit</div>
+                                {/* <div onClick={editHandler} className="edit-spot-button">Edit</div> */}
+                                <NavLink to={`/spots/${spot.id}/edit`}><div onClick={editHandler} className="edit-spot-button">Edit</div></NavLink>
                             </div>
                         )}
 
                         {showForm && (
                             <div>
                                 <div id="left-side">
-                                    <EditSpot />
+                                    {/* <EditSpot /> */}
                                 </div>
                                 <div id="footer-space"></div>
                             </div>
