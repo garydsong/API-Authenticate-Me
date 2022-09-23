@@ -32,15 +32,17 @@ const SpotForm = ({ spot }) => {
         if (!country || country.length > 20) errors.push('Please enter a valid country.');
         if (!description) errors.push('Please enter a description.');
         if (!price || typeof +price !== 'Number') errors.push('Please enter a valid price');
+        if (!image.match(/\.(jpg|jpeg|png|gif)$/)) errors.push('Please enter a valid image.')
         // if (!lat || typeof +lat !== 'Number') errors.push('Please enter a valid latitude');
         // if (!lng || typeof +lng !== 'Number') errors.push('Please enter a valid longitude');
 
         setValidationErrors(errors)
-    }, [name, address, city, state, country, description, price, image]);
+    }, [name, address, city, state, country, description, price]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
+        console.log(validationErrors)
 
         spot = {
             name,
@@ -71,17 +73,17 @@ const SpotForm = ({ spot }) => {
         <div className="main-create-spot">
             <div className="vert-space"></div>
             <div className="create-spot-form">
-
-                {!validationErrors.length && submitted && (
-                    <div>
-                        <ul> errors:
+                {console.log('v', validationErrors)}
+                {validationErrors.length > 0 && submitted && (
+                    <div id="errors-create-spot-form">
+                        <ul>
                             {validationErrors.map((e) => (
                                 <li key={e}>{e}</li>
                             ))}
                         </ul>
                     </div>
                 )}
-                <form className="create-spot-form" onSubmit={onSubmit}>
+                <form className="create-spot-form-2" onSubmit={onSubmit}>
                     <label>
                         Name
                         <input

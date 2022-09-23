@@ -8,14 +8,12 @@ const SpotReviews = ({ spotId }) => {
     const reviews = useSelector((state) => state.reviews.spot);
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
-    console.log('Spot review component')
+    console.log('Spot review component', reviews)
 
     useEffect(() => {
         const resDispatch = dispatch(getReviews(spotId))
         console.log('spot review dispatch', resDispatch)
     }, [dispatch, spotId]);
-
-
 
     const deleteReviewHandler = (review) => async (e) => {
         e.preventDefault();
@@ -23,6 +21,8 @@ const SpotReviews = ({ spotId }) => {
         alert('Review deleted.')
         history.push(`/spots/${spotId}`)
     }
+
+
 
     if (!reviews[0]) return console.log('waiting on reviews');
 
@@ -37,7 +37,7 @@ const SpotReviews = ({ spotId }) => {
             <div id="reviews-grid">
                 { Object.values(reviews).map((review, i) => (
                     <div key={i} id="review-card">
-                        {console.log('hey', reviews)}
+
                         <div id="user-real-name">{review?.user?.firstName} {review?.user?.lastName}
                         {sessionUser && sessionUser.id === review.userId && (
                             <div id="del-edit-review-container">

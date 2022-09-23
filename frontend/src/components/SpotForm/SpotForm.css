@@ -9,7 +9,7 @@
 }
 
 .vert-space {
-    height: 100px;
+    height: 80px;
     width: 100%;
 }
 
@@ -19,6 +19,18 @@
     justify-content: space-between;
     width: 412px;
     height: 800px;
+    padding-top: 0px;
+    margin-top: 20px;
+}
+
+.create-spot-form-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 412px;
+    height: 800px;
+    padding-top: 50px;
+    margin-top: 20px;
 }
 
 #spot-name {
@@ -102,4 +114,10 @@
   #submit:active {
     transform: scale(.96);
     background-color: rgb(255, 143, 195);
+  }
+
+  #errors-create-spot-form ul{
+    position: absolute;
+    color: red;
+    list-style: none;
   }
