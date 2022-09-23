@@ -51,6 +51,7 @@ export const createReview = (spotId, review) => async (dispatch) => {
 
 export const getReviews = (spotId) => async (dispatch) => {
     const response = await fetch(`/api/spots/${spotId}/reviews`)
+    console.log('get reviews thunk', response)
 
     if (response.ok) {
         const reviews = await response.json();
@@ -105,9 +106,9 @@ const reviewReducer = (state = initialState, action) => {
 
         case GET_REVIEWS: {
             let allReviews = [];
-            console.log('action reviews', action.reviews.Reviews)
+            console.log('reviews reviews reducer action.reviews', action.reviews.Reviews)
             allReviews = action.reviews.Reviews.reduce((acc, review) => {
-                console.log('reviews reducer', review)
+                console.log('reviews reducer inside reduce', review)
 
                 // allReviews[review.id] = review
                 return [ ...acc, review ]

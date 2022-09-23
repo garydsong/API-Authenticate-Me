@@ -6,7 +6,6 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Spots from "./components/Spots";
-import { getSpots } from "./store/spots";
 import SingleSpot from "./components/SingleSpot";
 import SpotForm from "./components/SpotForm";
 import CreateReview from "./components/ReviewForm";
@@ -20,9 +19,6 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(getSpots())
-  // }, [dispatch])
 
   return (
     <>

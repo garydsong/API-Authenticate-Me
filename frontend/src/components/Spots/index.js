@@ -17,6 +17,7 @@ const Spots = () => {
     console.log('comp', spots)
 
     useEffect(() => {
+        console.log('getting all spots for the homepage')
         dispatch(getSpots())
     }, [dispatch])
 
@@ -47,11 +48,11 @@ const Spots = () => {
                             <img id="spot-img" src={`${e.previewImage}`} />
                             <div className="name-review">
                                 <div className="name"><b>{e.name}</b></div>
-                                <div className="review">★{e.avgRating}</div>
+                                <div className="review"><b>★{e.avgRating}</b></div>
                             </div>
                             <div className="city">{e.city}, {e.state}</div>
                             <div className="country">{e.country}</div>
-                            <div classNmae="price"><b>${e.price}</b> night</div>
+                            <div className="price"><b>${e.price}</b> night</div>
                         </div>
                     </NavLink>
                 ))}

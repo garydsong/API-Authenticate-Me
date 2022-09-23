@@ -43,7 +43,7 @@ const CreateReview = () => {
             <form id="create-review-form" onSubmit={onSubmit}>
                 <label id="title-on-review-form">
                     Review
-                    {validationErrors.length && submitted && (
+                    {validationErrors.length > 0 && submitted && (
                         <div id="error-on-review-form">{validationErrors.map((e) => (
                                 <> {e}</>
                             ))}

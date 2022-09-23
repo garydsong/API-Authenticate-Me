@@ -7,12 +7,12 @@ const SpotReviews = ({ spotId }) => {
     const history = useHistory();
     const reviews = useSelector((state) => state.reviews.spot);
     const sessionUser = useSelector((state) => state.session.user);
-    const spot = useSelector((state) => state.spots[spotId])
     const dispatch = useDispatch();
-
+    console.log('Spot review component')
 
     useEffect(() => {
-        dispatch(getReviews(spotId))
+        const resDispatch = dispatch(getReviews(spotId))
+        console.log('spot review dispatch', resDispatch)
     }, [dispatch, spotId]);
 
 

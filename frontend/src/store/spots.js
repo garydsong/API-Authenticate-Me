@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
-const GET_SPOTS = 'spots/getSpots';
 const GET_SINGLE_SPOT = 'spots/getSingleSpot';
+const GET_SPOTS = 'spots/getSpots';
 const CREATE_SPOT = 'spots/createSpot';
 const DELETE_SPOT = 'spots/deleteSpot';
 const UPDATE_SPOT = 'spots/updateSpot';
@@ -61,6 +61,7 @@ export const resetSpots = () => {
 // THUNKS
 export const getSpots = () => async (dispatch) => {
     const response = await fetch('/api/spots');
+    console.log('get spots thunk')
     if (response.ok) {
         let spots = await response.json();
 
@@ -84,7 +85,7 @@ export const getSpots = () => async (dispatch) => {
 
             spots[i].avgRating = avg
         }
-        console.log('new', spots)
+
         dispatch(loadSpots(spots));
         return spots;
     };
@@ -95,7 +96,8 @@ export const getSingleSpot = (id) => async (dispatch) => {
     if (response.ok) {
         let spot = await response.json();
         console.log('single spot', spot);
-        dispatch(loadSingleSpot(spot));
+        const resDispatch = dispatch(loadSingleSpot(spot));
+        console.log('get single spot thunk', resDispatch)
         return spot;
     };
 };
@@ -164,15 +166,23 @@ const spotReducer = (state = initialState, action) => {
         case GET_SPOTS: {
             let allSpots = {};
             action.payload.forEach(spot => allSpots[spot.id] = spot);
+            console.log('get all spots reducer', allSpots)
+            console.log('get all spots action', action)
 
             return { allSpots: { ...allSpots }, singleSpot: { SpotImages: [] } };
         };
 
         case GET_SINGLE_SPOT: {
-            let singleSpot = {};
-            singleSpot = { ...action.spot };
-            console.log('single spot222', singleSpot)
-            return { ...state, singleSpot };
+            let newState = { ...state, singleSpot: { ...state.singleSpot } };
+            let singleSpot = { ...action.spot, SpotImages: [ ...state.singleSpot.SpotImages ] };
+            action.spot.SpotImages.forEach((img, i) => {
+                singleSpot.SpotImages[i] = img;
+            });
+            newState.singleSpot = singleSpot;
+            console.log('get single spots', newState)
+            console.log('get single spot action', action)
+
+            return newState;
         };
 
         case CREATE_SPOT: {

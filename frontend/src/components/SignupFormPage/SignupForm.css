@@ -17,7 +17,22 @@
     flex-direction: column;
     justify-content: space-between;
     width: 412px;
-    height: 600px;
+    height: 750px;
+}
+
+.sign-up-form ul {
+    color: red;
+    list-style: none;
+    position: absolute;
+}
+
+#signup-elements {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 100px;
+    height: 750px;
+
 }
 
 #first-name {

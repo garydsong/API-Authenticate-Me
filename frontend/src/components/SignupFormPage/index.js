@@ -14,6 +14,7 @@ function SignupFormPage() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [validationErrors, setValidationErrors] = useState([])
 
     if (sessionUser) return <Redirect to="/" />;
 
@@ -39,6 +40,7 @@ function SignupFormPage() {
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
+            <div id="signup-elements">
             <label>
                 First Name
                 <input
@@ -100,6 +102,7 @@ function SignupFormPage() {
                 />
             </label>
             <button id="submit" type="submit">Sign Up</button>
+            </div>
         </form>
         </div>
         </div>

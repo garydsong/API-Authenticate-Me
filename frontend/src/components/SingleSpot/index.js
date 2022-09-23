@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom"
-import { getSingleSpot, deleteSpot } from "../../store/spots";
+import { getSingleSpot, deleteSpot, getSpots } from "../../store/spots";
 import { resetReviews } from "../../store/reviews";
 import EditSpot from "../EditSpotForm";
 import SpotReviews from "./SpotReviews";
@@ -12,15 +12,27 @@ const SingleSpot = () => {
     const { spotId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    const spot = useSelector(state => state.spots.singleSpot)
+    // const spot = useSelector(state => state.spots.singleSpot)
     const sessionUser = useSelector(state => state.session.user)
+    const allSpots = useSelector(state => state.spots)
 
     const [showForm, setShowForm] = useState(false);
     // const imageUrl = useSelector(state => state.spots.singleSpot.SpotImages[0])
 
+    let spot;
+
     useEffect(() => {
-        dispatch(getSingleSpot(spotId))
+        console.log('single spot dispatch', spotId)
+        const dispatchRes = dispatch(getSingleSpot(spotId))
+        console.log('single spot dispatch', dispatchRes)
+
+        dispatch(getSpots())
     }, [dispatch])
+
+    if (allSpots) spot = allSpots.allSpots[spotId]
+
+    console.log('allspots in single', allSpots)
+    console.log('new spot in single spot', spot)
 
 
     // if (!imageUrl.url) return null;
@@ -60,9 +72,9 @@ const SingleSpot = () => {
     // }, [showMenu]);
 
 
+    // console.log('preview img', spot.previewImage)
 
-
-
+    if (!spot) return null
     return (
 
         <div className="single-spot-main">
@@ -84,7 +96,7 @@ const SingleSpot = () => {
                         )}
                         {/* breaks on refresh without optional chaining will add isLoaded later */}
                         <div className="spot-details-mid">
-                            <img id="main-img" src={spot.SpotImages ? spot.SpotImages[0]?.url : 'https://i.imgur.com/8DQUBo8.png'} />
+                            <img id="main-img" src={spot.previewImage ? spot.previewImage : 'https://i.imgur.com/8DQUBo8.png'} />
                             <div id="mid-divider"></div>
                             <div id="reviews-container">
                                 <SpotReviews spotId={spotId} />
