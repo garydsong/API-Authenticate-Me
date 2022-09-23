@@ -34,7 +34,7 @@ function ProfileButton({ user }) {
     <>
     <div id="right-side-login-container">
     <NavLink to='/spots/new'>
-      <div id="create-spot-button">Create a Spot</div>
+      <div id="create-spot-button">Become a Host</div>
     </NavLink>
       {/* <button onClick={openMenu}>
         <i className="fas fa-user-circle" />

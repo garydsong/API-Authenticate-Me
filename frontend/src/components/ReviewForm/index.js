@@ -15,9 +15,15 @@ const CreateReview = () => {
     const [validationErrors, setValidationErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
+    useEffect(() => {
+        const errors = [];
+        if (!review || review.length < 10) errors.push('Please enter more than 10 characters.');
+        setValidationErrors(errors)
+    }, [review])
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        setSubmitted(true)
 
         const starNum = +stars
         const newReview = {
@@ -26,19 +32,23 @@ const CreateReview = () => {
         };
         console.log('nr', newReview)
 
-
-
         await dispatch(createReview(spotId, newReview))
         history.push(`/spots/${spotId}`)
-
     }
+
 
 
     return (
         <>
             <form id="create-review-form" onSubmit={onSubmit}>
-                <label>
+                <label id="title-on-review-form">
                     Review
+                    {validationErrors.length && submitted && (
+                        <div id="error-on-review-form">{validationErrors.map((e) => (
+                                <> {e}</>
+                            ))}
+                        </div>
+                )}
                 </label>
                 <textarea
                     id="review"
@@ -79,6 +89,7 @@ const CreateReview = () => {
                             required>★</option>
                     </select>
                 </label>
+
                 <button id="submit-review" type="submit">Submit</button>
                 <div></div>
             </form>

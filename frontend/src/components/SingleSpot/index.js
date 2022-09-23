@@ -21,7 +21,7 @@ const SingleSpot = () => {
     useEffect(() => {
         dispatch(getSingleSpot(spotId))
     }, [dispatch])
-    
+
 
     // if (!imageUrl.url) return null;
     // console.log('url value', spot.SpotImages[0])

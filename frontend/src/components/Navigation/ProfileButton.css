@@ -1,14 +1,14 @@
 #create-spot-button {
+    font-size: 15px;
     display: flex;
     font-weight: bold;
     justify-content: center;
     align-items: center;
     width: 120px;
     height: 40px;
-    background-color: rgb(215, 4, 102);
-    color: white;
+    color: black;
     margin-right: 100px;
-    border-radius: 10px;
+    border-radius: 50px;
 
 }
 
@@ -23,13 +23,11 @@
 
 #create-spot-button:hover {
     cursor: pointer;
-    background-color: rgb(255, 47, 144);
-    transition: .1s;
+    background-color: lightgray;
   }
 
   #create-spot-button:active {
     transform: scale(.96);
-    background-color: rgb(255, 143, 195);
   }
 
 .profile-dropdown {

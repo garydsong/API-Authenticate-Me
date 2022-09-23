@@ -65,6 +65,7 @@ export const getSpots = () => async (dispatch) => {
         let spots = await response.json();
 
         spots = spots.Spots
+
         for (let i = 0; i < spots.length; i++) {
             let res = await fetch(`/api/spots/${spots[i].id}/reviews`)
             const reviews = await res.json();

@@ -24,6 +24,16 @@
     margin-left: 10px;
 }
 
+#title-on-review-form {
+    width: 100%;
+    display: flex;
+}
+
+#error-on-review-form {
+    color: red;
+    padding-left: 10px;
+}
+
 #submit-review {
     display: flex;
     justify-content: center;
