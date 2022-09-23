@@ -32,8 +32,10 @@ const CreateReview = () => {
         };
         console.log('nr', newReview)
 
-        await dispatch(createReview(spotId, newReview))
-        history.push(`/spots/${spotId}`)
+        const postReview = await dispatch(createReview(spotId, newReview))
+        if (postReview) {
+            history.push(`/spots/${spotId}`)
+        }
     }
 
 

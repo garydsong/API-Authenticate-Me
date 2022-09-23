@@ -57,6 +57,8 @@
     background-color: rgb(215, 4, 102);
     width: 75px;
     border-radius: 20px;
+    border: none;
+    margin-top: 10px;
 }
 
 #submit-review:hover {
