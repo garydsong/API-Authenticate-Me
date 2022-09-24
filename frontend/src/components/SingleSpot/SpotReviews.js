@@ -15,7 +15,7 @@ const SpotReviews = ({ spotId }) => {
         const resDispatch = dispatch(getReviews(spotId))
         console.log('spot review dispatch', resDispatch)
 
-    }, [dispatch, spotId, deleted]);
+    }, [dispatch, spotId, deleted, reviews]);
 
     const deleteReviewHandler = (review) => async (e) => {
         e.preventDefault();
