@@ -47,7 +47,7 @@ export const createReview = (spotId, review) => async (dispatch) => {
         dispatch(postReview(newReview));
         return newReview;
     } else {
-        // hey this is not supposed to be here but is here to pass spec pls delete later
+        // delete this later
         const newReview = await response.json();
         dispatch(postReview(newReview));
         return newReview;
