@@ -14,7 +14,7 @@ const SpotReviews = ({ spotId }) => {
     useEffect(() => {
         const resDispatch = dispatch(getReviews(spotId))
         console.log('spot review dispatch', resDispatch)
-        setDeleted(false)
+
     }, [dispatch, spotId, deleted]);
 
     const deleteReviewHandler = (review) => async (e) => {
@@ -24,7 +24,6 @@ const SpotReviews = ({ spotId }) => {
         alert('Review deleted.')
         history.push(`/spots/${spotId}`)
     }
-
 
 
     if (!reviews[0]) return console.log('waiting on reviews');
