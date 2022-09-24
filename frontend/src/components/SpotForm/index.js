@@ -37,7 +37,7 @@ const SpotForm = ({ spot }) => {
         // if (!lng || typeof +lng !== 'Number') errors.push('Please enter a valid longitude');
 
         setValidationErrors(errors)
-    }, [name, address, city, state, country, description, price]);
+    }, [name, address, city, state, country, description, price, image]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -83,6 +83,7 @@ const SpotForm = ({ spot }) => {
                         </ul>
                     </div>
                 )}
+
                 <form className="create-spot-form-2" onSubmit={onSubmit}>
                     <label>
                         Name
@@ -173,6 +174,7 @@ const SpotForm = ({ spot }) => {
 
                     <button id="submit" type="submit">Create Spot</button>
                 </form>
+                <div className="vert-space"></div>
             </div>
         </div>
     )

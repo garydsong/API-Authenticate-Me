@@ -87,9 +87,11 @@ const SingleSpot = () => {
                         <h3 id="single-spot-reviews-container">
                             <div id="avg-rating">★{spot.avgRating}</div>
                             {/* <div id="leave-a-review" onClick={openMenu}>Leave a Review</div> */}
+                            {sessionUser && sessionUser.id !== spot.ownerId && (
                             <NavLink to={`/spots/${spot.id}/reviews`}>
                             <div id="leave-a-review">Leave a Review</div>
                             </NavLink>
+                            )}
                         </h3>
                         {showMenu && (
                             <div id="review-dropdown">

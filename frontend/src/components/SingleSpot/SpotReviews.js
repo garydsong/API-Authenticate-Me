@@ -8,15 +8,17 @@ const SpotReviews = ({ spotId }) => {
     const reviews = useSelector((state) => state.reviews.spot);
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
+    const [deleted, setDeleted] = useState(false)
     console.log('Spot review component', reviews)
 
     useEffect(() => {
         const resDispatch = dispatch(getReviews(spotId))
         console.log('spot review dispatch', resDispatch)
-    }, [dispatch, spotId]);
+    }, [dispatch, spotId, deleted]);
 
     const deleteReviewHandler = (review) => async (e) => {
         e.preventDefault();
+        setDeleted(true)
         await dispatch(deleteReview(review));
         alert('Review deleted.')
         history.push(`/spots/${spotId}`)

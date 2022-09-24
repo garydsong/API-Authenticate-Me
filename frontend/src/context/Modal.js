@@ -38,8 +38,11 @@ export function Modal({ onClose, children }) {
                 </div>
 
                 <div id="modal-welcome">Welcome to GareBnB</div>
+
                 <div id="modal-log">
+                    <div>
                     {children}
+                    </div>
                 </div>
             </div>
         </div>,

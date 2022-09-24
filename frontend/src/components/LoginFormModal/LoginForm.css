@@ -50,3 +50,11 @@
     transform: scale(.96);
     background-color: rgb(255, 143, 195);
   }
+
+
+  #login-form ul {
+    color: red;
+    list-style: none;
+    position: absolute;
+    top: 90px;
+  }

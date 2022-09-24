@@ -62,14 +62,15 @@
   }
 
   #modal-welcome {
-    margin-top: 15px;
     font-size: 20px;
     font-weight: bold;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    height: 80px;
     margin-left: 60px;
     width: 100%;
+
   }
 
   #modal-log {

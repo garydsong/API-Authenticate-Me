@@ -9,18 +9,16 @@
 }
 
 .vert-space {
-    height: 80px;
+    height: 30px;
     width: 100%;
 }
 
 .create-spot-form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: 412px;
-    height: 800px;
+    height: 1100px;
     padding-top: 0px;
-    margin-top: 20px;
 }
 
 .create-spot-form-2 {
@@ -30,7 +28,6 @@
     width: 412px;
     height: 800px;
     padding-top: 50px;
-    margin-top: 20px;
 }
 
 #spot-name {
@@ -116,8 +113,15 @@
     background-color: rgb(255, 143, 195);
   }
 
+
+  #errors-create-spot-form {
+    padding-top: 20px;
+    justify-content: center;
+    display: flex;
+  }
+
   #errors-create-spot-form ul{
-    position: absolute;
+    padding-top: 30px;
     color: red;
     list-style: none;
   }

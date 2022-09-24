@@ -21,7 +21,7 @@ const CreateReview = () => {
         setValidationErrors(errors)
     }, [review])
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         setSubmitted(true)
 
@@ -32,7 +32,7 @@ const CreateReview = () => {
         };
         console.log('nr', newReview)
 
-        const postReview = await dispatch(createReview(spotId, newReview))
+        const postReview = dispatch(createReview(spotId, newReview))
         if (postReview) {
             history.push(`/spots/${spotId}`)
         }
