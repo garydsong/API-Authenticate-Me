@@ -31,6 +31,7 @@ const SingleSpot = () => {
 
     if (allSpots) spot = allSpots.allSpots[spotId]
 
+    console.log('reviews in spots', reviews)
     console.log('allspots in single', allSpots)
     console.log('new spot in single spot', spot)
 

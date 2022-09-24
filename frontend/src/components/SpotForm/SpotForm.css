@@ -62,6 +62,7 @@
     border: lightgray 1px solid;
 }
 #spot-description {
+    font-family: 'Nunito Sans', sans-serif;
     padding-left: 10px;
     width: 400px;
     height: 80px;

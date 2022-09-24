@@ -54,13 +54,21 @@
     align-items: center;
     padding-left: 10px;
     height: 50px;
+    width: 180px;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
 }
 
 #prodrop-two {
-    display: flex;
+    display: inline-block;
     align-items: center;
     padding-left: 10px;
     height: 50px;
+    width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 #prodrop-three {
     display: flex;

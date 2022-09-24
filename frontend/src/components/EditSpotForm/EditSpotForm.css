@@ -43,31 +43,37 @@
     height: 40px;
     border: lightgray 1px solid;
 }
+
 #spot-city {
     padding-left: 10px;
     width: 400px;
     height: 40px;
     border: lightgray 1px solid;
 }
+
 #spot-state {
     padding-left: 10px;
     width: 400px;
     height: 40px;
     border: lightgray 1px solid;
 }
+
 #spot-country {
     padding-left: 10px;
     width: 400px;
     height: 40px;
     border: lightgray 1px solid;
 }
+
 #spot-description {
+    font-family: 'Nunito Sans', sans-serif;
     padding-left: 10px;
     width: 400px;
     height: 80px;
     border: lightgray 1px solid;
     resize: none;
 }
+
 #spot-price {
     padding-left: 10px;
     width: 400px;
@@ -88,6 +94,7 @@
     height: 40px;
     border: lightgray 1px solid;
 }
+
 #spot-lng {
     padding-left: 10px;
     width: 400px;
@@ -109,36 +116,36 @@
     margin-bottom: 20px;
     border: none;
     transition: 1s;
-  }
+}
 
-  #submit:hover {
+#submit:hover {
     cursor: pointer;
     background-color: rgb(255, 47, 144);
     transition: 1s;
-  }
+}
 
-  #submit:active {
+#submit:active {
     background-color: rgb(255, 133, 190);
     transform: scale(.96);
 }
 
-    #errors-edit-form {
-        display: flex;
-        justify-self: center;
-    }
+#errors-edit-form {
+    display: flex;
+    justify-self: center;
+}
 
-    #errors-edit-form ul {
-        padding-top: 20px;
-        position: absolute;
-        color: red;
-        list-style: none;
-    }
+#errors-edit-form ul {
+    padding-top: 20px;
+    position: absolute;
+    color: red;
+    list-style: none;
+}
 
-    #footer-space {
-        height: 70px;
-        width: 10px;
-    }
+#footer-space {
+    height: 70px;
+    width: 10px;
+}
 
-    #left-side {
-        display: flex;
-    }
+#left-side {
+    display: flex;
+}

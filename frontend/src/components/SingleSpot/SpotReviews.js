@@ -35,7 +35,7 @@ const SpotReviews = ({ spotId }) => {
 
         <div id="inside-spot-reviews">
 
-            <h1 id="reviews-header">{reviews.length} Reviews</h1>
+            <h1 id="reviews-header">{reviews?.length} Reviews</h1>
             <div id="reviews-grid">
                 { Object.values(reviews).map((review, i) => (
                     <div key={i} id="review-card">
