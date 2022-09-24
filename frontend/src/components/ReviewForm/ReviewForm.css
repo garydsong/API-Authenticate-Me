@@ -31,12 +31,19 @@
     margin-top: 0px;
     height: 150px;
     width: 350px;
+    border: lightgray 1px solid;
     resize: none;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
 #stars {
-    width: 100px;
+    width: 130px;
     margin-left: 10px;
+    font-size: 20px;
+    border: lightgray 1px solid;
+    border-radius: 10px;
 }
 
 #title-on-review-form {
