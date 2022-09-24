@@ -17,6 +17,7 @@ const SingleSpot = () => {
     const allSpots = useSelector(state => state.spots)
     const [showForm, setShowForm] = useState(false);
     // const imageUrl = useSelector(state => state.spots.singleSpot.SpotImages[0])
+    const reviews = useSelector((state) => state.reviews.spot)
 
     let spot;
 
@@ -26,7 +27,7 @@ const SingleSpot = () => {
         console.log('single spot dispatch', dispatchRes)
 
         dispatch(getSpots())
-    }, [dispatch, SpotReviews, getSingleSpot])
+    }, [dispatch, reviews])
 
     if (allSpots) spot = allSpots.allSpots[spotId]
 
