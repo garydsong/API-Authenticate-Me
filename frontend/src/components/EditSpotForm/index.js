@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { updateSpot } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import './EditSpotForm.css'
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const EditSpot = () => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
     const spot = useSelector(state => state.spots.singleSpot)
+    const { spotId } = useParams();
 
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
@@ -32,7 +33,7 @@ const EditSpot = () => {
         if (!state || state.length > 15) errors.push('Please enter a valid state.');
         if (!country || country.length > 20) errors.push('Please enter a valid country.');
         if (!description) errors.push('Please enter a description.');
-        if (!price || typeof +price !== 'Number') errors.push('Please enter a valid price');
+        if (!price) errors.push('Please enter a price');
         // if (!lat || typeof +lat !== 'Number') errors.push('Please enter a valid latitude');
         // if (!lng || typeof +lng !== 'Number') errors.push('Please enter a valid longitude');
 
@@ -42,7 +43,6 @@ const EditSpot = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
-
 
         const editSpot = {
             name,
@@ -54,8 +54,8 @@ const EditSpot = () => {
             price,
         }
 
-        const updatedSpot = await dispatch(updateSpot(editSpot, spot.id));
-        console.log('UPDATESPOT', updatedSpot)
+        const updatedSpot = await dispatch(updateSpot(editSpot, spotId));
+
 
         if (updatedSpot) {
             history.push(`/spots/${updatedSpot.id}`)
@@ -66,7 +66,7 @@ const EditSpot = () => {
 
         <div className="main-create-spot">
             <div className="vert-space"></div>
-            <div className="create-spot-form">
+            <div className="edit-spot-form">
 
                 {validationErrors.length > 0 && submitted && (
                     <div id="errors-edit-form">
@@ -77,7 +77,7 @@ const EditSpot = () => {
                         </ul>
                     </div>
                 )}
-                <form className="create-spot-form" onSubmit={onSubmit}>
+                <form className="edit-spot-form-2" onSubmit={onSubmit}>
                     <label>
                         Name
                         <input
@@ -148,7 +148,8 @@ const EditSpot = () => {
                         Price
                         <input
                             id="spot-price"
-                            type="text"
+                            type="number"
+                            min={1}
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             required

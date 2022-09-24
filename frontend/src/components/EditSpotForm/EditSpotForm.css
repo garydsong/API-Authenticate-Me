@@ -1,6 +1,7 @@
 .main-create-spot {
-    /* display: flex; */
-    justify-content: none;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
@@ -12,13 +13,21 @@
     width: 100%;
 }
 
-.create-spot-form {
+.edit-spot-form {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    width: 412px;
+    height: 860px;
+}
+
+.edit-spot-form-2 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: 50px;
+    margin-top: 150px;
     width: 412px;
-    height: 800px;
+    height: 2160px;
 }
 
 #spot-name {
@@ -64,7 +73,15 @@
     width: 400px;
     height: 40px;
     border: lightgray 1px solid;
+
 }
+
+#spot-price[type="number"]::-webkit-inner-spin-button,
+#spot-price[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 #spot-lat {
     padding-left: 10px;
     width: 400px;
@@ -105,7 +122,13 @@
     transform: scale(.96);
 }
 
+    #errors-edit-form {
+        display: flex;
+        justify-self: center;
+    }
+
     #errors-edit-form ul {
+        padding-top: 20px;
         position: absolute;
         color: red;
         list-style: none;
