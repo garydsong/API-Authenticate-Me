@@ -2,7 +2,7 @@
 
 
 
-GareBnB is a website clone, inspired by [AirBnB](https://airbnb.com). There are 16 million vacant homes in the United States alone. We can now make that 15,999,999. By listing your home on GareBnB you will give me the option to stay in your vacant home for FREE!
+GareBnB is a fullstack application clone, inspired by [AirBnB](https://airbnb.com). List your spot, or leave a review for a spot! GareBnB is where you go to show me (Gare) what your place is like and if I really want to go there!
 
 **Live site: [GareBnB](http://garebnb.herokuapp.com)**
 
@@ -36,9 +36,13 @@ GareBnB is a website clone, inspired by [AirBnB](https://airbnb.com). There are 
 
 # ▶️ Get Started
 1. clone repo
-2. npm install
-3. ???
-4. PROFIT!
+```
+git clone
+```
+3. cd backend folder
+4. npm install
+5. ???
+6. PROFIT!
 
 # 📱 Contact
 [LinkedIn](https://www.linkedin.com/in/gary-song-96b071246/)
