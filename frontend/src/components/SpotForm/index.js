@@ -30,8 +30,8 @@ const SpotForm = ({ spot }) => {
         if (!name || name.length > 40 || name.length < 10) errors.push('Please enter a valid name.');
         if (!address || address.length > 40 || address.length < 8) errors.push('Please enter a valid address.');
         if (!city || city.length > 20 || city.length < 2) errors.push('Please enter a valid city.');
-        if (!state || state.length > 15) errors.push('Please enter a valid state.');
-        if (!country || country.length > 20) errors.push('Please enter a valid country.');
+        if (!state || state.length > 15 || state.length < 2) errors.push('Please enter a valid state.');
+        if (!country || country.length > 20 || country.length < 2) errors.push('Please enter a valid country.');
         if (!description) errors.push('Please enter a description.');
         // if (!price || typeof price !== 'Number') errors.push('Please enter a valid price');
         if (!image.match(/\.(jpg|jpeg|png|gif)$/)) errors.push('Please enter a valid image.')
@@ -44,7 +44,7 @@ const SpotForm = ({ spot }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
-        
+
         if (!validationErrors.length) {
             spot = {
                 name,
