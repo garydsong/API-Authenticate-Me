@@ -15,23 +15,25 @@ const SpotForm = ({ spot }) => {
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
     const [description, setDescription] = useState('');
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(1);
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
     const [image, setImage] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
+    const validatorFunction = () => {
 
+    }
     useEffect(() => {
         const errors = [];
-        if (!name || name.length > 40) errors.push('Please enter a valid name.');
-        if (!address || address.length > 40) errors.push('Please enter a valid address.');
-        if (!city || city.length > 20) errors.push('Please enter a valid city.');
+        if (!name || name.length > 40 || name.length < 10) errors.push('Please enter a valid name.');
+        if (!address || address.length > 40 || address.length < 8) errors.push('Please enter a valid address.');
+        if (!city || city.length > 20 || city.length < 2) errors.push('Please enter a valid city.');
         if (!state || state.length > 15) errors.push('Please enter a valid state.');
         if (!country || country.length > 20) errors.push('Please enter a valid country.');
         if (!description) errors.push('Please enter a description.');
-        if (!price || typeof +price !== 'Number') errors.push('Please enter a valid price');
+        // if (!price || typeof price !== 'Number') errors.push('Please enter a valid price');
         if (!image.match(/\.(jpg|jpeg|png|gif)$/)) errors.push('Please enter a valid image.')
         // if (!lat || typeof +lat !== 'Number') errors.push('Please enter a valid latitude');
         // if (!lng || typeof +lng !== 'Number') errors.push('Please enter a valid longitude');
@@ -154,8 +156,9 @@ const SpotForm = ({ spot }) => {
                         Price
                         <input
                             id="spot-price"
-                            type="text"
+                            type="number"
                             value={price}
+                            min={1}
                             onChange={(e) => setPrice(e.target.value)}
                             required
                         />

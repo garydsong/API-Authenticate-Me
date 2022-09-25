@@ -15,12 +15,12 @@ const router = express.Router();
 const validateSignup = [
     check('firstName')
         .exists({ checkFalsy: true })
-        .isLength({ min: 1 })
-        .withMessage('First name must be at least 1 character long.'),
+        .isLength({ min: 2 })
+        .withMessage('First name must be at least 2 character long.'),
     check('lastName')
         .exists({ checkFalsy: true })
-        .isLength({ min: 1 })
-        .withMessage('Last name must be at least 1 character long.'),
+        .isLength({ min: 2 })
+        .withMessage('Last name must be at least 2 character long.'),
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
@@ -47,6 +47,38 @@ router.post(
     validateSignup,
     async (req, res) => {
       const { firstName, lastName, email, password, username } = req.body;
+      const usernameExists = await User.findOne({
+        where: { username }
+      });
+      
+      const emailExists = await User.findOne({
+        where: { email }
+      });
+
+      if (usernameExists) {
+        res
+            .status(403)
+            .json({
+                "message": "User already exists",
+                "statusCode": 403,
+                "errors": [
+                    "User with that username already exists"
+                ]
+            })
+      };
+
+      if (emailExists) {
+        res
+            .status(403)
+            .json({
+                "message": "User already exists",
+                "statusCode": 403,
+                "errors": [
+                    "User with that email already exists"
+                ]
+            })
+      };
+
       const user = await User.signup({ firstName, lastName, email, username, password });
 
       const token = await setTokenCookie(res, user);

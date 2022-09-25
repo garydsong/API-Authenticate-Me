@@ -32,12 +32,11 @@ const CreateReview = () => {
             stars: starNum
         };
 
-
         const postReview = dispatch(createReview(spotId, newReview))
         if (postReview) {
             history.push(`/spots/${spotId}`)
-        }
-    }
+        };
+    };
 
 
 

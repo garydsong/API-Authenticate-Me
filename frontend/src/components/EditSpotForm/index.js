@@ -17,7 +17,7 @@ const EditSpot = () => {
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
     const [description, setDescription] = useState('');
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(1);
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
     const [validationErrors, setValidationErrors] = useState([]);
@@ -26,13 +26,13 @@ const EditSpot = () => {
 
     useEffect(() => {
         const errors = [];
-        if (!name || name.length > 40) errors.push('Please enter a valid name.');
-        if (!address || address.length > 40) errors.push('Please enter a valid address.');
-        if (!city || city.length > 20) errors.push('Please enter a valid city.');
+        if (!name || name.length > 40 || name.length < 10) errors.push('Please enter a valid name.');
+        if (!address || address.length > 40 || address.length < 8) errors.push('Please enter a valid address.');
+        if (!city || city.length > 20 || city.length < 2) errors.push('Please enter a valid city.');
         if (!state || state.length > 15) errors.push('Please enter a valid state.');
         if (!country || country.length > 20) errors.push('Please enter a valid country.');
         if (!description) errors.push('Please enter a description.');
-        if (!price) errors.push('Please enter a price');
+        // if (!price) errors.push('Please enter a price');
         // if (!lat || typeof +lat !== 'Number') errors.push('Please enter a valid latitude');
         // if (!lng || typeof +lng !== 'Number') errors.push('Please enter a valid longitude');
 

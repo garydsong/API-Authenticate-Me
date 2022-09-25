@@ -11,9 +11,9 @@ const SpotReviews = ({ spotId }) => {
     const dispatch = useDispatch();
     const [deleted, setDeleted] = useState(false);
     // const [isLoaded, setIsLoaded] = useState(false);
-    reviewList.map((review, i) => {
-    console.log(review.user)
-    })
+    // reviewList.map((review, i) => {
+    // console.log(review.user)
+    // })
     useEffect(() => {
         dispatch(getReviews(spotId))
         // .then(() => {
