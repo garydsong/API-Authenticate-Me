@@ -23,7 +23,6 @@ const EditSpot = () => {
     const [validationErrors, setValidationErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
-    console.log('edit spot form hitting')
 
     useEffect(() => {
         const errors = [];

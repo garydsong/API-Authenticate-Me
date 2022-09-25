@@ -14,17 +14,14 @@ const Spots = () => {
     const spots = useSelector((state) => state.spots)
     const allSpots = Object.values(spots.allSpots)
 
-    console.log('comp', spots)
 
     useEffect(() => {
-        console.log('getting all spots for the homepage')
         dispatch(getSpots())
     }, [dispatch])
 
 
     // useEffect(() => {
     //     for (let i = 0; i < allSpots.length; i++) {
-    //         // console.log('allspot', allSpots[i])
     //         setReviewState(reviewState[i] = getRatingAvg(allSpots[i].id))
     //     }
     // })

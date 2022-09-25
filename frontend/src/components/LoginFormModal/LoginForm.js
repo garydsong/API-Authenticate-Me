@@ -49,7 +49,6 @@ function LoginForm() {
         <form id="login-form" onSubmit={handleSubmit}>
             { validationErrors.length > 0 && submitted && (
                 <ul>
-                {console.log('v', validationErrors)}
                 {validationErrors.map((error, idx) => (
                     <li key={idx}>{error}</li>
                 ))}

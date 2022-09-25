@@ -61,7 +61,6 @@ export const resetSpots = () => {
 // THUNKS
 export const getSpots = () => async (dispatch) => {
     const response = await fetch('/api/spots');
-    console.log('get spots thunk')
     if (response.ok) {
         let spots = await response.json();
 
@@ -102,7 +101,6 @@ export const getSingleSpot = (id) => async (dispatch) => {
 };
 
 export const createSpot = (payload) => async (dispatch) => {
-    console.log(payload)
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
@@ -145,7 +143,6 @@ export const updateSpot = (payload, id) => async (dispatch) => {
 }
 
 export const createImage = (spotId, img) => async (dispatch) => {
-    console.log(img)
     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: 'POST',
         body: JSON.stringify(img)

@@ -11,9 +11,8 @@ const SpotReviews = ({ spotId }) => {
     const dispatch = useDispatch();
     const [deleted, setDeleted] = useState(false);
     // const [isLoaded, setIsLoaded] = useState(false);
-    console.log('Spot review component', reviewList)
     reviewList.map((review, i) => {
-        console.log('review user', review.user.firstName)
+
     })
     useEffect(() => {
         dispatch(getReviews(spotId))
@@ -33,7 +32,7 @@ const SpotReviews = ({ spotId }) => {
     }
 
 
-    // if (!reviews[0]) return console.log('waiting on reviews');
+
 
 
 
@@ -48,7 +47,7 @@ const SpotReviews = ({ spotId }) => {
                 { reviewList.map((review, i) => (
                     <div key={i} id="review-card">
 
-                        <div id="user-real-name">{review.user.firstName} {review.user.lastName}
+                        <div id="user-real-name">{review?.user?.firstName} {review?.user?.lastName}
                         {sessionUser && sessionUser.id === review.userId && (
                             <div id="del-edit-review-container">
                             <div onClick={deleteReviewHandler(review?.id)} className="delete-review-button">Delete</div>

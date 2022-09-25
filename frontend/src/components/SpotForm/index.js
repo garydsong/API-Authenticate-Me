@@ -42,7 +42,7 @@ const SpotForm = ({ spot }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
-        console.log(validationErrors)
+
 
         spot = {
             name,
@@ -55,7 +55,7 @@ const SpotForm = ({ spot }) => {
         }
 
         const newSpot = await dispatch(createSpot(spot));
-        console.log('NEWSPOT', newSpot)
+
 
         if (newSpot) {
             const SpotImages = ({
@@ -73,7 +73,6 @@ const SpotForm = ({ spot }) => {
         <div className="main-create-spot">
             <div className="vert-space"></div>
             <div className="create-spot-form">
-                {console.log('v', validationErrors)}
                 {validationErrors.length > 0 && submitted && (
                     <div id="errors-create-spot-form">
                         <ul>

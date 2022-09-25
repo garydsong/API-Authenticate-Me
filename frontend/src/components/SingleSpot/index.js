@@ -22,22 +22,17 @@ const SingleSpot = () => {
     let spot;
 
     useEffect(() => {
-        console.log('single spot dispatch', spotId)
         const dispatchRes = dispatch(getSingleSpot(spotId))
-        console.log('single spot dispatch', dispatchRes)
+
 
         dispatch(getSpots())
     }, [dispatch, reviews, SpotReviews])
 
     if (allSpots) spot = allSpots.allSpots[spotId]
 
-    console.log('reviews in spots', reviews)
-    console.log('allspots in single', allSpots)
-    console.log('new spot in single spot', spot)
-
 
     // if (!imageUrl.url) return null;
-    // console.log('url value', spot.SpotImages[0])
+
     const deleteHandler = async () => {
         dispatch(deleteSpot(spotId))
         alert('Spot deleted.')
@@ -73,7 +68,7 @@ const SingleSpot = () => {
     // }, [showMenu]);
 
 
-    // console.log('preview img', spot.previewImage)
+
 
     if (!spot) return null
     return (
