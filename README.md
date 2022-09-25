@@ -37,12 +37,16 @@ GareBnB is a fullstack application clone, inspired by [AirBnB](https://airbnb.co
 # ▶️ Get Started
 1. clone repo
 ```
-git clone
+git@github.com:garydsong/API-Authenticate-Me.git
 ```
-3. cd backend folder
-4. npm install
-5. ???
-6. PROFIT!
+2. Install dependencies
+```
+npm install
+```
+4. cd backend and frontend folders
+```
+npm start
+```
 
 # 📱 Contact
 [LinkedIn](https://www.linkedin.com/in/gary-song-96b071246/)
