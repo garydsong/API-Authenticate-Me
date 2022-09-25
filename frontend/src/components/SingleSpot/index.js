@@ -32,7 +32,6 @@ const SingleSpot = () => {
         for (let i = 0; i < reviewsList.length; i++) {
             if (sessionUser.id === reviewsList[i].userId) {
                 setReviewExists(true)
-                history.push(`/spots/${spotId}`)
             } else {
                 setReviewExists(false)
             }
