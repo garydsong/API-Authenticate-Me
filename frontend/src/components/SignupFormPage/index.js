@@ -34,7 +34,7 @@ function SignupFormPage() {
     return (
         <div className="sign-up-main-container">
             <div className="vert-space" />
-            <div className="sign-up-form">
+            <div className="sign-up-form-outer">
                 <form className="sign-up-form" onSubmit={handleSubmit}>
 
                     <ul>
