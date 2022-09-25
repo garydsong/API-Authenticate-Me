@@ -34,8 +34,6 @@ const SingleSpot = () => {
         for (let i = 0; i < reviewsList.length; i++) {
             if (sessionUser && sessionUser.id === reviewsList[i].userId) {
                 setReviewExists(true)
-            } else {
-                setReviewExists(false)
             }
         }
 
