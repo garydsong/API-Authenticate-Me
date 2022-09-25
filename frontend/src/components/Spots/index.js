@@ -45,7 +45,7 @@ const Spots = () => {
                             <img id="spot-img" src={`${e.previewImage}`} />
                             <div className="name-review">
                                 <div className="name"><b>{e.name}</b></div>
-                                <div className="review"><b>★{e.avgRating}</b></div>
+                                <div className="review"><b>★ {e.avgRating > 0 ? e.avgRating : 'New'}</b></div>
                             </div>
                             <div className="city">{e.city}, {e.state}</div>
                             <div className="country">{e.country}</div>

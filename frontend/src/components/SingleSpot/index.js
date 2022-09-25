@@ -30,7 +30,7 @@ const SingleSpot = () => {
 
     if (allSpots) spot = allSpots.allSpots[spotId]
 
-    console.log('single spot revs', reviews)
+
     // if (!imageUrl.url) return null;
 
     const deleteHandler = async () => {
@@ -81,7 +81,7 @@ const SingleSpot = () => {
                         <h2>{spot.address}</h2>
                         <h3>{spot.description}</h3>
                         <h3 id="single-spot-reviews-container">
-                            <div id="avg-rating">★{spot.avgRating}</div>
+                            <div id="avg-rating">★ {spot.avgRating > 0 ? spot.avgRating : 'New'}</div>
                             {/* <div id="leave-a-review" onClick={openMenu}>Leave a Review</div> */}
                             {sessionUser && sessionUser.id !== spot.ownerId && (
                             <NavLink to={`/spots/${spot.id}/reviews`}>

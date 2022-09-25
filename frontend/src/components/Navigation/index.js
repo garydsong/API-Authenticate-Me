@@ -17,11 +17,11 @@ function Navigation({ isLoaded }) {
   };
 
   const dropDownClassChanger = () => {
-    if(showMenu) {
+    if (showMenu) {
       return 'dropdown-content-visible'
-     } else {
+    } else {
       return 'dropdown-content-hidden'
-     };
+    };
   };
 
   useEffect(() => {
@@ -92,10 +92,10 @@ function Navigation({ isLoaded }) {
         <div id="footer-left">
           <div id="name">A Gary Song Joint</div>
           <a href="https://github.com/garydsong">
-          <img id="github" src="https://i.imgur.com/Y8NIiEq.png"/>
+            <img id="github" src="https://i.imgur.com/Y8NIiEq.png" />
           </a>
           <a href="https://www.linkedin.com/in/gary-song-96b071246/">
-          <img id="linkedin" src="https://i.imgur.com/6xIfUke.png"/>
+            <img id="linkedin" src="https://i.imgur.com/6xIfUke.png" />
           </a>
         </div>
         <div id="footer-right">
