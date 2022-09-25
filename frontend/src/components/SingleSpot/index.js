@@ -30,8 +30,9 @@ const SingleSpot = () => {
         const dispatchRes = dispatch(getSingleSpot(spotId))
         setReviewExists(false)
 
+
         for (let i = 0; i < reviewsList.length; i++) {
-            if (sessionUser.id === reviewsList[i].userId) {
+            if (sessionUser && sessionUser.id === reviewsList[i].userId) {
                 setReviewExists(true)
             } else {
                 setReviewExists(false)
