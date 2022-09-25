@@ -29,8 +29,8 @@ const EditSpot = () => {
         if (!name || name.length > 40 || name.length < 10) errors.push('Please enter a valid name.');
         if (!address || address.length > 40 || address.length < 8) errors.push('Please enter a valid address.');
         if (!city || city.length > 20 || city.length < 2) errors.push('Please enter a valid city.');
-        if (!state || state.length > 15) errors.push('Please enter a valid state.');
-        if (!country || country.length > 20) errors.push('Please enter a valid country.');
+        if (!state || state.length > 15 || state.length < 2) errors.push('Please enter a valid state.');
+        if (!country || country.length > 20 || country.length < 3) errors.push('Please enter a valid country.');
         if (!description) errors.push('Please enter a description.');
         // if (!price) errors.push('Please enter a price');
         // if (!lat || typeof +lat !== 'Number') errors.push('Please enter a valid latitude');
@@ -43,21 +43,23 @@ const EditSpot = () => {
         e.preventDefault();
         setSubmitted(true)
 
-        const editSpot = {
-            name,
-            address,
-            city,
-            state,
-            country,
-            description,
-            price,
-        }
+        if (!validationErrors.length) {
+            const editSpot = {
+                name,
+                address,
+                city,
+                state,
+                country,
+                description,
+                price,
+            }
 
-        const updatedSpot = await dispatch(updateSpot(editSpot, spotId));
+            const updatedSpot = await dispatch(updateSpot(editSpot, spotId));
 
 
-        if (updatedSpot) {
-            history.push(`/spots/${updatedSpot.id}`)
+            if (updatedSpot) {
+                history.push(`/spots/${updatedSpot.id}`)
+            }
         }
     }
 
