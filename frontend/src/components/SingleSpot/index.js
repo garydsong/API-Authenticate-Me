@@ -27,7 +27,7 @@ const SingleSpot = () => {
 
     useEffect(() => {
         const dispatchRes = dispatch(getSingleSpot(spotId))
-
+        setReviewExists(false)
         for (let i = 0; i < reviewsList.length; i++) {
             if (sessionUser.id === reviewsList[i].userId) {
                 setReviewExists(true)
