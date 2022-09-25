@@ -27,7 +27,7 @@ const SingleSpot = () => {
         console.log('single spot dispatch', dispatchRes)
 
         dispatch(getSpots())
-    }, [dispatch, reviews])
+    }, [dispatch, reviews, SpotReviews])
 
     if (allSpots) spot = allSpots.allSpots[spotId]
 

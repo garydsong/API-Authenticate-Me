@@ -35,7 +35,7 @@ const CreateReview = () => {
 
 
         const postReview = dispatch(createReview(spotId, newReview))
-
+        console.log('post malone', postReview)
         if (postReview) {
             history.push(`/spots/${spotId}`)
         }

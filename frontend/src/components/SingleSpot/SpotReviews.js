@@ -5,17 +5,24 @@ import { useHistory, useParams } from 'react-router-dom';
 
 const SpotReviews = ({ spotId }) => {
     const history = useHistory();
-    const reviews = useSelector((state) => state.reviews.spot);
+    const reviews = useSelector((state) => state.reviews);
+    const reviewList = Object.values(reviews)
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
-    const [deleted, setDeleted] = useState(false)
-    console.log('Spot review component', reviews)
-
+    const [deleted, setDeleted] = useState(false);
+    // const [isLoaded, setIsLoaded] = useState(false);
+    console.log('Spot review component', reviewList)
+    reviewList.map((review, i) => {
+        console.log('review user', review.user.firstName)
+    })
     useEffect(() => {
-        const resDispatch = dispatch(getReviews(spotId))
-        console.log('spot review dispatch', resDispatch)
+        dispatch(getReviews(spotId))
+        // .then(() => {
+        //     setIsLoaded(true)
+        // });
 
-    }, [dispatch, spotId, deleted, reviews]);
+
+    }, [dispatch]);
 
     const deleteReviewHandler = (review) => async (e) => {
         e.preventDefault();
@@ -36,11 +43,13 @@ const SpotReviews = ({ spotId }) => {
         <div id="inside-spot-reviews">
 
             <h1 id="reviews-header">{reviews?.length} Reviews</h1>
+
             <div id="reviews-grid">
-                { Object.values(reviews).map((review, i) => (
+                f2afa2fa22af2faf2afa2fa2
+                { reviewList.map((review, i) => (
                     <div key={i} id="review-card">
 
-                        <div id="user-real-name">{review?.user?.firstName} {review?.user?.lastName}
+                        <div id="user-real-name">{review.user.firstName} {review.user.lastName}
                         {sessionUser && sessionUser.id === review.userId && (
                             <div id="del-edit-review-container">
                             <div onClick={deleteReviewHandler(review?.id)} className="delete-review-button">Delete</div>

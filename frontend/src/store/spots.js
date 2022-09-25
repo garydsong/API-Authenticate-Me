@@ -95,9 +95,8 @@ export const getSingleSpot = (id) => async (dispatch) => {
     const response = await fetch(`/api/spots/${id}`);
     if (response.ok) {
         let spot = await response.json();
-        console.log('single spot', spot);
         const resDispatch = dispatch(loadSingleSpot(spot));
-        console.log('get single spot thunk', resDispatch)
+
         return spot;
     };
 };
@@ -166,8 +165,6 @@ const spotReducer = (state = initialState, action) => {
         case GET_SPOTS: {
             let allSpots = {};
             action.payload.forEach(spot => allSpots[spot.id] = spot);
-            console.log('get all spots reducer', allSpots)
-            console.log('get all spots action', action)
 
             return { allSpots: { ...allSpots }, singleSpot: { ...state.singleSpot } };
         };
@@ -179,8 +176,6 @@ const spotReducer = (state = initialState, action) => {
                 singleSpot.SpotImages[i] = img;
             });
             newState.singleSpot = singleSpot;
-            console.log('get single spots', newState)
-            console.log('get single spot action', action)
 
             return newState;
         };
