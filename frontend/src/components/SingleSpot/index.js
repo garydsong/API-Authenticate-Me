@@ -5,6 +5,7 @@ import { getSingleSpot, deleteSpot, getSpots } from "../../store/spots";
 import { resetReviews } from "../../store/reviews";
 import EditSpot from "../EditSpotForm";
 import SpotReviews from "./SpotReviews";
+import SpotForm from "../SpotForm";
 import CreateReview from "../ReviewForm";
 import './SingleSpot.css'
 
@@ -16,17 +17,27 @@ const SingleSpot = () => {
     const sessionUser = useSelector(state => state.session.user)
     const allSpots = useSelector(state => state.spots)
     const [showForm, setShowForm] = useState(false);
-    // const imageUrl = useSelector(state => state.spots.singleSpot.SpotImages[0])
+    const [reviewExists, setReviewExists] = useState(false);
     const reviews = useSelector((state) => state.reviews)
 
     let spot;
 
+    const reviewsList = Object.values(reviews);
+
+
     useEffect(() => {
         const dispatchRes = dispatch(getSingleSpot(spotId))
 
+        for (let i = 0; i < reviewsList.length; i++) {
+            if (sessionUser.id === reviewsList[i].userId) {
+                setReviewExists(true)
+            } else {
+                setReviewExists(false)
+            }
+        }
 
         dispatch(getSpots())
-    }, [dispatch, reviews, SpotReviews])
+    }, [dispatch, reviews, SpotReviews, SpotForm, resetReviews])
 
     if (allSpots) spot = allSpots.allSpots[spotId]
 
@@ -43,12 +54,12 @@ const SingleSpot = () => {
         return setShowForm(true)
     }
 
-    const [showMenu, setShowMenu] = useState(false);
+    // const [showMenu, setShowMenu] = useState(false);
 
-    const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true);
-    };
+    // const openMenu = () => {
+    //     if (showMenu) return;
+    //     setShowMenu(true);
+    // };
 
     // useEffect(() => {
     //     if (!showMenu) return;
@@ -74,30 +85,30 @@ const SingleSpot = () => {
     return (
 
         <div className="single-spot-main">
-            {spot.id &&
+            {spot?.id &&
                 <div className="single-spot-top ">
                     <>
-                        <h1>{spot.name}</h1>
-                        <h2>{spot.address}</h2>
-                        <h3>{spot.description}</h3>
+                        <h1>{spot?.name}</h1>
+                        <h2>{spot?.address}</h2>
+                        <h3>{spot?.description}</h3>
                         <h3 id="single-spot-reviews-container">
                             <div id="avg-rating">★ {spot.avgRating > 0 ? spot.avgRating : 'New'}</div>
                             {/* <div id="leave-a-review" onClick={openMenu}>Leave a Review</div> */}
-                            {sessionUser && sessionUser.id !== spot.ownerId && (
+                            {sessionUser && sessionUser.id !== spot.ownerId && !reviewExists && (
                             <NavLink to={`/spots/${spot.id}/reviews`}>
                             <div id="leave-a-review">Leave a Review</div>
                             </NavLink>
                             )}
                         </h3>
-                        {showMenu && (
+                        {/* {showMenu && (
                             <div id="review-dropdown">
                                 <div id="closeMenu" onClick={(() => setShowMenu(false))}>x</div>
                                 <CreateReview />
                             </div>
-                        )}
+                        )} */}
                         {/* breaks on refresh without optional chaining will add isLoaded later */}
                         <div className="spot-details-mid">
-                            <img id="main-img" src={spot.previewImage ? spot.previewImage : 'https://i.imgur.com/8DQUBo8.png'} />
+                            <img id="main-img" src={spot.previewImage ? spot.previewImage : 'https://i.imgur.com/xCOjy14.gif'} />
                             <div id="mid-divider"></div>
                             <div id="reviews-container">
                                 <SpotReviews spotId={spotId} />

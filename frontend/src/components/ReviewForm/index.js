@@ -17,7 +17,7 @@ const CreateReview = () => {
 
     useEffect(() => {
         const errors = [];
-        if (review.length < 5) errors.push('Please enter a valid review');
+        if (review.length < 5) errors.push('Please enter more than 10 characters');
         setValidationErrors(errors)
     }, [review])
 
@@ -32,11 +32,12 @@ const CreateReview = () => {
             stars: starNum
         };
 
+
         const postReview = dispatch(createReview(spotId, newReview))
         if (postReview) {
             history.push(`/spots/${spotId}`)
-        };
-    };
+        }
+    }
 
 
 

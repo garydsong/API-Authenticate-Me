@@ -311,10 +311,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
             spotId: req.params.spotId
         }
     })
-    console.log(' #############post review hits#################')
+
 
     if (!spot) {
-        console.log('#############!spot hits#############')
         res
             .status(404)
             .json({
@@ -324,7 +323,6 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     }
 
     if (reviewExists) {
-        console.log('#############reviewExists hits#############')
         res
             .status(403)
             .json({
@@ -334,7 +332,6 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     } else {
 
         try {
-            console.log('#############try hits#############')
             const newReview = await Review.create({
                 userId: req.user.id,
                 spotId: spot.id,
@@ -344,7 +341,6 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
             res.json(newReview)
         } catch (error) {
-            console.log('#############error hits#############')
             res
                 .status(400)
                 .json({

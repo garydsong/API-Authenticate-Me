@@ -44,28 +44,29 @@ const SpotForm = ({ spot }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true)
+        
+        if (!validationErrors.length) {
+            spot = {
+                name,
+                address,
+                city,
+                state,
+                country,
+                description,
+                price,
+            }
+
+            const newSpot = await dispatch(createSpot(spot));
 
 
-        spot = {
-            name,
-            address,
-            city,
-            state,
-            country,
-            description,
-            price,
-        }
+            if (newSpot) {
+                const SpotImages = ({
+                      url: image,
+                      preview: true})
 
-        const newSpot = await dispatch(createSpot(spot));
-
-
-        if (newSpot) {
-            const SpotImages = ({
-                  url: image,
-                  preview: true})
-
-            await dispatch(createImage(newSpot.id, SpotImages))
-            history.push(`/spots/${newSpot.id}`)
+                await dispatch(createImage(newSpot.id, SpotImages))
+                history.push(`/spots/${newSpot.id}`)
+            }
         }
 
     }

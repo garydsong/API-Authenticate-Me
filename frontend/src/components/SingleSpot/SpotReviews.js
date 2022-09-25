@@ -21,7 +21,7 @@ const SpotReviews = ({ spotId }) => {
         // });
 
 
-    }, [dispatch]);
+    }, [dispatch, getReviews]);
 
     const deleteReviewHandler = (review) => async (e) => {
         e.preventDefault();
@@ -52,7 +52,7 @@ const SpotReviews = ({ spotId }) => {
                         )}
                         </div>
                         <div id="time-posted">{review?.updatedAt.slice(0, 10)}</div>
-                        <div className="stars-card-reviews">{review.stars}</div>
+                        <div className="stars-card-reviews">★{review.stars}</div>
                         <div>{review?.review}</div>
                     </div>
                 ))}
