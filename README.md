@@ -49,5 +49,5 @@ npm start
 ```
 
 # 📱 Contact
-[LinkedIn](https://www.linkedin.com/in/gary-song-96b071246/)
-[GitHub](https://github.com/garydsong)
+<img src=https://i.imgur.com/2ffGJqj.png width=20> [LinkedIn](https://www.linkedin.com/in/gary-song-96b071246/)
+<img src=https://i.imgur.com/w9xwrCT.png width=20>[GitHub](https://github.com/garydsong)
