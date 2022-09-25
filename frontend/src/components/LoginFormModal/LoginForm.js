@@ -7,7 +7,7 @@ function LoginForm() {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
+    const [showErrors, setShowErrors] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
@@ -22,18 +22,20 @@ function LoginForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setShowErrors(true)
         setValidationErrors([])
         return dispatch(sessionActions.login({ credential, password })).catch(
             async (res) => {
                 const data = await res.json();
-                if (data && data.errors) setValidationErrors(data.errors);
+                if (data && data.message) setValidationErrors([data.message]);
+                else setShowErrors(false)
             }
         );
     };
 
     const handleDemo = (e) => {
         e.preventDefault();
-        setErrors([]);
+        setValidationErrors([]);
         return dispatch(sessionActions.login({ credential: 'hellokitty@gmail.com', password: 'password' })).catch(
             async (res) => {
                 const data = await res.json();
