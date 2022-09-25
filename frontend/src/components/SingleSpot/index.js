@@ -17,7 +17,7 @@ const SingleSpot = () => {
     const allSpots = useSelector(state => state.spots)
     const [showForm, setShowForm] = useState(false);
     // const imageUrl = useSelector(state => state.spots.singleSpot.SpotImages[0])
-    const reviews = useSelector((state) => state.reviews.spot)
+    const reviews = useSelector((state) => state.reviews)
 
     let spot;
 
@@ -30,7 +30,7 @@ const SingleSpot = () => {
 
     if (allSpots) spot = allSpots.allSpots[spotId]
 
-
+    console.log('single spot revs', reviews)
     // if (!imageUrl.url) return null;
 
     const deleteHandler = async () => {

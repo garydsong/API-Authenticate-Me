@@ -307,7 +307,8 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     const reviewExists = await Review.findOne({
         where: {
-            userId: req.user.id
+            userId: req.user.id,
+            spotId: req.params.spotId
         }
     })
     console.log(' #############post review hits#################')
@@ -330,32 +331,35 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
                 message: "User already has a review for this spot",
                 statusCode: 403
             })
-    }
+    } else {
 
-
-    try {
-        console.log('#############try hits#############')
-        const newReview = await Review.create({
-            userId: req.user.id,
-            spotId: spot.id,
-            review,
-            stars
-        })
-
-        res.json(newReview)
-    } catch (error) {
-        console.log('#############error hits#############')
-        res
-            .status(400)
-            .json({
-                message: "Validation error",
-                statusCode: 400,
-                errors: {
-                    review: "Review text is required",
-                    stars: "Stars must be an integer from 1 to 5",
-                }
+        try {
+            console.log('#############try hits#############')
+            const newReview = await Review.create({
+                userId: req.user.id,
+                spotId: spot.id,
+                review,
+                stars
             })
+
+            res.json(newReview)
+        } catch (error) {
+            console.log('#############error hits#############')
+            res
+                .status(400)
+                .json({
+                    message: "Validation error",
+                    statusCode: 400,
+                    errors: {
+                        review: "Review text is required",
+                        stars: "Stars must be an integer from 1 to 5",
+                    }
+                })
+        }
+
     }
+
+
 
 })
 

@@ -12,7 +12,7 @@ const SpotReviews = ({ spotId }) => {
     const [deleted, setDeleted] = useState(false);
     // const [isLoaded, setIsLoaded] = useState(false);
     reviewList.map((review, i) => {
-
+    console.log(review.user)
     })
     useEffect(() => {
         dispatch(getReviews(spotId))
@@ -30,10 +30,6 @@ const SpotReviews = ({ spotId }) => {
         alert('Review deleted.')
         history.push(`/spots/${spotId}`)
     }
-
-
-
-
 
 
     return (

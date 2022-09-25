@@ -28,7 +28,7 @@ const CreateReview = () => {
 
         const starNum = +stars
         const newReview = {
-            review,
+            review: review,
             stars: starNum
         };
 
