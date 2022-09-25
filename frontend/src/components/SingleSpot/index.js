@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, NavLink } from "react-router-dom"
 import { getSingleSpot, deleteSpot, getSpots } from "../../store/spots";
-import { resetReviews } from "../../store/reviews";
+import { getReviews, resetReviews } from "../../store/reviews";
 import EditSpot from "../EditSpotForm";
 import SpotReviews from "./SpotReviews";
 import SpotForm from "../SpotForm";
@@ -38,6 +38,7 @@ const SingleSpot = () => {
         }
 
         dispatch(getSpots())
+        dispatch(getReviews())
     }, [dispatch, reviews, SpotReviews, SpotForm, resetReviews])
 
     if (allSpots) spot = allSpots.allSpots[spotId]
