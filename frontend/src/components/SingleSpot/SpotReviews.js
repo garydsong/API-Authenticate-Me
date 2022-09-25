@@ -10,12 +10,13 @@ const SpotReviews = ({ spotId }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const [deleted, setDeleted] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false)
     // const [isLoaded, setIsLoaded] = useState(false);
     // reviewList.map((review, i) => {
     // console.log(review.user)
     // })
     useEffect(() => {
-        dispatch(getReviews(spotId))
+        dispatch(getReviews(spotId)).then( () => setIsLoaded(true))
         // .then(() => {
         //     setIsLoaded(true)
         // });
@@ -32,7 +33,7 @@ const SpotReviews = ({ spotId }) => {
     }
 
 
-    return (
+    return isLoaded && (
         <>
 
         <div id="inside-spot-reviews">
