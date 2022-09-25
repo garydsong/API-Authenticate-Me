@@ -2,7 +2,7 @@
 
 
 
-GareBnB is a website clone, inspired by [AirBnB](https://airbnb.com). There are 16 million vacant homes in the United States alone. We can now make that 15,999,999. By listing your home on GareBnB you will give me the option to stay in your vacant home for FREE!
+GareBnB is a fullstack application clone, inspired by [AirBnB](https://airbnb.com). List your spot, or leave a review for a spot! GareBnB is where you go to show me (Gare) what your place is like and if I really want to go there!
 
 **Live site: [GareBnB](http://garebnb.herokuapp.com)**
 
@@ -12,7 +12,6 @@ GareBnB is a website clone, inspired by [AirBnB](https://airbnb.com). There are 
 - [Database Schema](https://github.com/garydsong/API-Authenticate-Me/wiki/GareBnB-Wiki#database-schema-design)
 - [Feature List](https://github.com/garydsong/API-Authenticate-Me/wiki/GareBnB-Wiki#feature)
 - [Redux Store Shape](https://github.com/garydsong/API-Authenticate-Me/wiki/Redux-Store-Shape)
-- [Party Time](https://www.youtube.com/watch?v=iWa-6g-TbgI)
 
 # 🖥️ Technologies
 ### Frameworks, Platforms, Libraries:
@@ -29,17 +28,25 @@ GareBnB is a website clone, inspired by [AirBnB](https://airbnb.com). There are 
 ![illustrator](https://img.shields.io/badge/Adobe%20Illustrator-FFA900?style=for-the-badge&logo=AdobeIllustrator&logoColor=white)![photoshop](https://img.shields.io/badge/Adobe%20Photoshop-31A8FF?style=for-the-badge&logo=AdobePhotoshop&logoColor=white)
 
 # ✈️ Landing Page
-Current WIP:
-<img src=https://i.imgur.com/xXd08lu.gif>
+
+<img src=https://i.imgur.com/FnHkFNP.gif>
 
 # 🛣️ Roadmap
 <img src=https://i.imgur.com/IDLLzKa.png>
 
 # ▶️ Get Started
-1. clone repo
-2. npm install
-3. ???
-4. PROFIT!
+1. Clone repository.
+```
+git@github.com:garydsong/API-Authenticate-Me.git
+```
+2. Install dependencies.
+```
+npm install
+```
+4. cd backend and frontend folders.
+```
+npm start
+```
 
 # 📱 Contact
 [LinkedIn](https://www.linkedin.com/in/gary-song-96b071246/)
