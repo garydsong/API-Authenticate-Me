@@ -168,7 +168,8 @@ const spotReducer = (state = initialState, action) => {
 
         case GET_SINGLE_SPOT: {
             let newState = { ...state, singleSpot: { ...state.singleSpot } };
-            let singleSpot = { ...action.spot, SpotImages: [ ...state.singleSpot.SpotImages ] };
+            // took ... out of SpotImages: [ ...state.singleSpot.SpotImages ]
+            let singleSpot = { ...action.spot, SpotImages: [ state.singleSpot.SpotImages ] };
             action.spot.SpotImages.forEach((img, i) => {
                 singleSpot.SpotImages[i] = img;
             });
