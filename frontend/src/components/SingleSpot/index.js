@@ -18,6 +18,7 @@ const SingleSpot = () => {
     const allSpots = useSelector(state => state.spots)
     const [showForm, setShowForm] = useState(false);
     const [reviewExists, setReviewExists] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
     const reviews = useSelector((state) => state.reviews)
 
     let spot;
@@ -37,7 +38,7 @@ const SingleSpot = () => {
             }
         }
 
-        dispatch(getSpots())
+        dispatch(getSpots()).then( () => setIsLoaded(true))
 
     }, [dispatch, reviews, SpotReviews, SpotForm, resetReviews])
 
@@ -84,7 +85,8 @@ const SingleSpot = () => {
 
 
     if (!spot) return null
-    return (
+
+    return isLoaded && (
 
         <div className="single-spot-main">
             {spot?.id &&
