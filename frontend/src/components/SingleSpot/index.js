@@ -38,8 +38,8 @@ const SingleSpot = () => {
         }
 
         dispatch(getSpots())
-        dispatch(getReviews())
-    }, [dispatch, reviews, SpotReviews, SpotForm, resetReviews, getReviews])
+
+    }, [dispatch, reviews, SpotReviews, SpotForm, resetReviews])
 
     if (allSpots) spot = allSpots.allSpots[spotId]
 
