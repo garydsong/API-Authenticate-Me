@@ -33,7 +33,7 @@ const SpotReviews = ({ spotId }) => {
     }
 
 
-    if (!reviews[0]) return console.log('waiting on reviews');
+    // if (!reviews[0]) return console.log('waiting on reviews');
 
 
 
@@ -45,7 +45,6 @@ const SpotReviews = ({ spotId }) => {
             <h1 id="reviews-header">{reviews?.length} Reviews</h1>
 
             <div id="reviews-grid">
-                f2afa2fa22af2faf2afa2fa2
                 { reviewList.map((review, i) => (
                     <div key={i} id="review-card">
 
