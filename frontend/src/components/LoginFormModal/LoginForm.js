@@ -22,7 +22,7 @@ function LoginForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        setValidationErrors([])
         return dispatch(sessionActions.login({ credential, password })).catch(
             async (res) => {
                 const data = await res.json();
