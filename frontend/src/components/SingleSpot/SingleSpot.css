@@ -1,19 +1,201 @@
 .single-spot-main {
-
     width: 100%;
-    height: 400px;
+    height: 100%;
     border: transparent 1px solid;
 }
 
 .single-spot-top {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
     margin-top: 100px;
     margin-left: 150px;
+    margin-right: 150px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+#top-most {
+    display: flex;
+    flex-direction: row;
+    align-items:flex-end;
+    justify-content: space-between;
+    width: 1000px;
+    height: 70px;
+    margin-bottom: 30px;
+}
+
+#top-most-left{
+    padding-bottom: 5px;
+}
+
+#top-most-right{
+    padding-bottom: 10px;
+}
+
+#spot-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#spot-title-ratings {
+    font-size: 14px;
 }
 
 #single-spot-reviews-container {
     display: flex;
     justify-content: space-between;
     width: 400px;
+}
+
+#descript-title {
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: #f1f1f1 solid 1px;
+}
+
+#descript-under-img {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: rows;
+    width: 1000px;
+    height: 360px;
+    border-bottom: #f1f1f1 1px solid;
+}
+
+#descript-left {
+    width: 650px;
+    height: 100%;
+}
+
+#descript-mid {
+    width: 30px;
+    height: 100%;
+}
+
+#descript-right {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+    height: 300px;
+    background-color: white;
+    border: lightgray 1px solid;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+}
+
+#price-a-night {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#price-a-night-cost {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#price-a-night-cost span{
+    font-size: 16px;
+    font-weight: 100;
+}
+
+#price-a-night-review {
+    font-size: 14px;
+}
+
+#book-a-night {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100px;
+    width: 100%;
+    border: darkgray 1px solid;
+    border-radius: 10px;
+    background-color: lightgray;
+}
+
+
+#book-a-night-top-left{
+    width: 50%;
+    height: 50%;
+    border-top-left-radius: 10px;
+    border-right: darkgray 1px solid;
+    border-bottom: darkgray 1px solid;;
+}
+#book-a-night-top-right{
+    width: 49%;
+    height: 50%;
+    border-top-right-radius: 10px;
+    border-bottom: darkgray 1px solid;;
+}
+#book-a-night-bottom{
+    width: 1000%;
+    height: 50%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#reserve {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: white;
+    height: 60px;
+    width: 100%;
+    background-image: linear-gradient(to top left, gray, lightgray);
+    border-radius: 10px;
+}
+#reserve:hover {
+    cursor: default;
+    user-select: none;
+}
+
+#total-cost {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+}
+
+#total-cost a{
+    font-weight: bold;
+}
+
+#descript-hosted-by {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#descript-guests-beds {
+    font-size: 14px;
+    color: gray;
+}
+
+#descript-aircover {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: #f9f9f9 1px solid;
+}
+
+#aircover-logo {
+    width: 123px;
+    height: 26px;
+}
+
+#aircover-desc {
+    padding-top: 15px;
+}
+
+#actual-descript {
+    padding-top: 15px;
 }
 
 #leave-a-review {
@@ -34,9 +216,10 @@
 }
 
 #main-img {
-    width: 400px;
-    height: 400px;
-    border-radius: 20px;
+    width: 500px;
+    height: 500px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .delete-spot-button {
@@ -46,23 +229,23 @@
     align-items: center;
     width: 120px;
     height: 40px;
-    background-color: rgb(215, 4, 102);
+    background-color: white;
     ;
-    color: white;
+    color: black;
     margin-right: 10px;
-    border-radius: 10px;
+    border-radius: 999px;
     border: none;
 }
 
 .delete-spot-button:hover {
     cursor: pointer;
-    background-color: rgb(255, 47, 144);
+    background-color: lightgray;
     transition: .1s;
 }
 
 .delete-spot-button:active {
     transform: scale(.96);
-    background-color: rgb(255, 143, 195);
+    background-color: #f1f1f1;
 }
 
 
@@ -73,23 +256,23 @@
     align-items: center;
     width: 120px;
     height: 40px;
-    background-color: rgb(215, 4, 102);
+    background-color: white;
     ;
-    color: white;
+    color: black;
     margin-right: 10px;
-    border-radius: 10px;
+    border-radius: 999px;
     border: none;
 }
 
 .edit-spot-button:hover {
     cursor: pointer;
-    background-color: rgb(255, 47, 144);
+    background-color: lightgray;
     transition: .1s;
 }
 
 .edit-spot-button:active {
     transform: scale(.96);
-    background-color: rgb(255, 143, 195);
+    background-color: #f1f1f1;
 }
 
 #del-edit-container {
@@ -115,8 +298,43 @@
 .spot-details-mid {
     display: flex;
     flex-direction: row;
-    height: 400px;
-    width: 1620px;
+    justify-content: center;
+    height: 500px;
+    width: 100%;
+    margin-top: -30px;
+}
+
+#main-img:hover {
+    opacity: .8;
+}
+
+#img-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    padding-left: 5px;
+    width: 500px;
+    height: 500px;
+    row-gap: 5px;
+    column-gap: 5px;
+}
+
+#img-grid img{
+    width: 248px;
+    height: 248px;
+}
+
+#img-grid img:hover {
+    z-index: 2;
+    background-color: black;
+    opacity: .8;
+}
+
+#top-right-grid {
+    border-top-right-radius: 20px;
+}
+
+#bottom-right-grid {
+    border-bottom-right-radius: 20px;
 }
 
 #mid-divider {
@@ -134,22 +352,24 @@
 
 #reviews-grid {
     display: grid;
-    grid-template-columns: repeat(3, 6fr);
-    width: 700px;
-    height: 500px;
+    grid-template-columns: repeat(1, 6fr);
+    width: 1000px;
+    height: 300px;
 }
 
 #reviews-container {
     margin: 0px;
     display: flex;
+    flex-direction: column;
     height: 100%;
     justify-content: flex-start;
     padding-top: 0px;
+    width: 1000px;
 }
 
 #reviews-header {
     border-bottom: 1px solid lightgray;
-    width: 900px;
+    width: 1000px;
     margin-top: 0px;
 }
 
@@ -172,11 +392,9 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    border-bottom: lightgray 1px solid;
-    border-left: lightgray 1px solid;
     padding-left: 10px;
     width: 300px;
-    height: 200px;
+    height: 90px;
 }
 
 #del-edit-review-container {

@@ -37,7 +37,7 @@ const SingleSpot = () => {
             }
         }
 
-        dispatch(getSpots()).then( () => setIsLoaded(true))
+        dispatch(getSpots()).then(() => setIsLoaded(true))
 
     }, [dispatch, reviews, SpotReviews, SpotForm, resetReviews, sessionUser])
 
@@ -81,7 +81,8 @@ const SingleSpot = () => {
     // }, [showMenu]);
 
 
-
+    console.log('spot', spot)
+    // console.log('spotsss', allSpots.singleSpot.Owner.firstName)
 
     if (!spot) return null
 
@@ -91,18 +92,32 @@ const SingleSpot = () => {
             {spot?.id &&
                 <div className="single-spot-top ">
                     <>
-                        <h1>{spot?.name}</h1>
-                        <h2>{spot?.address}</h2>
-                        <h3>{spot?.description}</h3>
-                        <h3 id="single-spot-reviews-container">
-                            <div id="avg-rating">★ {spot.avgRating > 0 ? spot.avgRating : 'New'}</div>
-                            {/* <div id="leave-a-review" onClick={openMenu}>Leave a Review</div> */}
-                            {sessionUser && sessionUser.id !== spot.ownerId && !reviewExists && (
-                            <NavLink to={`/spots/${spot.id}/reviews`}>
-                            <div id="leave-a-review">Leave a Review</div>
-                            </NavLink>
-                            )}
-                        </h3>
+                        <div id="top-most">
+                            <div id="top-most-left">
+                                <div id="spot-title">
+                                    {spot?.name}
+                                </div>
+                                <div id="spot-title-ratings">
+                                    <div id="avg-rating">★ {spot.avgRating > 0 ? spot.avgRating : 'New'} • {reviewsList.length} reviews • {spot?.city}, {spot?.state}, {spot?.country}</div>
+                                </div>
+                            </div>
+                            <div id="top-most-right">
+                                {sessionUser && sessionUser.id === spot.ownerId && (
+                                    <div id="del-edit-container">
+                                        <div onClick={deleteHandler} className="delete-spot-button">Delete</div>
+                                        {/* <div onClick={editHandler} className="edit-spot-button">Edit</div> */}
+                                        <NavLink to={`/spots/${spot.id}/edit`}><div onClick={editHandler} className="edit-spot-button">Edit</div></NavLink>
+                                    </div>
+                                )}
+                            </div>
+
+                        </div>
+
+
+
+
+                        {/* <div id="leave-a-review" onClick={openMenu}>Leave a Review</div> */}
+
                         {/* {showMenu && (
                             <div id="review-dropdown">
                                 <div id="closeMenu" onClick={(() => setShowMenu(false))}>x</div>
@@ -112,20 +127,59 @@ const SingleSpot = () => {
                         {/* breaks on refresh without optional chaining will add isLoaded later */}
                         <div className="spot-details-mid">
                             <img id="main-img" src={spot.previewImage ? spot.previewImage : 'https://i.imgur.com/xCOjy14.gif'} />
-                            <div id="mid-divider"></div>
-                            <div id="reviews-container">
-                                <SpotReviews spotId={spotId} />
+                            <div id="img-grid">
+                                <img id="top-left-grid" src="https://i.imgur.com/fKbnlWn.png" />
+                                <img id="top-right-grid" src="https://i.imgur.com/pHNxVCo.png" />
+                                <img id="bottom-left-grid" src="https://i.imgur.com/5lwDJmf.png" />
+                                <img id="bottom-right-grid" src="https://i.imgur.com/SGfgfZr.png" />
                             </div>
                         </div>
-                        <h3>${spot.price}</h3>
-
-                        {sessionUser && sessionUser.id === spot.ownerId && (
-                            <div id="del-edit-container">
-                                <div onClick={deleteHandler} className="delete-spot-button">Delete</div>
-                                {/* <div onClick={editHandler} className="edit-spot-button">Edit</div> */}
-                                <NavLink to={`/spots/${spot.id}/edit`}><div onClick={editHandler} className="edit-spot-button">Edit</div></NavLink>
+                        <div id="descript-under-img">
+                            <div id="descript-left">
+                                <div id="descript-title">
+                                    <div id="descript-hosted-by">Entire spot hosted by {allSpots?.singleSpot?.Owner?.firstName}</div>
+                                    <div id="descript-guests-beds">2 guests • 1 bedroom • 1 bed • 1 bath</div>
+                                </div>
+                                <div id="descript-aircover">
+                                    <img id="aircover-logo" src="https://i.imgur.com/ht28t42.png" />
+                                    <div id="aircover-desc">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
+                                </div>
+                                <div id="actual-descript">
+                                    <div>{spot?.description}</div>
+                                </div>
                             </div>
-                        )}
+
+                            <div id="descript-mid"></div>
+
+                            <div id="descript-right">
+                                <div id="price-a-night">
+                                    <div id="price-a-night-cost">${spot.price} <span>night</span></div>
+                                    <div id="price-a-night-review">★ {spot.avgRating > 0 ? spot.avgRating : 'New'} • {reviewsList.length} reviews</div>
+                                </div>
+                                <div id="book-a-night">
+                                    <div id="book-a-night-top-left" />
+                                    <div id="book-a-night-top-right" />
+                                    <div id="book-a-night-bottom" />
+                                </div>
+                                <div id="reserve">Sorry no reservations available</div>
+                                <div id="total-cost"><a>Total cost</a> <a>${spot.price}</a></div>
+                            </div>
+                        </div>
+                        <div id="mid-divider"></div>
+
+                        <div id="reviews-container">
+                            <h3 id="single-spot-reviews-container">
+                                {sessionUser && sessionUser.id !== spot.ownerId && !reviewExists && (
+                                    <NavLink to={`/spots/${spot.id}/reviews`}>
+                                        <div id="leave-a-review">Leave a Review</div>
+                                    </NavLink>
+                                )}
+                            </h3>
+                            <SpotReviews spotId={spotId} />
+                        </div>
+
+
+
 
                         {showForm && (
                             <div>
