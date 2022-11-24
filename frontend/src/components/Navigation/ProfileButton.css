@@ -54,21 +54,25 @@
     align-items: center;
     padding-left: 10px;
     height: 50px;
-    width: 180px;
     overflow: hidden;
     white-space:nowrap;
     text-overflow: ellipsis;
+    border-bottom: lightgray 1px solid;
 }
 
 #prodrop-two {
-    display: inline-block;
+    display: flex;
     align-items: center;
     padding-left: 10px;
     height: 50px;
-    width: 150px;
-    overflow: hidden;
+    /* overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; */
+}
+
+#prodrop-two:hover {
+    cursor:pointer;
+    background-color: lightgray;
 }
 
 #prodrop-three {
@@ -85,9 +89,7 @@
     cursor:default;
 }
 
-#prodrop-two:hover {
-    cursor:default;
-}
+
 #prodrop-three:hover {
     cursor: pointer;
     font-weight: bold;

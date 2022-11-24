@@ -1,0 +1,112 @@
+#book-a-night {
+    display: flex;
+    width: 300px;
+    /* border: darkgray 1px solid; */
+    border-radius: 10px;
+    background-color: lightgray;
+    margin-top: 10px;
+}
+
+#checkin-label {
+    position: absolute;
+    font-weight: bold;
+    font-size: 9px;
+    color: #222222;
+    top: 760px;
+    right: 721px;
+    z-index: 10;
+}
+
+#checkout-label {
+    position: absolute;
+    font-weight: bold;
+    font-size: 9px;
+    color: #222222;
+    top: 760px;
+    right: 563px;
+    z-index: 10;
+}
+
+.form-field {
+    position: relative;
+    color: #222222;
+    font-family: 'Nunito';
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.form-field:hover {cursor: pointer;}
+
+#book-a-night-top-left{
+    width: 50%;
+    height: 50px;
+    border-top-left-radius: 10px;border-bottom-left-radius: 10px;
+    border: darkgray 1px solid;;
+}
+
+#book-a-night-top-right{
+    width: 49%;
+    height: 50px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: darkgray 1px solid;;
+}
+
+#reserve {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: white;
+    height: 50px;
+    width: 100%;
+    background: linear-gradient(0.25turn, #e61e4d, #e31c5f, #d70466);
+    border-radius: 10px;
+    border: transparent;
+    transition: 1s;
+    margin-top: 10px;
+}
+
+#reserve:hover {
+    cursor: pointer;
+    user-select: none;
+    background: linear-gradient(0.25turn, #d70466, #e61e4d, #e31c5f);
+    transition: 1s;
+}
+
+#added-cost {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 13px;
+}
+
+#added-cost div {
+    color: gray;
+}
+
+#added-cost-end div {
+    color: gray;
+}
+
+#added-cost-end {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 13px;
+    padding-bottom: 13px;
+    border-bottom: lightgray 1px solid;
+}
+
+#validations-bookings-box {
+    z-index: 999;
+    width: 400px;
+    position: absolute;
+    background-color: rgba(255, 103, 103, 0.7);
+    top: 580px;
+    right: 420px;
+    border: red 1px solid;
+    border-radius: 10px;
+}
