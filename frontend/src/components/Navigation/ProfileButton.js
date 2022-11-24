@@ -46,8 +46,12 @@ function ProfileButton({ user }) {
         </button>
         {showMenu && (
           <div className="profile-dropdown">
-            <div id="prodrop-one">{user.username}</div>
-            <div id="prodrop-two">{user.email}</div>
+            <div id="prodrop-one">Hello, {user.username}</div>
+            <NavLink to={`/user/${user.id}/bookings`}>
+              <div id="prodrop-two">
+              Bookings
+              </div>
+              </NavLink>
             <div id="prodrop-three" onClick={logout}>Log Out
             </div>
           </div>

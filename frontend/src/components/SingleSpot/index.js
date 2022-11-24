@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, NavLink } from "react-router-dom"
 import { getSingleSpot, deleteSpot, getSpots } from "../../store/spots";
 import { getReviews, resetReviews } from "../../store/reviews";
+import { getSpotBookingsThunk } from "../../store/bookings";
 import EditSpot from "../EditSpotForm";
 import SpotReviews from "./SpotReviews";
 import SpotForm from "../SpotForm";
 import CreateReview from "../ReviewForm";
+import BookingForm from "../BookingForm";
 import './SingleSpot.css'
 
 const SingleSpot = () => {
@@ -16,6 +18,7 @@ const SingleSpot = () => {
     // const spot = useSelector(state => state.spots.singleSpot)
     const sessionUser = useSelector(state => state.session.user)
     const allSpots = useSelector(state => state.spots)
+    const spotBookings = useSelector(state => state.bookings.spot);
     const [showForm, setShowForm] = useState(false);
     const [reviewExists, setReviewExists] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -29,6 +32,8 @@ const SingleSpot = () => {
     useEffect(() => {
         const dispatchRes = dispatch(getSingleSpot(spotId))
         setReviewExists(false)
+
+        dispatch(getSpotBookingsThunk(spotId));
 
 
         for (let i = 0; i < reviewsList.length; i++) {
@@ -151,7 +156,10 @@ const SingleSpot = () => {
 
                             <div id="descript-mid"></div>
 
-                            <div id="descript-right">
+
+                            {/* BOOKING COMPONENT GOES HERE */}
+
+                            {/* <div id="descript-right">
                                 <div id="price-a-night">
                                     <div id="price-a-night-cost">${spot.price} <span>night</span></div>
                                     <div id="price-a-night-review">★ {spot.avgRating > 0 ? spot.avgRating : 'New'} • {reviewsList.length} reviews</div>
@@ -163,7 +171,13 @@ const SingleSpot = () => {
                                 </div>
                                 <div id="reserve">Sorry no reservations available</div>
                                 <div id="total-cost"><a>Total cost</a> <a>${spot.price}</a></div>
-                            </div>
+                            </div> */}
+
+                            <BookingForm
+                            spot={spot}
+                            user={sessionUser}
+                            bookings={spotBookings}
+                            />
                         </div>
                         <div id="mid-divider"></div>
 
