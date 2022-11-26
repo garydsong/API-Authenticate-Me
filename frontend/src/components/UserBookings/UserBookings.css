@@ -46,3 +46,24 @@
 #no-trip {
     padding: 20px;
 }
+
+#start-searching-button {
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(0.25turn, #e61e4d, #e31c5f, #d70466);
+    transition: 1s;
+}
+
+
+#start-searching-button:hover {
+    cursor: pointer;
+    user-select: none;
+    background: linear-gradient(0.25turn, #d70466, #e61e4d, #e31c5f);
+    transition: 1s;
+}
