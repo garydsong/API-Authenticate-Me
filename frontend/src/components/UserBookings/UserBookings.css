@@ -20,3 +20,29 @@
     object-fit: cover;
     border-radius: 20px;
 }
+
+#baggage-icon {
+    height: 50px;
+    filter: invert(62%) sepia(48%) saturate(7272%) hue-rotate(326deg) brightness(107%) contrast(103%);
+}
+
+.no-trip-wrapper {
+    width: 84vw;
+    height: 285px;
+    border: lightgray 1px solid;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 15px;
+}
+
+#family-photo {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#no-trip {
+    padding: 20px;
+}
