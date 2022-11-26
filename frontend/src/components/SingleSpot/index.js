@@ -19,6 +19,8 @@ const SingleSpot = () => {
     const sessionUser = useSelector(state => state.session.user)
     const allSpots = useSelector(state => state.spots)
     const spotBookings = useSelector(state => state.bookings.spot);
+
+    const singleSpot = useSelector(state => state.spots.singleSpot)
     const [showForm, setShowForm] = useState(false);
     const [reviewExists, setReviewExists] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -86,7 +88,7 @@ const SingleSpot = () => {
     // }, [showMenu]);
 
 
-    console.log('spot', spot)
+    // console.log('spot', spot)
     // console.log('spotsss', allSpots.singleSpot.Owner.firstName)
 
     if (!spot) return null
@@ -94,6 +96,7 @@ const SingleSpot = () => {
     return isLoaded && (
 
         <div className="single-spot-main">
+            {console.log('single', singleSpot)}
             {spot?.id &&
                 <div className="single-spot-top ">
                     <>
