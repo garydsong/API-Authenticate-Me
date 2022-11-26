@@ -4,6 +4,7 @@ import { deleteBookingThunk, getUserBookingsThunk } from "../../store/bookings";
 import "./UserBookings.css"
 import baggage from "../../assets/icons/baggage.svg"
 import family from "../../assets/pictures/family.png"
+import { NavLink } from "react-router-dom";
 
 function UserBookings() {
     const dispatch = useDispatch()
@@ -43,7 +44,7 @@ function UserBookings() {
                 <div className="bookings-content-wrapper">
                 <h1>Trips</h1>
                 <div>
-                    {!userBookings.length ?
+                    {!Object.values(userBookings).length ?
                     (
                     <>
                     <div className="no-trip-wrapper">
@@ -51,11 +52,14 @@ function UserBookings() {
                         <img id="baggage-icon" src={baggage}/>
                         <h2>No trips booked...yet!</h2>
                         <h3>Time to dust off your bags and start planning your next adventure</h3>
-                        <div>Start searching</div>
+                        <NavLink id="start-searching-button" to="/">
+                        Start searching
+                        </NavLink>
                         </div>
                         <img id="family-photo" src={family}/>
                     </div>
                     </>
+
                     ) : (
 
                     <>
