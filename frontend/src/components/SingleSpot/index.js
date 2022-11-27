@@ -4,6 +4,7 @@ import { useParams, useHistory, NavLink } from "react-router-dom"
 import { getSingleSpot, deleteSpot, getSpots } from "../../store/spots";
 import { getReviews, resetReviews } from "../../store/reviews";
 import { getSpotBookingsThunk } from "../../store/bookings";
+import nophoto from "../../assets/pictures/nophoto.png"
 import EditSpot from "../EditSpotForm";
 import SpotReviews from "./SpotReviews";
 import SpotForm from "../SpotForm";
@@ -136,10 +137,14 @@ const SingleSpot = () => {
                         <div className="spot-details-mid">
                             <img id="main-img" src={spot.previewImage ? spot.previewImage : 'https://i.imgur.com/xCOjy14.gif'} />
                             <div id="img-grid">
-                                <img id="top-left-grid" src="https://i.imgur.com/fKbnlWn.png" />
-                                <img id="top-right-grid" src="https://i.imgur.com/pHNxVCo.png" />
-                                <img id="bottom-left-grid" src="https://i.imgur.com/5lwDJmf.png" />
-                                <img id="bottom-right-grid" src="https://i.imgur.com/SGfgfZr.png" />
+                                {singleSpot.SpotImages[1] ? (<img id="top-left-grid" src={singleSpot.SpotImages[1].url}/>) : (<img id="top-left-grid" src={nophoto}/>)}
+
+                                {singleSpot.SpotImages[2] ? (<img id="top-right-grid" src={singleSpot.SpotImages[2].url}/>) : (<img id="top-right-grid" src={nophoto}/>)}
+
+                                {singleSpot.SpotImages[3] ? (<img id="bottom-left-grid" src={singleSpot.SpotImages[3].url}/>) : (<img id="bottom-left-grid" src={nophoto}/>)}
+
+                                {singleSpot.SpotImages[4] ? (<img id="bottom-right-grid" src={singleSpot.SpotImages[4].url}/>) : (<img id="bottom-right-grid" src={nophoto}/>)}
+
                             </div>
                         </div>
                         <div id="descript-under-img">
