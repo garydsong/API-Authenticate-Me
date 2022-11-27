@@ -14,7 +14,7 @@ const options = {
     { name: "name", weight: 2 },
     { name: "about", weight: .5 },
     { name: "city", weight: 2.5 },
-
+    { name: "country", weight: 1 },
   ],
   includeScore: true,
 }
@@ -40,24 +40,24 @@ function Navigation({ isLoaded, setSearch }) {
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault()
-    let businessResults;
+    let spotResults;
     const fuse = new Fuse(Object.values(spots), options)
-    if (document.getElementById("search-input-field-business-list").value === "")  businessResults = Object.values(spots)
+    if (document.getElementById("search-input-field-business-list").value === "")  spotResults = Object.values(spots)
     else if (document.getElementById("search-input-field-business-list").value === "San Francisco") {
-      businessResults = Object.values(spots).filter(business=> business.city === "San Francisco")
+      spotResults = Object.values(spots).filter(business=> business.city === "San Francisco")
     }
     else if (document.getElementById("search-input-field-business-list").value === "New York") {
-      businessResults = Object.values(spots).filter(business=> business.city === "New York")
+      spotResults = Object.values(spots).filter(business=> business.city === "New York")
     }
     else if (document.getElementById("search-input-field-business-list").value === "Brooklyn") {
-      businessResults = Object.values(spots).filter(business=> business.city === "Brooklyn")
+      spotResults = Object.values(spots).filter(business=> business.city === "Brooklyn")
     }
     else {
       let results = fuse.search(document.getElementById("search-input-field-business-list").value).slice(0, 15)
-       businessResults = results.map(result => result.item)
+       spotResults = results.map(result => result.item)
     }
 
-    setSearch(businessResults)
+    setSearch(spotResults)
     return history.push("/searchspots")
 
   }
