@@ -169,3 +169,45 @@
     height: 20px;
     width: 20px;
 }
+
+.search-bar-wrapper {
+    display: flex;
+    align-items: center;
+    height: 46px;
+    width: 400px;
+    border: lightgray 1px solid;
+    border-radius: 999px;
+}
+
+#search-input-field-business-list {
+    border: transparent;
+    margin-left: 10px;
+    font-size: 18px;
+    width: 87%;
+}
+
+#search-input-field-business-list:focus {
+    outline: none;
+}
+
+.search-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: transparent;
+    background-color: #ff5a5f;
+    height: 30px;
+    width: 30px;
+    border-radius: 999px;
+    transition: 1s;
+}
+
+#search-mag {
+    height: 15px;
+    filter: invert(99%) sepia(99%) saturate(5%) hue-rotate(252deg) brightness(108%) contrast(100%);
+}
+
+.search-button:hover {
+    cursor: pointer;
+    background-color: #ff444b;
+}

@@ -11,11 +11,14 @@ import SpotForm from "./components/SpotForm";
 import CreateReview from "./components/ReviewForm";
 import EditSpot from "./components/EditSpotForm";
 import UserBookings from "./components/UserBookings";
+import SearchSpots from "./components/SearchSpots";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [search, setSearch] = useState([])
   // const spots = useSelector((state) => state.spots)
+
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -24,7 +27,7 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Navigation isLoaded={isLoaded} setSearch={setSearch} />
       {isLoaded && (
         <Switch>
 
@@ -38,6 +41,10 @@ function App() {
 
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+
+          <Route path="/searchspots">
+            <SearchSpots search={search}  exact={true} />
           </Route>
 
           <Route exact path="/spots/new">

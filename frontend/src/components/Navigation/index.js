@@ -1,20 +1,66 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import search from "../../assets/icons/search.svg"
 import './Navigation.css';
+import Fuse from "fuse.js"
+
+const options = {
+  findAllMatches: true,
+  keys: [
+    'tags.tag',
+    { name: "name", weight: 2 },
+    { name: "about", weight: .5 },
+    { name: "city", weight: 2.5 },
+
+  ],
+  includeScore: true,
+}
 
 
-function Navigation({ isLoaded }) {
+function Navigation({ isLoaded, setSearch }) {
   const sessionUser = useSelector(state => state.session.user);
-
+  const spots = useSelector(state => state.spots.allSpots)
   const [showMenu, setShowMenu] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const history = useHistory();
 
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
+
+  function handleOnSearch({ target = {} }) {
+    const { value } = target
+    setQuery(value)
+  }
+
+  const handleSearchSubmit = async (e) => {
+    e.preventDefault()
+    let businessResults;
+    const fuse = new Fuse(Object.values(spots), options)
+    if (document.getElementById("search-input-field-business-list").value === "")  businessResults = Object.values(spots)
+    else if (document.getElementById("search-input-field-business-list").value === "San Francisco") {
+      businessResults = Object.values(spots).filter(business=> business.city === "San Francisco")
+    }
+    else if (document.getElementById("search-input-field-business-list").value === "New York") {
+      businessResults = Object.values(spots).filter(business=> business.city === "New York")
+    }
+    else if (document.getElementById("search-input-field-business-list").value === "Brooklyn") {
+      businessResults = Object.values(spots).filter(business=> business.city === "Brooklyn")
+    }
+    else {
+      let results = fuse.search(document.getElementById("search-input-field-business-list").value).slice(0, 15)
+       businessResults = results.map(result => result.item)
+    }
+
+    setSearch(businessResults)
+    return history.push("/searchspots")
+
+  }
 
   const dropDownClassChanger = () => {
     if (showMenu) {
@@ -75,6 +121,20 @@ function Navigation({ isLoaded }) {
             <img className="logo" src="https://i.imgur.com/TAA9t04.png"></img>
           </NavLink>
 
+          <form className="search-bar-wrapper" onSubmit={handleSearchSubmit}>
+            <input
+              id="search-input-field-business-list"
+              placeholder="Search destination"
+              type="search"
+              onChange={handleOnSearch}
+            />
+            <button
+              className="search-button"
+              type="submit"
+            >
+              <img id="search-mag" src={search}/>
+            </button>
+          </form>
 
           <div>
 
