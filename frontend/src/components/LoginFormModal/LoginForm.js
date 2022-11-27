@@ -36,7 +36,7 @@ function LoginForm() {
     const handleDemo = (e) => {
         e.preventDefault();
         setValidationErrors([]);
-        return dispatch(sessionActions.login({ credential: 'hellokitty@gmail.com', password: 'password' })).catch(
+        return dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' })).catch(
             async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setValidationErrors(data.errors);

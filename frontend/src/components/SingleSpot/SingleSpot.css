@@ -321,6 +321,7 @@
 #img-grid img{
     width: 248px;
     height: 248px;
+    object-fit: cover;
 }
 
 #img-grid img:hover {
