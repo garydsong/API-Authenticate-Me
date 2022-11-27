@@ -49,7 +49,7 @@ function ProfileButton({ user }) {
             <div id="prodrop-one">Hello, {user.username}</div>
             <NavLink to={`/user/${user.id}/bookings`}>
               <div id="prodrop-two">
-              Bookings
+              Trips
               </div>
               </NavLink>
             <div id="prodrop-three" onClick={logout}>Log Out

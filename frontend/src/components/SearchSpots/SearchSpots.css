@@ -1,0 +1,55 @@
+.search-results-page-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 99vw;
+}
+
+.top-search-tagline {
+    font-weight: bold;
+    color: #222222;
+    margin-left: 24.8vw;
+    margin-bottom: 30px;
+}
+
+.search-card-wrapper {
+    display: flex;
+    height: 330px;
+    width: 50vw;
+    border: lightgray 1px solid;
+    margin-bottom: 40px;
+    border-radius: 20px;
+}
+
+.search-card-detail-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.search-card-name-rating {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#search-card-img {
+    height: 330px;
+    width: 330px;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#search-card-spot-name {
+    font-weight: bold;
+    font-size: 20px;
+    color: #222222;
+}
+
+#search-card-location {
+    color: gray;
+}
