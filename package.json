@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/garydsong/API-Authenticate-Me/issues"
   },
-  "homepage": "https://github.com/garydsong/API-Authenticate-Me#readme"
+  "homepage": "https://github.com/garydsong/API-Authenticate-Me#readme",
+  "dependencies": {
+    "fuse.js": "^6.6.2"
+  }
 }

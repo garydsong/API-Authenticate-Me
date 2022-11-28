@@ -171,8 +171,10 @@
 }
 
 .search-bar-wrapper {
+    position: absolute;
     display: flex;
     align-items: center;
+    right: 40vw;
     height: 46px;
     width: 400px;
     border: lightgray 1px solid;
